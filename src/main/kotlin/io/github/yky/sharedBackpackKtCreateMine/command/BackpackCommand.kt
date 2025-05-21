@@ -17,14 +17,15 @@ object BackpackCommand {
     fun register(
         dispatcher: CommandDispatcher<ServerCommandSource>
     ) {
+        @Suppress("SpellCheckingInspection")
         val literalCommandNode = dispatcher.register(
-            CommandManager.literal("backpack")
+            CommandManager.literal("sharedbackpack")
                 .then(CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
                     executeBackpack(it.source, StringArgumentType.getString(it, ARGUMENT_NAME))
                 })
         )
 
-        dispatcher.register(CommandManager.literal("bp").redirect(literalCommandNode))
+        dispatcher.register(CommandManager.literal("sbp").redirect(literalCommandNode))
     }
 
     private fun executeBackpack(source: ServerCommandSource, name: String): Int {
