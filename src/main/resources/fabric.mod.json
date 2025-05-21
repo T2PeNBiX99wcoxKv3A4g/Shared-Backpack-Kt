@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "shared-backpack-kt-create-mine",
+  "version": "${version}",
+  "name": "Shared Backpack Kotlin version for Create Mine",
+  "description": "Provides a Shared Backpack for all players",
+  "authors": [
+    "170",
+    "yukiyosanako"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/shared-backpack-kt-create-mine/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "io.github.yky.sharedBackpackKtCreateMine.client.SharedBackpackKtCreateMineDataGenerator"
+    ],
+    "client": [
+      "io.github.yky.sharedBackpackKtCreateMine.client.SharedBackpackKtCreateMineClient"
+    ],
+    "main": [
+      "io.github.yky.sharedBackpackKtCreateMine.SharedBackpackKtCreateMine"
+    ]
+  },
+  "mixins": [
+    "shared-backpack-kt-create-mine.mixins.json",
+    {
+      "config": "shared-backpack-kt-create-mine.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric": "*",
+    "minecraft": "1.21.6-alpha.25.14.craftmine"
+  }
+}

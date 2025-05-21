@@ -1,0 +1,52 @@
+package io.github.yky.sharedBackpackKtCreateMine.command
+
+import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.StringArgumentType
+import io.github.yky.sharedBackpackKtCreateMine.Utils
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.screen.GenericContainerScreenHandler
+import net.minecraft.screen.SimpleNamedScreenHandlerFactory
+import net.minecraft.server.command.CommandManager
+import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.text.Text
+
+object BackpackCommand {
+    private const val ARGUMENT_NAME = "name"
+
+    fun register(
+        dispatcher: CommandDispatcher<ServerCommandSource>
+    ) {
+        val literalCommandNode = dispatcher.register(
+            CommandManager.literal("backpack")
+                .then(CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
+                    executeBackpack(it.source, StringArgumentType.getString(it, ARGUMENT_NAME))
+                })
+        )
+
+        dispatcher.register(CommandManager.literal("bp").redirect(literalCommandNode))
+    }
+
+    private fun executeBackpack(source: ServerCommandSource, name: String): Int {
+        val player = source.player
+        // Send an error message if the command was called by a non-player
+        if (player == null) {
+            source.sendError(Text.literal("Only players can use this command"))
+            return 0
+        }
+
+        player.openHandledScreen(
+            SimpleNamedScreenHandlerFactory(
+                { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
+                    GenericContainerScreenHandler.createGeneric9x6(
+                        syncId,
+                        playerInventory,
+                        Utils.getOrCreateBackpackInventory(name)
+                    )
+                },
+                Utils.getOrCreateBackpackInventoryText(name)
+            )
+        )
+        return 1
+    }
+}
