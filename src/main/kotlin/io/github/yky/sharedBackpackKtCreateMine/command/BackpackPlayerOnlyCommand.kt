@@ -38,7 +38,7 @@ object BackpackPlayerOnlyCommand {
                         Utils.getOrCreateBackpackInventory(player.uuidAsString)
                     )
                 },
-                Utils.getOrCreateBackpackInventoryText(if (player.displayName == null) player.uuidAsString else player.displayName!!.string)
+                Utils.getOrCreateBackpackPlayerOnlyInventoryText(if (player.displayName == null) player.uuidAsString else player.displayName!!.string)
             )
         )
         return 1

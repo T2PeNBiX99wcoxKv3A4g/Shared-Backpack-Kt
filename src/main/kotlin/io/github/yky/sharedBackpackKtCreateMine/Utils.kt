@@ -17,6 +17,7 @@ object Utils {
 
     private val BackpackInventoryCache: MutableMap<String, BackpackInventory> = mutableMapOf()
     private val BackpackInventoryTextCache: MutableMap<String, Text> = mutableMapOf()
+    private val BackpackPlayerOnlyInventoryTextCache: MutableMap<String, Text> = mutableMapOf()
     private val TrashInventoryCache: MutableMap<String, TrashInventory> = mutableMapOf()
 
     fun getOrCreateBackpackInventory(name: String): BackpackInventory {
@@ -33,6 +34,14 @@ object Utils {
             return BackpackInventoryTextCache[name]!!
         val backpackInventoryText = Text.literal("Shared Backpack: $name")
         BackpackInventoryTextCache[name] = backpackInventoryText
+        return backpackInventoryText
+    }
+
+    fun getOrCreateBackpackPlayerOnlyInventoryText(name: String): Text {
+        if (BackpackPlayerOnlyInventoryTextCache.containsKey(name))
+            return BackpackPlayerOnlyInventoryTextCache[name]!!
+        val backpackInventoryText = Text.literal("Private Backpack: $name")
+        BackpackPlayerOnlyInventoryTextCache[name] = backpackInventoryText
         return backpackInventoryText
     }
 
