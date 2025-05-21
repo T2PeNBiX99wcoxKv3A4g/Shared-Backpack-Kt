@@ -5,6 +5,7 @@ import io.github.yky.sharedBackpackKtCreateMine.Utils.Logger
 import io.github.yky.sharedBackpackKtCreateMine.Utils.MOD_ID
 import io.github.yky.sharedBackpackKtCreateMine.argument.TrashTypeArgument
 import io.github.yky.sharedBackpackKtCreateMine.command.BackpackCommand
+import io.github.yky.sharedBackpackKtCreateMine.command.BackpackPlayerOnlyCommand
 import io.github.yky.sharedBackpackKtCreateMine.command.TrashCommand
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry
@@ -29,6 +30,7 @@ class SharedBackpackKtCreateMine : ModInitializer {
         CommandRegistrationCallback.EVENT.register { commandDispatcher: CommandDispatcher<ServerCommandSource>, _: CommandRegistryAccess, _: CommandManager.RegistrationEnvironment ->
             BackpackCommand.register(commandDispatcher)
             TrashCommand.register(commandDispatcher)
+            BackpackPlayerOnlyCommand.register(commandDispatcher)
         }
 
         ServerLifecycleEvents.SERVER_STARTED.register(ServerStarted { server: MinecraftServer ->

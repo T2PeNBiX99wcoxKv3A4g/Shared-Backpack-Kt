@@ -3,9 +3,10 @@ package io.github.yky.sharedBackpackKtCreateMine.command
 import com.mojang.brigadier.CommandDispatcher
 import io.github.yky.sharedBackpackKtCreateMine.Utils
 import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.CLEAR
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.OPEN
+import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.Clear
+import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.Open
 import io.github.yky.sharedBackpackKtCreateMine.argument.TrashTypeArgument
+import io.github.yky.sharedBackpackKtCreateMine.suggestion.TrashTypeSuggestion
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.GenericContainerScreenHandler
@@ -20,10 +21,11 @@ object TrashCommand {
     ) {
         dispatcher.register(
             CommandManager.literal("trash").then(
-                CommandManager.argument(TrashTypeArgument.ID, TrashTypeArgument()).executes {
-                    executeTrash(it.source, TrashTypeArgument.getTrashType(it))
-                }
-            ))
+                CommandManager.argument(TrashTypeArgument.ID, TrashTypeArgument()).suggests(TrashTypeSuggestion())
+                    .executes {
+                        executeTrash(it.source, TrashTypeArgument.getTrashType(it))
+                    })
+        )
     }
 
     private fun executeTrash(source: ServerCommandSource, trashType: TrashType): Int {
@@ -35,23 +37,20 @@ object TrashCommand {
         }
 
         when (trashType) {
-            OPEN -> {
+            Open -> {
                 player.openHandledScreen(
                     SimpleNamedScreenHandlerFactory(
                         { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
                             GenericContainerScreenHandler.createGeneric9x6(
-                                syncId,
-                                playerInventory,
-                                Utils.getOrCreateTrashInventory(player)
+                                syncId, playerInventory, Utils.getOrCreateTrashInventory(player)
                             )
-                        },
-                        Utils.TrashInventoryTextCache
+                        }, Utils.TrashInventoryTextCache
                     )
                 )
                 return 1
             }
 
-            CLEAR -> {
+            Clear -> {
                 Utils.getOrCreateTrashInventory(player).clear()
                 return 1
             }

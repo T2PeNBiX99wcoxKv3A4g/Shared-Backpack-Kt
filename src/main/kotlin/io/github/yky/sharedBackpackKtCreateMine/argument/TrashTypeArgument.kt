@@ -10,13 +10,18 @@ class TrashTypeArgument : ArgumentType<String> {
         const val ID = "trash_type"
 
         fun getTrashType(context: CommandContext<*>, name: String = ID): TrashType {
-            return context.getArgument(name, String::class.java).let { TrashType.valueOf(it.uppercase()) }
+            return context.getArgument(name, String::class.java).let {
+                var input = it.lowercase()
+                input = input.substring(0, 1).uppercase() + input.substring(1)
+                TrashType.valueOf(input)
+            }
         }
     }
 
     override fun parse(reader: StringReader): String {
         return runCatching {
-            val input = reader.readString().uppercase()
+            var input = reader.readString().lowercase()
+            input = input.substring(0, 1).uppercase() + input.substring(1)
             TrashType.valueOf(input).name
         }.getOrElse {
             throw CommandSyntaxException.BUILT_IN_EXCEPTIONS.dispatcherParseException().create("Invalid Trash type.")
