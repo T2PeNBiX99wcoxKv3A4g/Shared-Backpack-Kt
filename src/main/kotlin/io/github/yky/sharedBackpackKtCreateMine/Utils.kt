@@ -1,6 +1,7 @@
 package io.github.yky.sharedBackpackKtCreateMine
 
 import io.github.yky.sharedBackpackKtCreateMine.inventory.BackpackInventory
+import io.github.yky.sharedBackpackKtCreateMine.inventory.BackpackPlayerOnlyInventory
 import io.github.yky.sharedBackpackKtCreateMine.inventory.TrashInventory
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
@@ -17,6 +18,7 @@ object Utils {
 
     private val BackpackInventoryCache: MutableMap<String, BackpackInventory> = mutableMapOf()
     private val BackpackInventoryTextCache: MutableMap<String, Text> = mutableMapOf()
+    private val BackpackPlayerOnlyInventoryCache: MutableMap<String, BackpackPlayerOnlyInventory> = mutableMapOf()
     private val BackpackPlayerOnlyInventoryTextCache: MutableMap<String, Text> = mutableMapOf()
     private val TrashInventoryCache: MutableMap<String, TrashInventory> = mutableMapOf()
 
@@ -35,6 +37,16 @@ object Utils {
         val backpackInventoryText = Text.literal("Shared Backpack: $name")
         BackpackInventoryTextCache[name] = backpackInventoryText
         return backpackInventoryText
+    }
+
+    fun getOrCreateBackpackPlayerOnlyInventory(player: ServerPlayerEntity, name: String): BackpackPlayerOnlyInventory {
+        val id = player.uuidAsString + "-" + name
+        if (BackpackPlayerOnlyInventoryCache.containsKey(id))
+            return BackpackPlayerOnlyInventoryCache[id]!!
+        backupBackpackData()
+        val backpackPlayerOnlyInventory = BackpackPlayerOnlyInventory(player, name)
+        BackpackPlayerOnlyInventoryCache[id] = backpackPlayerOnlyInventory
+        return backpackPlayerOnlyInventory
     }
 
     fun getOrCreateBackpackPlayerOnlyInventoryText(name: String): Text {
@@ -56,5 +68,7 @@ object Utils {
     private fun backupBackpackData() {
         for (backpackInventory in BackpackInventoryCache.values)
             backpackInventory.backupBackpackData()
+        for (backpackPlayerOnlyInventory in BackpackPlayerOnlyInventoryCache.values)
+            backpackPlayerOnlyInventory.backupBackpackData()
     }
 }

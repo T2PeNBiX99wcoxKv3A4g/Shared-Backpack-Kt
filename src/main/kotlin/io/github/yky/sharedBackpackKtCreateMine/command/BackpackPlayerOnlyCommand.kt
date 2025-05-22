@@ -1,6 +1,7 @@
 package io.github.yky.sharedBackpackKtCreateMine.command
 
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.yky.sharedBackpackKtCreateMine.Utils
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -11,17 +12,22 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 
 object BackpackPlayerOnlyCommand {
+    private const val ARGUMENT_NAME = "name"
+
     fun register(
         dispatcher: CommandDispatcher<ServerCommandSource>
     ) {
-        @Suppress("SpellCheckingInspection")
-        val literalCommandNode =
-            dispatcher.register(CommandManager.literal("privatebackpack").executes { executeBackpack(it.source) })
-        dispatcher.register(CommandManager.literal("pbp").executes { executeBackpack(it.source) }
-            .redirect(literalCommandNode))
+        @Suppress("SpellCheckingInspection") val literalCommandNode = dispatcher.register(
+            CommandManager.literal("privatebackpack")
+                .then(CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
+                    executeBackpack(it.source, StringArgumentType.getString(it, ARGUMENT_NAME))
+                })
+        )
+
+        dispatcher.register(CommandManager.literal("pbp").redirect(literalCommandNode))
     }
 
-    private fun executeBackpack(source: ServerCommandSource): Int {
+    private fun executeBackpack(source: ServerCommandSource, name: String): Int {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
@@ -33,12 +39,9 @@ object BackpackPlayerOnlyCommand {
             SimpleNamedScreenHandlerFactory(
                 { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
                     GenericContainerScreenHandler.createGeneric9x6(
-                        syncId,
-                        playerInventory,
-                        Utils.getOrCreateBackpackInventory(player.uuidAsString)
+                        syncId, playerInventory, Utils.getOrCreateBackpackPlayerOnlyInventory(player, name)
                     )
-                },
-                Utils.getOrCreateBackpackPlayerOnlyInventoryText(if (player.displayName == null) player.uuidAsString else player.displayName!!.string)
+                }, Utils.getOrCreateBackpackPlayerOnlyInventoryText(name)
             )
         )
         return 1

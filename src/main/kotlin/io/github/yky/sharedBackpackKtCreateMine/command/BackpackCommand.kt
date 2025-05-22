@@ -17,8 +17,7 @@ object BackpackCommand {
     fun register(
         dispatcher: CommandDispatcher<ServerCommandSource>
     ) {
-        @Suppress("SpellCheckingInspection")
-        val literalCommandNode = dispatcher.register(
+        @Suppress("SpellCheckingInspection") val literalCommandNode = dispatcher.register(
             CommandManager.literal("sharedbackpack")
                 .then(CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
                     executeBackpack(it.source, StringArgumentType.getString(it, ARGUMENT_NAME))
@@ -40,12 +39,9 @@ object BackpackCommand {
             SimpleNamedScreenHandlerFactory(
                 { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
                     GenericContainerScreenHandler.createGeneric9x6(
-                        syncId,
-                        playerInventory,
-                        Utils.getOrCreateBackpackInventory(name)
+                        syncId, playerInventory, Utils.getOrCreateBackpackInventory(name)
                     )
-                },
-                Utils.getOrCreateBackpackInventoryText(name)
+                }, Utils.getOrCreateBackpackInventoryText(name)
             )
         )
         return 1
