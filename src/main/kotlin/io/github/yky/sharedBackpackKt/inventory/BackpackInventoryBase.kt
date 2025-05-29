@@ -25,7 +25,8 @@ open class BackpackInventoryBase(private val fileName: String) : SimpleInventory
             try {
                 val nbt: NbtCompound =
                     NbtIo.readCompressed(dataPath, NbtSizeTracker.ofUnlimitedBytes())
-                Server?.gameInstance?.let { readNbtList(nbt.getListOrEmpty("Items"), it.registryManager) }
+
+                Server?.registryManager?.let { readNbtList(nbt.getListOrEmpty("Items"), it) }
             } catch (e: Exception) {
                 Logger.error("Failed to load backpack data: {}", e.message)
             }
@@ -77,7 +78,7 @@ open class BackpackInventoryBase(private val fileName: String) : SimpleInventory
 
     open fun saveNbt() {
         val nbt = NbtCompound()
-        nbt.put("Items", Server?.gameInstance?.let { toNbtList(it.registryManager) })
+        nbt.put("Items", Server?.let { toNbtList(it.registryManager) })
 
         try {
             Files.createDirectories(dataPath.parent)
