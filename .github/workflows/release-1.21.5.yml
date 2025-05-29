@@ -74,11 +74,11 @@ jobs:
       #      - name: Set remote url
       #        run: git remote set-url origin https://T2PeNBiX99wcoxKv3A4g:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Fetch from master
-        run: git fetch origin master
+      - name: Fetch from 1.21.5
+        run: git fetch origin 1.21.5
 
-      - name: Push code to master
-        run: git push origin master
+      - name: Push code to 1.21.5
+        run: git push origin 1.21.5
 
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
