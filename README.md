@@ -11,7 +11,7 @@ You can also access trash can by using the `/trash {open/clear}` command (no per
 ![Shared Backpack Inventory](https://github.com/170yt/Minecraft-Shared-Backpack/blob/main/images/Shared-Backpack-Inventory.png?raw=true)<br>
 
 ### Additional Information
-This is a complete remake in kotlin of [Shared-Backpack](https://github.com/170yt/Minecraft-Shared-Backpack)
+This is a complete remake in kotlin of [Shared Backpack](https://github.com/170yt/Minecraft-Shared-Backpack)
 
 This is a server-side mod and does not need to be installed on the client. (But suggestion maybe will have problems)
 
