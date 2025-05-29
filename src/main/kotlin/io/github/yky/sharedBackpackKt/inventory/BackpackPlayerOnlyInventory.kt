@@ -1,4 +1,4 @@
-package io.github.yky.sharedBackpackKtCreateMine.inventory
+package io.github.yky.sharedBackpackKt.inventory
 
 import net.minecraft.server.network.ServerPlayerEntity
 

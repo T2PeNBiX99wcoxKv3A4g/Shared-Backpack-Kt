@@ -11,7 +11,7 @@ version = project.property("mod_version") as String
 group = project.property("maven_group") as String
 
 base {
-    archivesName.set(project.property("archives_base_name") as String)
+    archivesName.set("${project.property("archives_base_name")}-${project.property("minecraft_version")}")
 }
 
 val targetJavaVersion = 23
@@ -24,19 +24,10 @@ java {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
-        register("shared-backpack-kt-create-mine") {
+        register("shared-backpack-kt") {
             sourceSet("main")
-            sourceSet("client")
         }
-    }
-}
-
-fabricApi {
-    configureDataGeneration {
-        client = true
     }
 }
 
@@ -102,7 +93,7 @@ tasks.jar {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifactId = project.property("archives_base_name") as String
+            artifactId = "${project.property("archives_base_name")}-${project.property("minecraft_version")}"
             from(components["java"])
         }
     }

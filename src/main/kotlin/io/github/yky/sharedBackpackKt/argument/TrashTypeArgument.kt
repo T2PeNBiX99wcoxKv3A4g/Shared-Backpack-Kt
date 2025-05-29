@@ -1,4 +1,4 @@
-package io.github.yky.sharedBackpackKtCreateMine.argument
+package io.github.yky.sharedBackpackKt.argument
 
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.ArgumentType

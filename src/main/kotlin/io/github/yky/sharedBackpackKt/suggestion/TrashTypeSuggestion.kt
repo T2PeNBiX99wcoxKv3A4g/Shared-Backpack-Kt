@@ -1,10 +1,10 @@
-package io.github.yky.sharedBackpackKtCreateMine.suggestion
+package io.github.yky.sharedBackpackKt.suggestion
 
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.suggestion.SuggestionProvider
 import com.mojang.brigadier.suggestion.Suggestions
 import com.mojang.brigadier.suggestion.SuggestionsBuilder
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType
+import io.github.yky.sharedBackpackKt.argument.TrashType
 import net.minecraft.server.command.ServerCommandSource
 import java.util.concurrent.CompletableFuture
 

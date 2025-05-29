@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "shared-backpack-kt-create-mine",
+  "id": "shared-backpack-kt",
   "version": "${version}",
   "name": "Shared Backpack Kotlin version for Create Mine",
   "description": "Provides a Shared Backpack for all players",
@@ -10,25 +10,15 @@
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/shared-backpack-kt-create-mine/icon.png",
+  "icon": "assets/shared-backpack-kt/icon.png",
   "environment": "*",
   "entrypoints": {
-    "fabric-datagen": [
-      "io.github.yky.sharedBackpackKtCreateMine.client.SharedBackpackKtCreateMineDataGenerator"
-    ],
-    "client": [
-      "io.github.yky.sharedBackpackKtCreateMine.client.SharedBackpackKtCreateMineClient"
-    ],
     "main": [
-      "io.github.yky.sharedBackpackKtCreateMine.SharedBackpackKtCreateMine"
+      "io.github.yky.sharedBackpackKt.SharedBackpackKt"
     ]
   },
   "mixins": [
-    "shared-backpack-kt-create-mine.mixins.json",
-    {
-      "config": "shared-backpack-kt-create-mine.client.mixins.json",
-      "environment": "client"
-    }
+    "shared-backpack-kt.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",

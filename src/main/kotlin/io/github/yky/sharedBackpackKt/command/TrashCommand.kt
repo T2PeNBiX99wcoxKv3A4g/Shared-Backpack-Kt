@@ -1,12 +1,12 @@
-package io.github.yky.sharedBackpackKtCreateMine.command
+package io.github.yky.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
-import io.github.yky.sharedBackpackKtCreateMine.Utils
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.Clear
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashType.Open
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashTypeArgument
-import io.github.yky.sharedBackpackKtCreateMine.suggestion.TrashTypeSuggestion
+import io.github.yky.sharedBackpackKt.Utils
+import io.github.yky.sharedBackpackKt.argument.TrashType
+import io.github.yky.sharedBackpackKt.argument.TrashType.Clear
+import io.github.yky.sharedBackpackKt.argument.TrashType.Open
+import io.github.yky.sharedBackpackKt.argument.TrashTypeArgument
+import io.github.yky.sharedBackpackKt.suggestion.TrashTypeSuggestion
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.GenericContainerScreenHandler

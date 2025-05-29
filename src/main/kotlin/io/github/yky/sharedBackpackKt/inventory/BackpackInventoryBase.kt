@@ -1,8 +1,8 @@
-package io.github.yky.sharedBackpackKtCreateMine.inventory
+package io.github.yky.sharedBackpackKt.inventory
 
-import io.github.yky.sharedBackpackKtCreateMine.Utils.Logger
-import io.github.yky.sharedBackpackKtCreateMine.Utils.MOD_ID
-import io.github.yky.sharedBackpackKtCreateMine.Utils.Server
+import io.github.yky.sharedBackpackKt.Utils.Logger
+import io.github.yky.sharedBackpackKt.Utils.MOD_ID
+import io.github.yky.sharedBackpackKt.Utils.Server
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.SimpleInventory

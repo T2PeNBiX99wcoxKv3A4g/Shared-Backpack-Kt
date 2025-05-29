@@ -1,12 +1,12 @@
-package io.github.yky.sharedBackpackKtCreateMine
+package io.github.yky.sharedBackpackKt
 
 import com.mojang.brigadier.CommandDispatcher
-import io.github.yky.sharedBackpackKtCreateMine.Utils.Logger
-import io.github.yky.sharedBackpackKtCreateMine.Utils.MOD_ID
-import io.github.yky.sharedBackpackKtCreateMine.argument.TrashTypeArgument
-import io.github.yky.sharedBackpackKtCreateMine.command.BackpackCommand
-import io.github.yky.sharedBackpackKtCreateMine.command.BackpackPlayerOnlyCommand
-import io.github.yky.sharedBackpackKtCreateMine.command.TrashCommand
+import io.github.yky.sharedBackpackKt.Utils.Logger
+import io.github.yky.sharedBackpackKt.Utils.MOD_ID
+import io.github.yky.sharedBackpackKt.argument.TrashTypeArgument
+import io.github.yky.sharedBackpackKt.command.BackpackCommand
+import io.github.yky.sharedBackpackKt.command.BackpackPlayerOnlyCommand
+import io.github.yky.sharedBackpackKt.command.TrashCommand
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
@@ -19,7 +19,7 @@ import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Identifier
 
-class SharedBackpackKtCreateMine : ModInitializer {
+class SharedBackpackKt : ModInitializer {
     override fun onInitialize() {
         ArgumentTypeRegistry.registerArgumentType(
             Identifier.of(MOD_ID, TrashTypeArgument.ID),
@@ -39,7 +39,7 @@ class SharedBackpackKtCreateMine : ModInitializer {
             )
         })
 
-        Logger.info("Shared Backpack Kotlin version for Create Mine mod loaded")
+        Logger.info("Shared Backpack Kotlin version loaded")
     }
 
     private fun onServerStarted(server: MinecraftServer) {

@@ -1,8 +1,8 @@
-package io.github.yky.sharedBackpackKtCreateMine.command
+package io.github.yky.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import io.github.yky.sharedBackpackKtCreateMine.Utils
+import io.github.yky.sharedBackpackKt.Utils
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.GenericContainerScreenHandler

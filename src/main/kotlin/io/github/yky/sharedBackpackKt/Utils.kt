@@ -1,8 +1,8 @@
-package io.github.yky.sharedBackpackKtCreateMine
+package io.github.yky.sharedBackpackKt
 
-import io.github.yky.sharedBackpackKtCreateMine.inventory.BackpackInventory
-import io.github.yky.sharedBackpackKtCreateMine.inventory.BackpackPlayerOnlyInventory
-import io.github.yky.sharedBackpackKtCreateMine.inventory.TrashInventory
+import io.github.yky.sharedBackpackKt.inventory.BackpackInventory
+import io.github.yky.sharedBackpackKt.inventory.BackpackPlayerOnlyInventory
+import io.github.yky.sharedBackpackKt.inventory.TrashInventory
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
 
 object Utils {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val MOD_ID = "shared-backpack-kt-create-mine"
+    const val MOD_ID = "shared-backpack-kt"
     val Logger: Logger = LoggerFactory.getLogger(MOD_ID)
     var Server: MinecraftServer? = null
     val TrashInventoryTextCache: Text = Text.literal("Trash")
