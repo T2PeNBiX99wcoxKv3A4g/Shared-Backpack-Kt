@@ -91,9 +91,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
-          path: |
-            fabric/build/libs/
-            forge/build/libs/
+          path: build/libs/
   
   upload:
     name: Create Pre Release
@@ -108,9 +106,9 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "Artifacts/*/build/libs/*.jar"
+          artifacts: "Artifacts/*.jar"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ needs.build.outputs.new_tag }}
-          name: Pre Release ${{ needs.build.outputs.new_tag }}
+          name: Pre Release 25w14craftmine ${{ needs.build.outputs.new_tag }}
           body: ${{ needs.build.outputs.changelog }}
           prerelease: true
