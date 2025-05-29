@@ -1,6 +1,7 @@
 package io.github.yky.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.yky.sharedBackpackKt.Utils
 import io.github.yky.sharedBackpackKt.argument.TrashType
 import io.github.yky.sharedBackpackKt.argument.TrashType.Clear
@@ -21,18 +22,27 @@ object TrashCommand {
     ) {
         dispatcher.register(
             CommandManager.literal("trash").then(
-                CommandManager.argument(TrashTypeArgument.ID, TrashTypeArgument()).suggests(TrashTypeSuggestion())
+                CommandManager.argument(TrashTypeArgument.ID, StringArgumentType.word()).suggests(TrashTypeSuggestion())
                     .executes {
-                        executeTrash(it.source, TrashTypeArgument.getTrashType(it))
+                        executeTrash(it.source, StringArgumentType.getString(it, TrashTypeArgument.ID))
                     })
         )
     }
 
-    private fun executeTrash(source: ServerCommandSource, trashType: TrashType): Int {
+    private fun executeTrash(source: ServerCommandSource, inputString: String): Int {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
             source.sendError(Text.literal("Only players can use this command"))
+            return 0
+        }
+
+        val trashType = runCatching {
+            var input = inputString.lowercase()
+            input = input.substring(0, 1).uppercase() + input.substring(1)
+            TrashType.valueOf(input)
+        }.getOrElse {
+            source.sendError(Text.literal("Invalid trash type"))
             return 0
         }
 
