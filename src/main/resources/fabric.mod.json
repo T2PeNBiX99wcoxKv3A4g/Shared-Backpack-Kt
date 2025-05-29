@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "shared-backpack-kt",
   "version": "${version}",
-  "name": "Shared Backpack Kotlin version for Create Mine",
+  "name": "Shared Backpack Kotlin version",
   "description": "Provides a Shared Backpack for all players",
   "authors": [
     "170",
