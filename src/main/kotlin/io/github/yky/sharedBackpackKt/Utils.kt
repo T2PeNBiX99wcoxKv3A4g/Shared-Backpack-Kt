@@ -2,6 +2,7 @@ package io.github.yky.sharedBackpackKt
 
 import io.github.yky.sharedBackpackKt.inventory.BackpackInventory
 import io.github.yky.sharedBackpackKt.inventory.BackpackPlayerOnlyInventory
+import io.github.yky.sharedBackpackKt.inventory.FurnaceInventory
 import io.github.yky.sharedBackpackKt.inventory.TrashInventory
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
@@ -21,6 +22,7 @@ object Utils {
     private val BackpackPlayerOnlyInventoryCache: MutableMap<String, BackpackPlayerOnlyInventory> = mutableMapOf()
     private val BackpackPlayerOnlyInventoryTextCache: MutableMap<String, Text> = mutableMapOf()
     private val TrashInventoryCache: MutableMap<String, TrashInventory> = mutableMapOf()
+    val furnaceInventory: FurnaceInventory = FurnaceInventory()
 
     fun getOrCreateBackpackInventory(name: String): BackpackInventory {
         if (BackpackInventoryCache.containsKey(name))

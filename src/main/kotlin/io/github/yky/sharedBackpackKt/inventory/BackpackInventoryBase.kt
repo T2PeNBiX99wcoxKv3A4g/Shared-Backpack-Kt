@@ -15,7 +15,7 @@ import net.minecraft.registry.RegistryWrapper.WrapperLookup
 import java.nio.file.Files
 import java.nio.file.Path
 
-open class BackpackInventoryBase(private val fileName: String) : SimpleInventory(54) {
+open class BackpackInventoryBase(private val fileName: String, size: Int = 54) : SimpleInventory(size) {
     private val dataPath: Path get() = FabricLoader.getInstance().configDir.resolve(MOD_ID).resolve("${fileName}.dat")
     private var isChanged = false
 
@@ -23,8 +23,7 @@ open class BackpackInventoryBase(private val fileName: String) : SimpleInventory
         // Initialize the inventory from the saved NBT data
         if (Files.exists(dataPath)) {
             try {
-                val nbt: NbtCompound =
-                    NbtIo.readCompressed(dataPath, NbtSizeTracker.ofUnlimitedBytes())
+                val nbt: NbtCompound = NbtIo.readCompressed(dataPath, NbtSizeTracker.ofUnlimitedBytes())
 
                 Server?.registryManager?.let { readNbtList(nbt.getListOrEmpty("Items"), it) }
             } catch (e: Exception) {
@@ -39,8 +38,7 @@ open class BackpackInventoryBase(private val fileName: String) : SimpleInventory
     }
 
     override fun readNbtList(list: NbtList, registries: WrapperLookup) {
-        for (i in 0..<size())
-            setStack(i, ItemStack.EMPTY)
+        for (i in 0..<size()) setStack(i, ItemStack.EMPTY)
 
         for (i in list.indices) {
             val nbtCompound = list.getCompoundOrEmpty(i)
@@ -74,6 +72,7 @@ open class BackpackInventoryBase(private val fileName: String) : SimpleInventory
 
     open fun onChanged() {
         isChanged = true
+        saveNbt()
     }
 
     open fun saveNbt() {
