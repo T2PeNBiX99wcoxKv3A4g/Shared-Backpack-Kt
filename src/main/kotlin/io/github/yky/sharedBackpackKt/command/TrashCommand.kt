@@ -1,13 +1,8 @@
 package io.github.yky.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.yky.sharedBackpackKt.Utils
 import io.github.yky.sharedBackpackKt.argument.TrashType
-import io.github.yky.sharedBackpackKt.argument.TrashType.Clear
-import io.github.yky.sharedBackpackKt.argument.TrashType.Open
-import io.github.yky.sharedBackpackKt.argument.TrashTypeArgument
-import io.github.yky.sharedBackpackKt.suggestion.TrashTypeSuggestion
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.GenericContainerScreenHandler
@@ -22,14 +17,16 @@ object TrashCommand {
     ) {
         dispatcher.register(
             CommandManager.literal("trash").then(
-                CommandManager.argument(TrashTypeArgument.ID, StringArgumentType.word()).suggests(TrashTypeSuggestion())
-                    .executes {
-                        executeTrash(it.source, StringArgumentType.getString(it, TrashTypeArgument.ID))
-                    })
+                CommandManager.literal("open").executes {
+                    executeTrash(it.source, TrashType.Open)
+                }).then(
+                CommandManager.literal("clear").executes {
+                    executeTrash(it.source, TrashType.Clear)
+                })
         )
     }
 
-    private fun executeTrash(source: ServerCommandSource, inputString: String): Int {
+    private fun executeTrash(source: ServerCommandSource, trashType: TrashType): Int {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
@@ -37,17 +34,8 @@ object TrashCommand {
             return 0
         }
 
-        val trashType = runCatching {
-            var input = inputString.lowercase()
-            input = input.substring(0, 1).uppercase() + input.substring(1)
-            TrashType.valueOf(input)
-        }.getOrElse {
-            source.sendError(Text.literal("Invalid trash type"))
-            return 0
-        }
-
         when (trashType) {
-            Open -> {
+            TrashType.Open -> {
                 player.openHandledScreen(
                     SimpleNamedScreenHandlerFactory(
                         { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
@@ -60,7 +48,7 @@ object TrashCommand {
                 return 1
             }
 
-            Clear -> {
+            TrashType.Clear -> {
                 Utils.getOrCreateTrashInventory(player).clear()
                 return 1
             }
