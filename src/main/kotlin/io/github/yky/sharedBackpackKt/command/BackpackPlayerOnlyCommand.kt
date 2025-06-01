@@ -37,11 +37,12 @@ object BackpackPlayerOnlyCommand {
 
         player.openHandledScreen(
             SimpleNamedScreenHandlerFactory(
-                { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
+                { syncId: Int, playerInventory: PlayerInventory?, player2: PlayerEntity? ->
+                    if (player2 == null) return@SimpleNamedScreenHandlerFactory null
                     GenericContainerScreenHandler.createGeneric9x6(
-                        syncId, playerInventory, Utils.getOrCreateBackpackPlayerOnlyInventory(player, name)
+                        syncId, playerInventory, Utils.getOrCreateBackpackPlayerOnlyInventory(player2, name)
                     )
-                }, Utils.getOrCreateBackpackPlayerOnlyInventoryText(name)
+                }, Text.literal("Private Backpack: $name")
             )
         )
         return 1

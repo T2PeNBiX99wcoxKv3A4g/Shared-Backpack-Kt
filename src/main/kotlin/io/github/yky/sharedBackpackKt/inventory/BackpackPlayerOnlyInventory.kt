@@ -1,6 +1,6 @@
 package io.github.yky.sharedBackpackKt.inventory
 
-import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.entity.player.PlayerEntity
 
-class BackpackPlayerOnlyInventory(player: ServerPlayerEntity, name: String) :
-    BackpackInventoryBase("backpack-player-${player.uuidAsString}-${name}")
+class BackpackPlayerOnlyInventory(player: PlayerEntity, name: String) :
+    AbstractBackpackInventory("backpack-player-${player.uuidAsString}-${name}")
