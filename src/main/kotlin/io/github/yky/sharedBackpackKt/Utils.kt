@@ -18,7 +18,8 @@ object Utils {
     private val FurnaceInventoryCache: MutableMap<String, FurnaceInventory> = mutableMapOf()
     private val FurnacePlayerOnlyInventoryCache: MutableMap<String, FurnacePlayerOnlyInventory> = mutableMapOf()
     private val BlastFurnaceInventoryCache: MutableMap<String, BlastFurnaceInventory> = mutableMapOf()
-    private val BlastFurnacePlayerOnlyInventoryCache: MutableMap<String, BlastFurnacePlayerOnlyInventory> = mutableMapOf()
+    private val BlastFurnacePlayerOnlyInventoryCache: MutableMap<String, BlastFurnacePlayerOnlyInventory> =
+        mutableMapOf()
     private val SmokerInventoryCache: MutableMap<String, SmokerInventory> = mutableMapOf()
     private val SmokerPlayerOnlyInventoryCache: MutableMap<String, SmokerPlayerOnlyInventory> = mutableMapOf()
 
@@ -70,7 +71,9 @@ object Utils {
         return inventory
     }
 
-    fun getOrCreateBlastFurnacePlayerOnlyInventory(player: PlayerEntity, name: String): BlastFurnacePlayerOnlyInventory {
+    fun getOrCreateBlastFurnacePlayerOnlyInventory(
+        player: PlayerEntity, name: String
+    ): BlastFurnacePlayerOnlyInventory {
         if (BlastFurnacePlayerOnlyInventoryCache.containsKey(name)) return BlastFurnacePlayerOnlyInventoryCache[name]!!
         backupBackpackData()
         val inventory = BlastFurnacePlayerOnlyInventory(player, name)
