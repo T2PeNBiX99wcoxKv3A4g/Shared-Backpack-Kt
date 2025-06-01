@@ -27,9 +27,7 @@ import net.minecraft.util.math.Vec3d
 import java.util.function.Consumer
 
 abstract class AbstractFurnaceInventory(
-    private val player: PlayerEntity,
-    fileName: String,
-    furnaceType: FurnaceInventoryType
+    private val player: PlayerEntity, fileName: String, furnaceType: FurnaceInventoryType
 ) : AbstractBackpackInventory(fileName, 3), RecipeUnlocker {
     companion object {
         private val CODEC: Codec<Map<RegistryKey<Recipe<*>>, Int>> = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT)
@@ -96,18 +94,19 @@ abstract class AbstractFurnaceInventory(
             ExperienceOrbEntity.spawn(world, pos, i)
         }
     }
-    
+
     @Suppress("MemberVisibilityCanBePrivate")
     protected val world: ServerWorld?
         get() {
             if (player.world is ServerWorld) return player.world as ServerWorld
             return null
         }
-    
-    private var recipesUsed : Reference2IntOpenHashMap<RegistryKey<Recipe<*>>>? = Reference2IntOpenHashMap<RegistryKey<Recipe<*>>>()
+
+    private var recipesUsed: Reference2IntOpenHashMap<RegistryKey<Recipe<*>>>? =
+        Reference2IntOpenHashMap<RegistryKey<Recipe<*>>>()
 
     // TODO: Maybe one day fix this shit
-    private var matchGetter = when(furnaceType){
+    private var matchGetter = when (furnaceType) {
         Normal -> ServerRecipeManager.createCachedMatchGetter(RecipeType.SMELTING)
         Blast -> ServerRecipeManager.createCachedMatchGetter(RecipeType.BLASTING)
         Smoker -> ServerRecipeManager.createCachedMatchGetter(RecipeType.SMOKING)
@@ -117,6 +116,7 @@ abstract class AbstractFurnaceInventory(
     var litTotalTime: Int = 0
     var cookingTimeSpent: Int = 0
     var cookingTotalTime: Int = 0
+    var superChargeLevel: Int = 0
 
     val propertyDelegate: PropertyDelegate = object : PropertyDelegate {
         override fun get(index: Int): Int {
@@ -125,6 +125,7 @@ abstract class AbstractFurnaceInventory(
                 1 -> litTotalTime
                 2 -> cookingTimeSpent
                 3 -> cookingTotalTime
+                4 -> superChargeLevel
                 else -> 0
             }
         }
@@ -135,11 +136,12 @@ abstract class AbstractFurnaceInventory(
                 1 -> litTotalTime = value
                 2 -> cookingTimeSpent = value
                 3 -> cookingTotalTime = value
+                4 -> superChargeLevel = value
             }
         }
 
         override fun size(): Int {
-            return 4
+            return 5
         }
     }
 
@@ -160,7 +162,9 @@ abstract class AbstractFurnaceInventory(
         val bl4 = !itemStack.isEmpty
         if (isBurning() || bl4 && bl3) {
             val singleStackRecipeInput = SingleStackRecipeInput(itemStack2)
-            val recipeEntry = if (bl3) { matchGetter.getFirstMatch(singleStackRecipeInput, world).orElse(null) } else null
+            val recipeEntry = if (bl3) {
+                matchGetter.getFirstMatch(singleStackRecipeInput, world).orElse(null)
+            } else null
 
             val i = maxCountPerStack
             if (!isBurning() && canAcceptRecipeOutput(
@@ -202,15 +206,15 @@ abstract class AbstractFurnaceInventory(
             cookingTimeSpent = MathHelper.clamp(cookingTimeSpent - 2, 0, cookingTotalTime)
         }
 
-        if (isBurning != isBurning())
-            isChanged = true
+        if (isBurning != isBurning()) isChanged = true
         if (isChanged) markDirty()
     }
 
     private fun getCookTime(world: ServerWorld): Int {
         val singleStackRecipeInput = SingleStackRecipeInput(getStack(0))
-        return matchGetter.getFirstMatch(singleStackRecipeInput, world)
-            .map { (it.value() as AbstractCookingRecipe).cookingTime }.orElse(200) as Int
+        val integer = matchGetter.getFirstMatch(singleStackRecipeInput, world)
+            .map { (it.value() as AbstractCookingRecipe).cookingTime }.orElse(200)
+        return if (superChargeLevel > 0) (integer / (1.0f + superChargeLevel)).toInt() else integer
     }
 
     protected open fun getFuelTime(fuelRegistry: FuelRegistry, stack: ItemStack?): Int {
@@ -262,7 +266,7 @@ abstract class AbstractFurnaceInventory(
         for (recipeEntry in list) {
             player.onRecipeCrafted(recipeEntry, inventory)
         }
-        
+
         recipesUsed?.clear()
     }
 
@@ -288,6 +292,7 @@ abstract class AbstractFurnaceInventory(
         cookingTotalTime = nbt.getShort("cooking_total_time", 0.toShort()).toInt()
         litTimeRemaining = nbt.getShort("lit_time_remaining", 0.toShort()).toInt()
         litTotalTime = nbt.getShort("lit_total_time", 0.toShort()).toInt()
+        superChargeLevel = nbt.getShort("super_charge_level", 0.toShort()).toInt()
         recipesUsed?.clear()
         recipesUsed?.putAll(
             nbt.get("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out RegistryKey<Recipe<*>>, Int>
@@ -300,6 +305,7 @@ abstract class AbstractFurnaceInventory(
         nbt.putShort("cooking_total_time", cookingTotalTime.toShort())
         nbt.putShort("lit_time_remaining", litTimeRemaining.toShort())
         nbt.putShort("lit_total_time", litTotalTime.toShort())
+        nbt.putShort("super_charge_level", superChargeLevel.toShort())
         Inventories.writeNbt(nbt, inventory, registries)
         nbt.put("RecipesUsed", CODEC, recipesUsed)
     }
