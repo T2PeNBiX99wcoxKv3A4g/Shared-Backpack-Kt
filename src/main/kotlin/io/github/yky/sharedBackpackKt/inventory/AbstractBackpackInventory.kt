@@ -39,7 +39,7 @@ abstract class AbstractBackpackInventory(private val fileName: String, size: Int
         if (Files.exists(dataPath)) {
             runCatching {
                 val nbt: NbtCompound = NbtIo.readCompressed(dataPath, NbtSizeTracker.ofUnlimitedBytes())
-                readNbt(nbt, Server?.gameInstance?.registryManager)
+                readNbt(nbt, Server?.registryManager)
             }.getOrElse {
                 Logger.error("Failed to load backpack data: {}", it.message)
             }
@@ -125,7 +125,7 @@ abstract class AbstractBackpackInventory(private val fileName: String, size: Int
     open fun saveNbt() {
         val nbt = NbtCompound()
 
-        writeNbt(nbt, Server?.gameInstance?.registryManager)
+        writeNbt(nbt, Server?.registryManager)
 
         try {
             Files.createDirectories(dataPath.parent)
