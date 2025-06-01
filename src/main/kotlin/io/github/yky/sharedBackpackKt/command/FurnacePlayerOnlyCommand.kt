@@ -13,13 +13,13 @@ import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 
-object FurnaceCommand {
+object FurnacePlayerOnlyCommand {
     private const val ARGUMENT_NAME = "name"
 
     fun register(
         dispatcher: CommandDispatcher<ServerCommandSource>
     ) {
-        @Suppress("SpellCheckingInspection") val builder = CommandManager.literal("sharedfurnace")
+        @Suppress("SpellCheckingInspection") val builder = CommandManager.literal("privatefurnace")
 
         FurnaceInventoryType.entries.forEach { type ->
             builder.then(
@@ -32,7 +32,7 @@ object FurnaceCommand {
 
         val literalCommandNode = dispatcher.register(builder)
 
-        dispatcher.register(CommandManager.literal("sf").redirect(literalCommandNode))
+        dispatcher.register(CommandManager.literal("pf").redirect(literalCommandNode))
     }
 
     private fun executeFurnace(source: ServerCommandSource, type: FurnaceInventoryType, name: String): Int {
@@ -48,16 +48,16 @@ object FurnaceCommand {
                 { syncId: Int, playerInventory: PlayerInventory?, player2: PlayerEntity? ->
                     if (player2 == null) return@SimpleNamedScreenHandlerFactory null
                     val furnaceInventory = when (type) {
-                        Normal -> Utils.getOrCreateNormalFurnaceInventory(player2, name)
-                        Blast -> Utils.getOrCreateBlastFurnaceInventory(player2, name)
-                        Smoker -> Utils.getOrCreateSmokerFurnaceInventory(player2, name)
+                        Normal -> Utils.getOrCreateNormalFurnacePlayerOnlyInventory(player2, name)
+                        Blast -> Utils.getOrCreateBlastFurnacePlayerOnlyInventory(player2, name)
+                        Smoker -> Utils.getOrCreateSmokerFurnacePlayerOnlyInventory(player2, name)
                     }
 
                     FurnaceScreenHandler(syncId, playerInventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
-                    Normal -> Text.literal("Shared Furnace: $name")
-                    Blast -> Text.literal("Shared Blast Furnace: $name")
-                    Smoker -> Text.literal("Shared Smoker: $name")
+                    Normal -> Text.literal("Private Furnace: $name")
+                    Blast -> Text.literal("Private Blast Furnace: $name")
+                    Smoker -> Text.literal("Private Smoker: $name")
                 }
             )
         )

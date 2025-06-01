@@ -1,3 +1,6 @@
 package io.github.yky.sharedBackpackKt.inventory
 
-class FurnaceInventory: BackpackInventoryBase("furnace-test", 3)
+import net.minecraft.entity.player.PlayerEntity
+
+class FurnaceInventory(player: PlayerEntity, name: String) :
+    AbstractFurnaceInventory(player, "furnace-normal-${name}", FurnaceInventoryType.Normal)

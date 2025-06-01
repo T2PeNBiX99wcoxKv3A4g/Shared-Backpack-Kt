@@ -15,15 +15,15 @@ object TrashCommand {
     fun register(
         dispatcher: CommandDispatcher<ServerCommandSource>
     ) {
-        dispatcher.register(
-            CommandManager.literal("trash").then(
-                CommandManager.literal("open").executes {
-                    executeTrash(it.source, TrashType.Open)
-                }).then(
-                CommandManager.literal("clear").executes {
-                    executeTrash(it.source, TrashType.Clear)
-                })
-        )
+        val builder = CommandManager.literal("trash")
+
+        TrashType.entries.forEach { type ->
+            builder.then(CommandManager.literal(type.name.lowercase()).executes {
+                executeTrash(it.source, type)
+            })
+        }
+
+        dispatcher.register(builder)
     }
 
     private fun executeTrash(source: ServerCommandSource, trashType: TrashType): Int {
@@ -38,11 +38,12 @@ object TrashCommand {
             TrashType.Open -> {
                 player.openHandledScreen(
                     SimpleNamedScreenHandlerFactory(
-                        { syncId: Int, playerInventory: PlayerInventory?, _: PlayerEntity? ->
+                        { syncId: Int, playerInventory: PlayerInventory?, player2: PlayerEntity? ->
+                            if (player2 == null) return@SimpleNamedScreenHandlerFactory null
                             GenericContainerScreenHandler.createGeneric9x6(
-                                syncId, playerInventory, Utils.getOrCreateTrashInventory(player)
+                                syncId, playerInventory, Utils.getOrCreateTrashInventory(player2)
                             )
-                        }, Utils.TrashInventoryTextCache
+                        }, Text.literal("Trash")
                     )
                 )
                 return 1

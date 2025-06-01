@@ -41,7 +41,7 @@ object BackpackCommand {
                     GenericContainerScreenHandler.createGeneric9x6(
                         syncId, playerInventory, Utils.getOrCreateBackpackInventory(name)
                     )
-                }, Utils.getOrCreateBackpackInventoryText(name)
+                }, Text.literal("Shared Backpack: $name")
             )
         )
         return 1
