@@ -116,7 +116,6 @@ abstract class AbstractFurnaceInventory(
     var litTotalTime: Int = 0
     var cookingTimeSpent: Int = 0
     var cookingTotalTime: Int = 0
-    var superChargeLevel: Int = 0
 
     val propertyDelegate: PropertyDelegate = object : PropertyDelegate {
         override fun get(index: Int): Int {
@@ -125,7 +124,6 @@ abstract class AbstractFurnaceInventory(
                 1 -> litTotalTime
                 2 -> cookingTimeSpent
                 3 -> cookingTotalTime
-                4 -> superChargeLevel
                 else -> 0
             }
         }
@@ -136,13 +134,10 @@ abstract class AbstractFurnaceInventory(
                 1 -> litTotalTime = value
                 2 -> cookingTimeSpent = value
                 3 -> cookingTotalTime = value
-                4 -> superChargeLevel = value
             }
         }
 
-        override fun size(): Int {
-            return 5
-        }
+        override fun size() = 4
     }
 
     init {
@@ -212,9 +207,8 @@ abstract class AbstractFurnaceInventory(
 
     private fun getCookTime(world: ServerWorld): Int {
         val singleStackRecipeInput = SingleStackRecipeInput(getStack(0))
-        val integer = matchGetter.getFirstMatch(singleStackRecipeInput, world)
-            .map { (it.value() as AbstractCookingRecipe).cookingTime }.orElse(200)
-        return if (superChargeLevel > 0) (integer / (1.0f + superChargeLevel)).toInt() else integer
+        return matchGetter.getFirstMatch(singleStackRecipeInput, world)
+            .map { (it.value() as AbstractCookingRecipe).cookingTime }.orElse(200) as Int
     }
 
     protected open fun getFuelTime(fuelRegistry: FuelRegistry, stack: ItemStack?): Int {
@@ -292,7 +286,6 @@ abstract class AbstractFurnaceInventory(
         cookingTotalTime = nbt.getShort("cooking_total_time", 0.toShort()).toInt()
         litTimeRemaining = nbt.getShort("lit_time_remaining", 0.toShort()).toInt()
         litTotalTime = nbt.getShort("lit_total_time", 0.toShort()).toInt()
-        superChargeLevel = nbt.getShort("super_charge_level", 0.toShort()).toInt()
         recipesUsed?.clear()
         recipesUsed?.putAll(
             nbt.get("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out RegistryKey<Recipe<*>>, Int>
@@ -305,7 +298,6 @@ abstract class AbstractFurnaceInventory(
         nbt.putShort("cooking_total_time", cookingTotalTime.toShort())
         nbt.putShort("lit_time_remaining", litTimeRemaining.toShort())
         nbt.putShort("lit_total_time", litTotalTime.toShort())
-        nbt.putShort("super_charge_level", superChargeLevel.toShort())
         Inventories.writeNbt(nbt, inventory, registries)
         nbt.put("RecipesUsed", CODEC, recipesUsed)
     }
