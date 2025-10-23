@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.11](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.10..v0.2.11) - 2025-10-23
+
+### ⚙️ Miscellaneous Tasks
+
+- *(CI)* Remove unused `change_version.yml` configuration - ([2817967](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2817967efc51d1cd9711900155c1fbe7c8a8b843))
+
+
+## [0.2.10](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.9..v0.2.10) - 2025-10-23
+
+### Action
+
+- Update version in `gradle.properties` - ([7fd31e2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7fd31e251f46981ee16c8e5b8c62ede7ccadf254))
+
+
 ## [0.2.9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.8..v0.2.9) - 2025-10-23
 
 ### 🐛 Bug Fixes
