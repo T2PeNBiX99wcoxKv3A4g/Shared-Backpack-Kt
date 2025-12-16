@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.13](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.12..v0.2.13) - 2025-12-16
+
+### Build
+
+- *(deps)* Bump jvm from 2.2.21 to 2.3.0 - ([9bb14f8](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9bb14f82dfaed28661591becd285d330a19171fe))
+
+
+## [0.2.12](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.11..v0.2.12) - 2025-10-23
+
+### Action
+
+- Update version in `gradle.properties` - ([d03d990](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d03d990c8a4f35170fa0f004a74b9b403816ddb1))
+
+
 ## [0.2.11](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.10..v0.2.11) - 2025-10-23
 
 ### ⚙️ Miscellaneous Tasks
