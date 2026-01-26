@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.14](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.13..v0.2.14) - 2026-01-26
+
+### Action
+
+- Update version in `gradle.properties` - ([7605ae9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7605ae9c90fb66061fa07a719d0b192a751c7860))
+
+### Build
+
+- *(deps)* Bump gradle-wrapper from 8.14 to 9.3.0 - ([bf4ed9d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bf4ed9d5bc185773037d72e779c61465af5c00d5))
+
+
 ## [0.2.13](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.12..v0.2.13) - 2025-12-16
 
 ### Build
