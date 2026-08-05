@@ -1,5 +1,25 @@
 # Changelog
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- *(CI)* Update branch references in `release-25w14craftmine.yml` to `25w14craftmine` - ([bf97016](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bf97016cdd0560c130f28f3cc352d9d3642fb810))
+
+### 📚 Documentation
+
+- *(README)* Update usage commands and enhance documentation for shared/private storage features - ([7188df6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7188df67c65bd0a048fc76b2dd8858565fb367c5))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance - ([71d2e5e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/71d2e5e287bcdc1feab37bba7a91951fb48a99c6))
+- *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance - ([8727961](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/87279615b845bb3131d531653fb0166040a72097))
+
+### Action
+
+- Update version in `gradle.properties` - ([64e9abf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/64e9abf5c4769b97ebe211a0d682aa1a0ba65709))
+
+
 ## [0.3.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.25..v0.3.0) - 2026-08-05
 
 ### ⛰️  Features
@@ -16,8 +36,7 @@
 ### ⚙️ Miscellaneous Tasks
 
 - *(CI)* Update GitHub Actions versions in workflows for improved maintenance and compatibility - ([dd5c5e2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dd5c5e203981b5f408d2811b737921a52e1976ce))
-- *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance -
-  ([4ff1061](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4ff10615a4665a6bb1616c9144e1afc5f72d13b7))
+- *(CI)* Update GitHub Actions versions in `release.yml` for improved compatibility and maintenance - ([4ff1061](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4ff10615a4665a6bb1616c9144e1afc5f72d13b7))
 - *(CI)* Simplify `dependabot-auto-merge.yml` by replacing custom logic with reusable action - ([2778432](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/277843204c84b63d3a237b935c7a824f059adf87))
 - *(Gradle)* Switch mappings to official Mojang mappings in `build.gradle.kts` - ([729ef45](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/729ef45a6407b843664f6b28ad99670adc9a3977))
 - *(Gradle)* Update Minecraft, Fabric, and Yarn mappings versions in `gradle.properties` for snapshot `25w14craftmine` - ([1368293](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1368293ad0b34085ca58e0521f9fd02dec7dd424))
