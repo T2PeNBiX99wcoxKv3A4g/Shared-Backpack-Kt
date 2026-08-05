@@ -2,6 +2,13 @@
 
 ## [unreleased]
 
+### ⚙️ Miscellaneous Tasks
+
+- *(CI)* Add `git fetch --tags` step to release and pre-release workflows for tag synchronization - ([1b7dae9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1b7dae9f349c80dd55e959c6bf21fbe6901b90cf))
+
+
+## [0.3.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.0..v0.3.1) - 2026-08-05
+
 ### 🐛 Bug Fixes
 
 - *(CI)* Update branch references in `release-25w14craftmine.yml` to `25w14craftmine` - ([bf97016](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bf97016cdd0560c130f28f3cc352d9d3642fb810))
@@ -20,6 +27,7 @@
 
 ### Action
 
+- Update version in `gradle.properties` - ([7cc9b50](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7cc9b50dccf1af542fd51de22cfd0cdc0339fb61))
 - Update version in `gradle.properties` - ([6137a4f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6137a4ff5c3f5e2ded62a5e806e30a3f7202dc65))
 - Update version in `gradle.properties` - ([d8d0549](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d8d05491d8a8f7444b721bffb0ff1551b309e97e))
 - Update version in `gradle.properties` - ([d1324b7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d1324b7cc5017c04b06b78a2add762e06877eb35))
