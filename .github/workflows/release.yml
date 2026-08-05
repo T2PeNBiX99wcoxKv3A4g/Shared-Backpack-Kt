@@ -44,7 +44,27 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          pre_release_branches: "fast"
+          pre_release_branches: "dev/**"
+
+      - name: Ensure tag exists
+        run: |
+          TAG="${{ steps.tag_version.outputs.new_tag }}"
+          
+          if [ -z "$TAG" ]; then
+            echo "No tag generated!"
+            exit 1
+          fi
+
+          git fetch --tags
+
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists"
+          else
+            echo "Tag $TAG does not exist, creating..."
+
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
 
       - name: Verify tag exists
         run: |
