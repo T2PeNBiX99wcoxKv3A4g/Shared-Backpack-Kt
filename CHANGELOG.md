@@ -1,10 +1,23 @@
 # Changelog
 
-## [unreleased]
+## [0.3.3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.2..v0.3.3) - 2026-08-05
+
+### 🐛 Bug Fixes
+
+- *(CI)* Update pre_release_branches path in release and pre-release workflows - ([bd256ff](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bd256ffa1252b383967f4c50a49dfa6a6d85100f))
+- *(CI)* Add tag verification and dynamic pre-release branch support in workflows - ([1583ac0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1583ac06d118df34277b4824100ad3002dcb9d61))
+- *(CI)* Add tag existence verification in release and pre-release workflows - ([bba9555](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bba9555df07734f490495841a8bffd8b642b1319))
+
+
+## [0.3.2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.1..v0.3.2) - 2026-08-05
 
 ### ⚙️ Miscellaneous Tasks
 
 - *(CI)* Add `git fetch --tags` step to release and pre-release workflows for tag synchronization - ([1b7dae9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1b7dae9f349c80dd55e959c6bf21fbe6901b90cf))
+
+### Action
+
+- Update version in `gradle.properties` - ([04fce52](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/04fce52e61e60fe6067005e6c5c75a0997ac4327))
 
 
 ## [0.3.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.0..v0.3.1) - 2026-08-05
