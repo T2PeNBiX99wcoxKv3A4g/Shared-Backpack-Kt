@@ -110,7 +110,6 @@ abstract class AbstractFurnaceContainer(
     var litTotalTime: Int = 0
     var cookingTimer: Int = 0
     var cookingTotalTime: Int = 0
-    var superChargeLevel: Int = 0
 
     val propertyDelegate: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
@@ -119,7 +118,6 @@ abstract class AbstractFurnaceContainer(
                 1 -> litTotalTime
                 2 -> cookingTimer
                 3 -> cookingTotalTime
-                4 -> superChargeLevel
                 else -> 0
             }
         }
@@ -130,11 +128,10 @@ abstract class AbstractFurnaceContainer(
                 1 -> litTotalTime = value
                 2 -> cookingTimer = value
                 3 -> cookingTotalTime = value
-                4 -> superChargeLevel = value
             }
         }
 
-        override fun getCount() = 5
+        override fun getCount() = 4
     }
 
     private val quickCheck: RecipeManager.CachedCheck<SingleRecipeInput, out AbstractCookingRecipe> =
@@ -208,7 +205,7 @@ abstract class AbstractFurnaceContainer(
         val integer = quickCheck.getRecipeFor(singleRecipeInput, serverLevel)
             .map<Int?> { recipeHolder -> recipeHolder.value().cookingTime() }
             .orElse(200)!!
-        return if (superChargeLevel > 0) (integer.toFloat() / (1.0f + superChargeLevel.toFloat())).toInt() else integer
+        return integer
     }
 
     protected open fun getBurnDuration(fuelValues: FuelValues, stack: ItemStack): Int {
@@ -291,7 +288,6 @@ abstract class AbstractFurnaceContainer(
         cookingTotalTime = compoundTag.getShortOr("cooking_total_time", 0.toShort()).toInt()
         litTimeRemaining = compoundTag.getShortOr("lit_time_remaining", 0.toShort()).toInt()
         litTotalTime = compoundTag.getShortOr("lit_total_time", 0.toShort()).toInt()
-        superChargeLevel = compoundTag.getShortOr("super_charge_level", 0.toShort()).toInt()
         recipesUsed?.clear()
         recipesUsed?.putAll(
             compoundTag.read("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out ResourceKey<Recipe<*>>, Int>
@@ -304,7 +300,6 @@ abstract class AbstractFurnaceContainer(
         compoundTag.putShort("cooking_total_time", cookingTotalTime.toShort())
         compoundTag.putShort("lit_time_remaining", litTimeRemaining.toShort())
         compoundTag.putShort("lit_total_time", litTotalTime.toShort())
-        compoundTag.putShort("super_charge_level", superChargeLevel.toShort())
         ContainerHelper.saveAllItems(compoundTag, items, registries)
         if (recipesUsed == null) return
         compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
