@@ -2,18 +2,6 @@
 
 ## [unreleased]
 
-### ⚙️ Miscellaneous Tasks
-
-- *(CI)* Update Java version matrix to `23` in release workflows - ([b079903](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b0799039878630d64649bbc4043f132c53b2a76c))
-- *(CI)* Remove `release-1.21.5.yml` and standardize workflows with branch-aware configurations - ([aab2cc5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aab2cc536d66739bd1e72024f957e57a787c3d81))
-
-### Action
-
-- Update version in `gradle.properties` - ([d8d0549](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d8d05491d8a8f7444b721bffb0ff1551b309e97e))
-
-
-## [0.3.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.0..v0.3.1) - 2026-08-05
-
 ### 🐛 Bug Fixes
 
 - *(CI)* Update branch references in `release-25w14craftmine.yml` to `25w14craftmine` - ([bf97016](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bf97016cdd0560c130f28f3cc352d9d3642fb810))
@@ -24,11 +12,16 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(CI)* Update Java version matrix to `23` in release workflows - ([b079903](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b0799039878630d64649bbc4043f132c53b2a76c))
+- *(CI)* Remove `release-1.21.5.yml` and standardize workflows with branch-aware configurations - ([aab2cc5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aab2cc536d66739bd1e72024f957e57a787c3d81))
 - *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance - ([71d2e5e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/71d2e5e287bcdc1feab37bba7a91951fb48a99c6))
 - *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance - ([8727961](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/87279615b845bb3131d531653fb0166040a72097))
+- *(version)* Downgrade mod version to `0.3.0` - ([4b793fc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4b793fc9fc5b8e9bd5b89a691f8beefdb3308ac7))
 
 ### Action
 
+- Update version in `gradle.properties` - ([6137a4f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6137a4ff5c3f5e2ded62a5e806e30a3f7202dc65))
+- Update version in `gradle.properties` - ([d8d0549](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d8d05491d8a8f7444b721bffb0ff1551b309e97e))
 - Update version in `gradle.properties` - ([d1324b7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d1324b7cc5017c04b06b78a2add762e06877eb35))
 - Update version in `gradle.properties` - ([64e9abf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/64e9abf5c4769b97ebe211a0d682aa1a0ba65709))
 
