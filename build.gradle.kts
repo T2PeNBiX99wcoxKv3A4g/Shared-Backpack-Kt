@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.4.10"
-    id("fabric-loom") version "1.10-SNAPSHOT"
+    id("fabric-loom") version "1.17-SNAPSHOT"
     id("maven-publish")
 }
 
-version = project.property("mod_version") as String
-group = project.property("maven_group") as String
+version = providers.gradleProperty("mod_version").get()
+group = providers.gradleProperty("maven_group").get()
 
 base {
     archivesName.set("${project.property("archives_base_name")}-${project.property("minecraft_version")}")
@@ -45,9 +45,6 @@ dependencies {
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
 //    mappings(loom.officialMojangMappings())
     mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
-//    implementation("io.github.revxrsal:lamp.common:${project.property("lamp_version")}")
-//    implementation("io.github.revxrsal:lamp.${project.property("lamp_platform")}:${project.property("lamp_version")}")
-//    implementation("io.github.revxrsal:lamp.brigadier:${project.property("lamp_version")}")
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
 
@@ -63,9 +60,9 @@ tasks.processResources {
     filesMatching("fabric.mod.json") {
         expand(
             "version" to project.version,
-            "minecraft_version" to project.property("minecraft_version"),
-            "loader_version" to project.property("loader_version"),
-            "kotlin_loader_version" to project.property("kotlin_loader_version")
+            "minecraft_version" to project.property("minecraft_version").toString(),
+            "loader_version" to project.property("loader_version").toString(),
+            "kotlin_loader_version" to project.property("kotlin_loader_version").toString()
         )
     }
 }
