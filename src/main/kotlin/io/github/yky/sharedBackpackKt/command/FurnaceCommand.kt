@@ -5,26 +5,24 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.yky.sharedBackpackKt.Utils
 import io.github.yky.sharedBackpackKt.inventory.FurnaceInventoryType
 import io.github.yky.sharedBackpackKt.inventory.FurnaceInventoryType.*
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.screen.FurnaceScreenHandler
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory
-import net.minecraft.server.command.CommandManager
-import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.Text
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands
+import net.minecraft.network.chat.Component
+import net.minecraft.world.SimpleMenuProvider
+import net.minecraft.world.inventory.FurnaceMenu
 
 object FurnaceCommand {
     private const val ARGUMENT_NAME = "name"
 
     fun register(
-        dispatcher: CommandDispatcher<ServerCommandSource>
+        dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
-        @Suppress("SpellCheckingInspection") val builder = CommandManager.literal("sharedfurnace")
+        @Suppress("SpellCheckingInspection") val builder = Commands.literal("sharedfurnace")
 
         FurnaceInventoryType.entries.forEach { type ->
             builder.then(
-                CommandManager.literal(type.name.lowercase()).then(
-                    CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
+                Commands.literal(type.name.lowercase()).then(
+                    Commands.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
                         executeFurnace(it.source, type, StringArgumentType.getString(it, ARGUMENT_NAME))
                     })
             )
@@ -32,32 +30,32 @@ object FurnaceCommand {
 
         val literalCommandNode = dispatcher.register(builder)
 
-        dispatcher.register(CommandManager.literal("sf").redirect(literalCommandNode))
+        dispatcher.register(Commands.literal("sf").redirect(literalCommandNode))
     }
 
-    private fun executeFurnace(source: ServerCommandSource, type: FurnaceInventoryType, name: String): Int {
+    private fun executeFurnace(source: CommandSourceStack, type: FurnaceInventoryType, name: String): Int {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
-            source.sendError(Text.literal("Only players can use this command"))
+            source.sendFailure(Component.literal("Only players can use this command"))
             return 0
         }
 
-        player.openHandledScreen(
-            SimpleNamedScreenHandlerFactory(
-                { syncId: Int, playerInventory: PlayerInventory?, player2: PlayerEntity? ->
-                    if (player2 == null) return@SimpleNamedScreenHandlerFactory null
+        player.openMenu(
+            SimpleMenuProvider(
+                { syncId, inventory, player2 ->
+                    if (player2 == null) return@SimpleMenuProvider null
                     val furnaceInventory = when (type) {
-                        Normal -> Utils.getOrCreateNormalFurnaceInventory(player2, name)
-                        Blast -> Utils.getOrCreateBlastFurnaceInventory(player2, name)
-                        Smoker -> Utils.getOrCreateSmokerFurnaceInventory(player2, name)
+                        Smelting -> Utils.getOrCreateNormalFurnaceContainer(player2, name)
+                        Blasting -> Utils.getOrCreateBlastFurnaceContainer(player2, name)
+                        Smoking -> Utils.getOrCreateSmokerFurnaceContainer(player2, name)
                     }
 
-                    FurnaceScreenHandler(syncId, playerInventory, furnaceInventory, furnaceInventory.propertyDelegate)
+                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
-                    Normal -> Text.literal("Shared Furnace: $name")
-                    Blast -> Text.literal("Shared Blast Furnace: $name")
-                    Smoker -> Text.literal("Shared Smoker: $name")
+                    Smelting -> Component.literal("Shared Furnace: $name")
+                    Blasting -> Component.literal("Shared Blast Furnace: $name")
+                    Smoking -> Component.literal("Shared Smoker: $name")
                 }
             )
         )
