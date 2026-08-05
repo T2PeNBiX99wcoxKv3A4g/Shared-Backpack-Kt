@@ -95,11 +95,11 @@ jobs:
       - name: Commit changed files
         run: "git commit -m 'Action: Update version in `gradle.properties`'"
 
-      - name: Fetch from master
-        run: git fetch origin master
+      - name: Fetch from 25w14craftmine
+        run: git fetch origin 25w14craftmine
 
-      - name: Push code to master
-        run: git push origin master
+      - name: Push code to 25w14craftmine
+        run: git push origin 25w14craftmine
 
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
