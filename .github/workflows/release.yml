@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    branches:
-      - 25w14craftmine
+    branches-ignore:
+      - "dev/**"
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       matrix:
         # Use these Java versions
         java: [
-          23,    # Current Java LTS
+          25,    # Current Java LTS
         ]
     runs-on: ubuntu-latest
     outputs:
@@ -95,11 +95,11 @@ jobs:
       - name: Commit changed files
         run: "git commit -m 'Action: Update version in `gradle.properties`'"
 
-      - name: Fetch from 25w14craftmine
-        run: git fetch origin 25w14craftmine
+      - name: Fetch updates
+        run: git fetch origin ${{ github.ref_name }}
 
-      - name: Push code to 25w14craftmine
-        run: git push origin 25w14craftmine
+      - name: Push code
+        run: git push origin ${{ github.ref_name }}
 
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
@@ -145,5 +145,5 @@ jobs:
           artifacts: "release/*.jar"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ needs.build.outputs.new_tag }}
-          name: Release 25w14craftmine ${{ needs.build.outputs.new_tag }}
+          name: Release ${{ github.ref_name }} ${{ needs.build.outputs.new_tag }}
           body: ${{ needs.build.outputs.changelog }}

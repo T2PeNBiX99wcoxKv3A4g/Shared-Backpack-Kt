@@ -3,7 +3,7 @@ name: Pre Release
 on:
   push:
     branches:
-      - fast
+      - "dev/**"
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       matrix:
         # Use these Java versions
         java: [
-          23,    # Current Java LTS
+          25,    # Current Java LTS
         ]
     runs-on: ubuntu-latest
     outputs:
@@ -96,11 +96,11 @@ jobs:
       - name: Commit changed files
         run: "git commit -m 'Action: Update version in `gradle.properties`'"
 
-      - name: Fetch from fast
-        run: git fetch origin fast
+      - name: Fetch updates
+        run: git fetch origin ${{ github.ref_name }}
 
-      - name: Push code to fast
-        run: git push origin fast
+      - name: Push code
+        run: git push origin ${{ github.ref_name }}
 
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
@@ -146,6 +146,6 @@ jobs:
           artifacts: "release/*.jar"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ needs.build.outputs.new_tag }}
-          name: Pre Release 25w14craftmine ${{ needs.build.outputs.new_tag }}
+          name: Pre Release ${{ github.ref_name }} ${{ needs.build.outputs.new_tag }}
           body: ${{ needs.build.outputs.changelog }}
           prerelease: true
