@@ -40,8 +40,8 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         if (Files.exists(dataPath)) {
             runCatching {
                 val compoundTag: CompoundTag = NbtIo.readCompressed(dataPath, NbtAccounter.unlimitedHeap())
-                onLoad(compoundTag, Server?.theGame()?.registryAccess()!!)
-                loadAllItems(compoundTag, Server?.theGame()?.registryAccess()!!)
+                onLoad(compoundTag, Server?.registryAccess()!!)
+                loadAllItems(compoundTag, Server?.registryAccess()!!)
             }.getOrElse {
                 Logger.error("Failed to load backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
             }
@@ -129,8 +129,8 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     open fun saveNbt() {
         runCatching {
             val nbt = CompoundTag()
-            onSave(nbt, Server?.theGame()?.registryAccess()!!)
-            saveAllItems(nbt, Server?.theGame()?.registryAccess()!!)
+            onSave(nbt, Server?.registryAccess()!!)
+            saveAllItems(nbt, Server?.registryAccess()!!)
             Files.createDirectories(dataPath.parent)
             Files.deleteIfExists(dataPath)
             val path = Files.createFile(dataPath)
