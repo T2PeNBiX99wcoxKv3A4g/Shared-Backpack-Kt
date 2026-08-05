@@ -254,7 +254,8 @@
 - *(Workflow)* Add new file `release-1.21.5.yml` - ([19a869f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/19a869fec2764318303b66a8035939465fc7c03a))
 - *(fabric.mod.json)* Fix `fabric.mod.json` - ([ceb8560](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ceb856091a3a8ac1d8c2a24b2ed9a0537c326763))
 - Make `trash` command using vanilla way - ([7b49023](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7b490235b5eef6656483a3efb68379d90a6d35c0))
-- Add `FurnaceInventory` for test - ([dabed19](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dabed1981a2cdb6a30ff23d57484ccf79072c27f))
+- Add `FurnaceContainer` for test -
+  ([dabed19](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dabed1981a2cdb6a30ff23d57484ccf79072c27f))
 - Change to version `1.21.5` - ([f4301f1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f4301f1b5fd343487eb961e0832d8bbe544eb207))
 
 ### Action
