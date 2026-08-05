@@ -3,46 +3,44 @@ package io.github.yky.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.yky.sharedBackpackKt.Utils
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.screen.GenericContainerScreenHandler
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory
-import net.minecraft.server.command.CommandManager
-import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.Text
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands
+import net.minecraft.network.chat.Component
+import net.minecraft.world.SimpleMenuProvider
+import net.minecraft.world.inventory.ChestMenu
 
 object BackpackPlayerOnlyCommand {
     private const val ARGUMENT_NAME = "name"
 
     fun register(
-        dispatcher: CommandDispatcher<ServerCommandSource>
+        dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
         @Suppress("SpellCheckingInspection") val literalCommandNode = dispatcher.register(
-            CommandManager.literal("privatebackpack")
-                .then(CommandManager.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
+            Commands.literal("privatebackpack")
+                .then(Commands.argument(ARGUMENT_NAME, StringArgumentType.word()).executes {
                     executeBackpack(it.source, StringArgumentType.getString(it, ARGUMENT_NAME))
                 })
         )
 
-        dispatcher.register(CommandManager.literal("pbp").redirect(literalCommandNode))
+        dispatcher.register(Commands.literal("pbp").redirect(literalCommandNode))
     }
 
-    private fun executeBackpack(source: ServerCommandSource, name: String): Int {
+    private fun executeBackpack(source: CommandSourceStack, name: String): Int {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
-            source.sendError(Text.literal("Only players can use this command"))
+            source.sendFailure(Component.literal("Only players can use this command"))
             return 0
         }
 
-        player.openHandledScreen(
-            SimpleNamedScreenHandlerFactory(
-                { syncId: Int, playerInventory: PlayerInventory?, player2: PlayerEntity? ->
-                    if (player2 == null) return@SimpleNamedScreenHandlerFactory null
-                    GenericContainerScreenHandler.createGeneric9x6(
-                        syncId, playerInventory, Utils.getOrCreateBackpackPlayerOnlyInventory(player2, name)
+        player.openMenu(
+            SimpleMenuProvider(
+                { syncId, inventory, player2 ->
+                    if (player2 == null) return@SimpleMenuProvider null
+                    ChestMenu.sixRows(
+                        syncId, inventory, Utils.getOrCreateBackpackPlayerOnlyContainer(player2, name)
                     )
-                }, Text.literal("Private Backpack: $name")
+                }, Component.literal("Private Backpack: $name")
             )
         )
         return 1
