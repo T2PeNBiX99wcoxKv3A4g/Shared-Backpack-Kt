@@ -16,7 +16,8 @@
 ### ⚙️ Miscellaneous Tasks
 
 - *(CI)* Update GitHub Actions versions in workflows for improved maintenance and compatibility - ([dd5c5e2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dd5c5e203981b5f408d2811b737921a52e1976ce))
-- *(CI)* Update GitHub Actions versions in `release.yml` for improved compatibility and maintenance - ([4ff1061](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4ff10615a4665a6bb1616c9144e1afc5f72d13b7))
+- *(CI)* Update GitHub Actions versions in `release-25w14craftmine.yml` for improved compatibility and maintenance -
+  ([4ff1061](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4ff10615a4665a6bb1616c9144e1afc5f72d13b7))
 - *(CI)* Simplify `dependabot-auto-merge.yml` by replacing custom logic with reusable action - ([2778432](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/277843204c84b63d3a237b935c7a824f059adf87))
 - *(Gradle)* Switch mappings to official Mojang mappings in `build.gradle.kts` - ([729ef45](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/729ef45a6407b843664f6b28ad99670adc9a3977))
 - *(Gradle)* Update Minecraft, Fabric, and Yarn mappings versions in `gradle.properties` for snapshot `25w14craftmine` - ([1368293](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1368293ad0b34085ca58e0521f9fd02dec7dd424))
