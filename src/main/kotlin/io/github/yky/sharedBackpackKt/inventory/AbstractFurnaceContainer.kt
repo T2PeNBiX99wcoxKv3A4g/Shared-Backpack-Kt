@@ -104,7 +104,7 @@ abstract class AbstractFurnaceContainer(
             return null
         }
 
-    private val recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>> = Reference2IntOpenHashMap()
+    private var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>? = null
 
     var litTimeRemaining: Int = 0
     var litTotalTime: Int = 0
@@ -142,6 +142,10 @@ abstract class AbstractFurnaceContainer(
 
     init {
         ServerTickEvents.END_WORLD_TICK.register(::tick)
+    }
+
+    override fun onPreInit() {
+        recipesUsed = Reference2IntOpenHashMap()
     }
 
     private fun isLit() = litTimeRemaining > 0
@@ -239,7 +243,7 @@ abstract class AbstractFurnaceContainer(
     override fun setRecipeUsed(recipeHolder: RecipeHolder<*>?) {
         if (recipeHolder != null) {
             val resourceKey = recipeHolder.id()
-            recipesUsed.addTo(resourceKey, 1)
+            recipesUsed?.addTo(resourceKey, 1)
         }
     }
 
@@ -258,14 +262,14 @@ abstract class AbstractFurnaceContainer(
             player.triggerRecipeCrafted(recipeEntry, items)
         }
 
-        recipesUsed.clear()
+        recipesUsed?.clear()
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
     fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<RecipeHolder<*>> {
         val list: MutableList<RecipeHolder<*>> = Lists.newArrayList()
 
-        for (entry in recipesUsed.reference2IntEntrySet()) {
+        for (entry in recipesUsed?.reference2IntEntrySet()!!) {
             serverLevel.recipeAccess().byKey(entry.key).ifPresent(Consumer { recipeHolder ->
                 list.add(recipeHolder)
                 createExperience(
@@ -288,8 +292,8 @@ abstract class AbstractFurnaceContainer(
         litTimeRemaining = compoundTag.getShortOr("lit_time_remaining", 0.toShort()).toInt()
         litTotalTime = compoundTag.getShortOr("lit_total_time", 0.toShort()).toInt()
         superChargeLevel = compoundTag.getShortOr("super_charge_level", 0.toShort()).toInt()
-        recipesUsed.clear()
-        recipesUsed.putAll(
+        recipesUsed?.clear()
+        recipesUsed?.putAll(
             compoundTag.read("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out ResourceKey<Recipe<*>>, Int>
         )
     }
@@ -302,6 +306,7 @@ abstract class AbstractFurnaceContainer(
         compoundTag.putShort("lit_total_time", litTotalTime.toShort())
         compoundTag.putShort("super_charge_level", superChargeLevel.toShort())
         ContainerHelper.saveAllItems(compoundTag, items, registries)
-        compoundTag.store("RecipesUsed", CODEC, recipesUsed)
+        if (recipesUsed == null) return
+        compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
     }
 }

@@ -29,16 +29,26 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     private val listeners: MutableList<ContainerListener> = mutableListOf()
 
     init {
+        onPreInit()
+        onInit()
+    }
+
+    open fun onPreInit() = Unit
+
+    private fun onInit() {
         // Initialize the inventory from the saved NBT data
         if (Files.exists(dataPath)) {
             runCatching {
-                val nbt: CompoundTag = NbtIo.readCompressed(dataPath, NbtAccounter.unlimitedHeap())
-                loadAllItems(nbt, Server?.theGame()?.registryAccess()!!)
+                val compoundTag: CompoundTag = NbtIo.readCompressed(dataPath, NbtAccounter.unlimitedHeap())
+                onLoad(compoundTag, Server?.theGame()?.registryAccess()!!)
+                loadAllItems(compoundTag, Server?.theGame()?.registryAccess()!!)
             }.getOrElse {
                 Logger.error("Failed to load backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
             }
         }
     }
+
+    open fun onLoad(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) = Unit
 
     @Suppress("unused")
     fun addListener(listener: ContainerListener) = listeners.add(listener)
@@ -119,6 +129,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     open fun saveNbt() {
         runCatching {
             val nbt = CompoundTag()
+            onSave(nbt, Server?.theGame()?.registryAccess()!!)
             saveAllItems(nbt, Server?.theGame()?.registryAccess()!!)
             Files.createDirectories(dataPath.parent)
             Files.deleteIfExists(dataPath)
@@ -128,6 +139,8 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
             Logger.error("Failed to save backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
         }
     }
+
+    open fun onSave(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) = Unit
 
     open fun backupBackpackData() {
         runCatching {
