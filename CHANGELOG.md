@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.3..v0.3.5) - 2026-08-05
+
+### 🐛 Bug Fixes
+
+- *(CI)* Exclude README.md and LICENSE files from triggering workflows - ([aaaac2b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aaaac2ba630136186e47eb116ef8d60a1cfe9c1a))
+
+### 📚 Documentation
+
+- Update storage path details in README.md - ([004f377](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/004f377e3f4762222e8314ffc36ea34c773212ff))
+
+### Action
+
+- Update version in `gradle.properties` - ([867775d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/867775d52afba6c9ef174dbcfcb32fee520014aa))
+
+
 ## [0.3.3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.2..v0.3.3) - 2026-08-05
 
 ### 🐛 Bug Fixes
