@@ -2,6 +2,13 @@
 
 ## [unreleased]
 
+### ⚙️ Miscellaneous Tasks
+
+- *(CI)* Remove `release-1.21.5.yml` and standardize workflows with branch-aware configurations - ([aab2cc5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aab2cc536d66739bd1e72024f957e57a787c3d81))
+
+
+## [0.3.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.0..v0.3.1) - 2026-08-05
+
 ### 🐛 Bug Fixes
 
 - *(CI)* Update branch references in `release-25w14craftmine.yml` to `25w14craftmine` - ([bf97016](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bf97016cdd0560c130f28f3cc352d9d3642fb810))
@@ -17,6 +24,7 @@
 
 ### Action
 
+- Update version in `gradle.properties` - ([d1324b7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d1324b7cc5017c04b06b78a2add762e06877eb35))
 - Update version in `gradle.properties` - ([64e9abf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/64e9abf5c4769b97ebe211a0d682aa1a0ba65709))
 
 
