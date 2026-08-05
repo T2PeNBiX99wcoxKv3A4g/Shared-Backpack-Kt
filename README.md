@@ -1,31 +1,38 @@
 # Shared Backpack Kotlin Version
 
-This mod adds a Shared Backpack to the game that can be used by all players.
-It is used to share items on friendly multiplayer servers.
+This mod adds shared and private storage for multiplayer servers, allowing players to easily share or organize items
+without placing physical containers.
 
-The Shared Backpack is the size of a double chest (54 slots) and can be accessed by using the `/sharedbackpack {name}`
-or `/sbp {name}` command (no permission required).
+## Commands
 
-Also add a Private Backpack can be accessed by using the `/privatebackpack {name}` or `/pbp {name}` command (no
-permission required).
+* `/sharedbackpack {name}` or `/sbp {name}` - Opens a shared backpack (54 slots, the size of a double chest).
+* `/privatebackpack {name}` or `/pbp {name}` - Opens a private backpack.
+* `/sharedfurnace {furnace_type} {name}` or `/sf {furnace_type} {name}` - Opens a shared furnace.
+* `/privatefurnace {furnace_type} {name}` or `/pf {furnace_type} {name}` - Opens a private furnace.
+* `/trash open` - Opens the trash container.
+* `/trash clear` - Permanently clears all items in the trash container.
 
-You can also access trash can by using the `/trash {open/clear}` command (no permission required).
+No permission is required to use any of these commands.
 
-Also using the `/sharedfurnace {furnace type} {name}` or `/sf {furnace type} {name}` can open furnace,
-`/privatefurnace {furnace type} {name}` or `/pf {furnace type} {name}` is private version
+Supported furnace types include the normal furnace, blast furnace, and smoker.
 
-![Shared Backpack Inventory](https://github.com/170yt/Minecraft-Shared-Backpack/blob/main/images/Shared-Backpack-Inventory.png?raw=true)<br>
+![Shared Backpack Inventory](https://github.com/170yt/Minecraft-Shared-Backpack/blob/main/images/Shared-Backpack-Inventory.png?raw=true)
 
-### Additional Information
+## Additional Information
 
-This is a complete remake in kotlin of [Shared Backpack](https://github.com/170yt/Minecraft-Shared-Backpack)
+This project is a complete Kotlin rewrite of the
+original [Shared Backpack](https://github.com/170yt/Minecraft-Shared-Backpack).
 
-This is a server-side mod and does not need to be installed on the client. (But suggestion maybe will have problems)
+This is a server-side mod and does not need to be installed on clients.
 
-The content of the Shared Backpack is stored in the file `/config/shared-backpack-kt/backpack-{name}.dat`.
-Each time the server is started, this file is backed up to `/config/shared-backpack-kt/backpack-{name}.dat_old` before
-being loaded.
+Shared backpack data is stored in:
 
-### Credits
+`/config/shared-backpack-kt/backpack-{name}.dat`
 
-- [170yt](https://github.com/170yt/Minecraft-Shared-Backpack) - Original Creator
+Before loading, the existing file is automatically backed up to:
+
+`/config/shared-backpack-kt/backpack-{name}.dat_old`
+
+## Credits
+
+* [170yt](https://github.com/170yt/Minecraft-Shared-Backpack) — Original creator
