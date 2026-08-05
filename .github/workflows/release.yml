@@ -46,6 +46,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pre_release_branches: "fast"
 
+      - name: Fetch tags
+        run: git fetch --tags
+
       - name: Clone `CSharp-Workflow-Scripts` Python script
         run: git clone https://github.com/T2PeNBiX99wcoxKv3A4g/CSharp-Workflow-Scripts.git .scripts
 
