@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.3.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.25..v0.3.0) - 2026-08-05
+
+### ⛰️  Features
+
+- *(Container)* Refactor and rename inventory classes to container classes for enhanced clarity and compatibility across the mod - ([3f7d0af](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3f7d0afc4af033f14495564a3389fbfd32938016))
+- *(Container)* Rename and refactor `AbstractBackpackInventory` to `AbstractBackpackContainer` for improved extensibility and Minecraft compatibility - ([2ee80af](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2ee80af1d3cfc18845c5b0d797e8661d1208f834))
+- *(Container)* Rename and update `AbstractFurnaceInventory` to `AbstractFurnaceContainer` for improved extensibility and Minecraft compatibility - ([276eaee](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/276eaee93d5e7b859b24d78615b54ebe0fbdab72))
+
+### 🐛 Bug Fixes
+
+- *(Container)* Initialize lifecycle hooks and improve `AbstractFurnaceContainer` null safety for recipe handling - ([dd1ae47](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dd1ae474a595f4462d97d6a8328e8a604340fb97))
+- *(NBT)* Update registry manager access to use `gameInstance` for 25w14craftmine - ([a6b22d8](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a6b22d81585cca7c739dba5e9a3e121ccc889b5b))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(CI)* Update GitHub Actions versions in workflows for improved maintenance and compatibility - ([dd5c5e2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dd5c5e203981b5f408d2811b737921a52e1976ce))
+- *(CI)* Update GitHub Actions versions in `release.yml` for improved compatibility and maintenance - ([4ff1061](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4ff10615a4665a6bb1616c9144e1afc5f72d13b7))
+- *(CI)* Simplify `dependabot-auto-merge.yml` by replacing custom logic with reusable action - ([2778432](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/277843204c84b63d3a237b935c7a824f059adf87))
+- *(Gradle)* Switch mappings to official Mojang mappings in `build.gradle.kts` - ([729ef45](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/729ef45a6407b843664f6b28ad99670adc9a3977))
+- *(Gradle)* Update Minecraft, Fabric, and Yarn mappings versions in `gradle.properties` for snapshot `25w14craftmine` - ([1368293](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1368293ad0b34085ca58e0521f9fd02dec7dd424))
+- *(Gradle)* Update `fabric-loom` version and improve property access in `build.gradle.kts` - ([9da513a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9da513a4c487c728f40f18a54d3bf6ef685df847))
+- *(Mod)* Update `minecraft` version in `fabric.mod.json` to `1.21.6-alpha.25.14.craftmine` - ([c5686a0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c5686a062e1350b4fbcffb4ca71b99edd19b1376))
+
+### Action
+
+- Update version in `gradle.properties` - ([07e5a57](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/07e5a57103131e19f15f9e7273a4fc639f3f2010))
+
+
 ## [0.2.25](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.24..v0.2.25) - 2026-08-04
 
 ### Action
@@ -254,8 +282,7 @@
 - *(Workflow)* Add new file `release-1.21.5.yml` - ([19a869f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/19a869fec2764318303b66a8035939465fc7c03a))
 - *(fabric.mod.json)* Fix `fabric.mod.json` - ([ceb8560](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ceb856091a3a8ac1d8c2a24b2ed9a0537c326763))
 - Make `trash` command using vanilla way - ([7b49023](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7b490235b5eef6656483a3efb68379d90a6d35c0))
-- Add `FurnaceContainer` for test -
-  ([dabed19](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dabed1981a2cdb6a30ff23d57484ccf79072c27f))
+- Add `FurnaceInventory` for test - ([dabed19](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dabed1981a2cdb6a30ff23d57484ccf79072c27f))
 - Change to version `1.21.5` - ([f4301f1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f4301f1b5fd343487eb961e0832d8bbe544eb207))
 
 ### Action
