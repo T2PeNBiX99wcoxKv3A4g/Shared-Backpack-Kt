@@ -4,7 +4,12 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(CI)* Update Java version matrix to `23` in release workflows - ([b079903](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b0799039878630d64649bbc4043f132c53b2a76c))
 - *(CI)* Remove `release-1.21.5.yml` and standardize workflows with branch-aware configurations - ([aab2cc5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aab2cc536d66739bd1e72024f957e57a787c3d81))
+
+### Action
+
+- Update version in `gradle.properties` - ([d8d0549](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d8d05491d8a8f7444b721bffb0ff1551b309e97e))
 
 
 ## [0.3.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.0..v0.3.1) - 2026-08-05
