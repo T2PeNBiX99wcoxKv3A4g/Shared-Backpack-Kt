@@ -25,13 +25,7 @@ original [Shared Backpack](https://github.com/170yt/Minecraft-Shared-Backpack).
 
 This is a server-side mod and does not need to be installed on clients.
 
-Shared backpack data is stored in:
-
-`/config/shared-backpack-kt/backpack-{name}.dat`
-
-Before loading, the existing file is automatically backed up to:
-
-`/config/shared-backpack-kt/backpack-{name}.dat_old`
+All datas is stored in `/config/shared-backpack-kt`
 
 ## Credits
 
