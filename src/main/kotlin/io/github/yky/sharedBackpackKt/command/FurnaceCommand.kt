@@ -51,7 +51,7 @@ object FurnaceCommand {
                         Smoking -> Utils.getOrCreateSmokerFurnaceContainer(player2, name)
                     }
 
-                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
+                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
                 }, when (type) {
                     Smelting -> Component.literal("Shared Furnace: $name")
                     Blasting -> Component.literal("Shared Blast Furnace: $name")

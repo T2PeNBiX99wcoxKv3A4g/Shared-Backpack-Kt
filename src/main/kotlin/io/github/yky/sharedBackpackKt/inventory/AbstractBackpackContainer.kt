@@ -7,15 +7,15 @@ import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.NbtAccounter
 import net.minecraft.nbt.NbtIo
 import net.minecraft.world.Container
 import net.minecraft.world.ContainerHelper
 import net.minecraft.world.ContainerListener
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.entity.player.StackedItemContents
+import net.minecraft.world.entity.player.StackedContents
 import net.minecraft.world.inventory.StackedContentsCompatible
 import net.minecraft.world.item.ItemStack
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.stream.Collectors
@@ -39,9 +39,9 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         // Initialize the inventory from the saved NBT data
         if (Files.exists(dataPath)) {
             runCatching {
-                val compoundTag: CompoundTag = NbtIo.readCompressed(dataPath, NbtAccounter.unlimitedHeap())
+                val compoundTag: CompoundTag = NbtIo.readCompressed(File(dataPath.toUri()))
                 onLoad(compoundTag, Server?.registryAccess()!!)
-                loadAllItems(compoundTag, Server?.registryAccess()!!)
+                loadAllItems(compoundTag)
             }.getOrElse {
                 Logger.error("Failed to load backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
             }
@@ -61,9 +61,9 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         setChanged()
     }
 
-    override fun fillStackedContents(stackedItemContents: StackedItemContents) {
+    override fun fillStackedContents(stackedContents: StackedContents) {
         for (itemStack in items) {
-            stackedItemContents.accountStack(itemStack)
+            stackedContents.accountStack(itemStack)
         }
     }
 
@@ -96,7 +96,9 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
 
     override fun setItem(slot: Int, stack: ItemStack) {
         items[slot] = stack
-        stack.limitSize(getMaxStackSize(stack))
+        if (!stack.isEmpty && stack.count > this.maxStackSize) {
+            stack.count = this.maxStackSize
+        }
         setChanged()
     }
 
@@ -109,13 +111,13 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     override fun stillValid(player: Player) = true
 
     @Suppress("MemberVisibilityCanBePrivate")
-    protected open fun loadAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {
-        ContainerHelper.loadAllItems(compoundTag, items, registries)
+    protected open fun loadAllItems(compoundTag: CompoundTag) {
+        ContainerHelper.loadAllItems(compoundTag, items)
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
-    protected open fun saveAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {
-        ContainerHelper.saveAllItems(compoundTag, items, registries)
+    protected open fun saveAllItems(compoundTag: CompoundTag) {
+        ContainerHelper.saveAllItems(compoundTag, items)
     }
 
     override fun stopOpen(player: Player) {
@@ -130,11 +132,11 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         runCatching {
             val nbt = CompoundTag()
             onSave(nbt, Server?.registryAccess()!!)
-            saveAllItems(nbt, Server?.registryAccess()!!)
+            saveAllItems(nbt)
             Files.createDirectories(dataPath.parent)
             Files.deleteIfExists(dataPath)
             val path = Files.createFile(dataPath)
-            NbtIo.writeCompressed(nbt, path)
+            NbtIo.writeCompressed(nbt, File(path.toUri()))
         }.getOrElse {
             Logger.error("Failed to save backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
         }

@@ -51,7 +51,7 @@ object FurnacePlayerOnlyCommand {
                         Smoking -> Utils.getOrCreateSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
-                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
+                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
                 }, when (type) {
                     Smelting -> Component.literal("Private Furnace: $name")
                     Blasting -> Component.literal("Private Blast Furnace: $name")
