@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.4..v0.3.6) - 2026-08-06
+
+### 🐛 Bug Fixes
+
+- Update `checkTakeAchievements` method to reflect Level parameter change - ([0e3c86c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0e3c86c362d306aa6f9b6201618ecc3046a46e14))
+
+### 🚜 Refactor
+
+- Simplify furnace container handling and remove `FuelValues` dependency - ([b484411](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b484411cec83540e0190539af22609f21a31ba05))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(gradle)* Downgrade Minecraft, Yarn mappings, and Fabric versions in `gradle.properties` to 1.20.1 - ([c966a4b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c966a4b971616d8d467d55321e44f1b57226a77d))
+
+### Action
+
+- Update version in `gradle.properties` - ([a372fbd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a372fbd11f87ef46a945f21b7c3130ce4e648266))
+
+
 ## [0.3.4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.3..v0.3.4) - 2026-08-05
 
 ### 🐛 Bug Fixes
