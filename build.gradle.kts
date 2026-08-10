@@ -45,6 +45,9 @@ repositories {
     maven("https://maven.terraformersmc.com/") {
         name = "Terraformers"
     }
+    maven("https://maven.parchmentmc.org") {
+        name = "Parchment"
+    }
 }
 
 dependencies {
