@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.4.10"
+    kotlin("plugin.serialization") version "2.4.10"
     id("fabric-loom") version "1.17-SNAPSHOT"
     id("maven-publish")
 }
@@ -63,6 +64,7 @@ dependencies {
 
     modImplementation("dev.isxander:yet-another-config-lib:${property("yacl_version")}")
     modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
+    include(implementation("net.mamoe.yamlkt:yamlkt:${property("yamlkt_version")}")!!)
 }
 
 tasks.processResources {
