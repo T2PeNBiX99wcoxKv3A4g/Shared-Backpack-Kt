@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.4.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.6..v0.4.0) - 2026-08-10
+
+### ⛰️  Features
+
+- *(config)* Add configuration system with YACL support and fallback screen - ([cb77988](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/cb7798833404f8191e4cd91bb8c88f3b58cdb441))
+- *(gradle)* Add ParchmentMC Maven repository - ([2bd6966](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2bd69661e6f7692eac148f13c5c29ccd44524853))
+- *(gradle)* Add `yamlkt` dependency and serialization plugin, update group ID in `gradle.properties` - ([5706e78](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5706e789a1f2fc219a32eba029fd2dd59d56c888))
+- *(gradle)* Add YACL and ModMenu dependencies, update Gradle build script with new repositories - ([5ff4245](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5ff42458d5369bdaf597eab252fa77b9dd51e669))
+- *(localization)* Add LOLCAT, Upside Down English, and Shakespearean English translations - ([5fa15d7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5fa15d7d61694766b15d6195202dd20bc6ff3216))
+- *(localization)* Add mod description translations and improve description grammar - ([d67fe81](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d67fe81c829f0996ffd0a233301ff764dff7c511))
+- *(localization)* Add Pirate English localization and improve Trash Can naming consistency - ([31a5f0f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/31a5f0f788f5b22bf0f79a12773c6ed705bc922b))
+- *(localization)* Add Traditional and Simplified Chinese translations for shared backpack mod - ([454c710](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/454c710a52f12c49a3ec1027516fc606e6f1ff6e))
+- *(localization)* Add Japanese localization for shared backpack mod - ([824334a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/824334a63497187a5933b1f924c11205c0df2478))
+- *(utils)* Add lazy initialization and directory creation for ConfigDir - ([00a340a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/00a340a79f5a53ac482e023381bd2bb7eed89730))
+- Add `modmenu` entrypoint and update dependencies in `gradle.properties` - ([6e715c4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6e715c4a708930d27e91b8822fc95f8ca3cadff8))
+
+### 🐛 Bug Fixes
+
+- *(CI)* Exclude dependabot branches from triggering workflows - ([cb2e139](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/cb2e1397231cc7b58d15aefd9ad3db8dcef4cab5))
+- *(config)* Adjust `render` method call order for proper background rendering - ([8094476](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/8094476e00020d2294fdf0e59759f3c26bf113f1))
+- *(config)* Enhance error message clarity by including exception class name - ([608f066](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/608f0667eba3608cb7a0a6647bf1a60cc904e114))
+- *(localization)* Standardize grammar and simplify Pirate English translations - ([41f9c6b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/41f9c6ba82bfa9ec5380b2a2e5c782836a9489b0))
+- *(localization)* Improve grammar and consistency in LOLCAT translations - ([93ee6a6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/93ee6a6bf3eda9d7dd7d9e6ee428b542cc1a7055))
+- *(localization)* Correct grammar and improve furnace names in config messages - ([3a15b62](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3a15b6256e43afbf8f572acdf833d1515f4062de))
+
+### 🚜 Refactor
+
+- Update package structure and improve localization handling - ([548a3c2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/548a3c2cb61095a685c9915feed3ea26dba84c8d))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(gradle)* Bump `yacl` to 3.6.6+1.20.1-fabric - ([9f256c2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9f256c2e853cb435cdb66fec1927409eb00c6d0d))
+- *(gradle)* Update Gradle wrapper to 9.7.0 - ([4592e63](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4592e63d71302919544a76c2ee0c800a802c7329))
+
+### Action
+
+- Update version in `gradle.properties` - ([62cd8b2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/62cd8b2721924ff2ff1f94bcf7a121c5e4768cba))
+
+
 ## [0.3.6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.4..v0.3.6) - 2026-08-06
 
 ### 🐛 Bug Fixes
