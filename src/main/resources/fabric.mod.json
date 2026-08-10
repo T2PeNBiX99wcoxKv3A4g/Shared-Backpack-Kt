@@ -16,13 +16,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "io.github.yky.sharedBackpackKt.SharedBackpackKt"
+        "value": "io.github.ykysnk.sharedBackpackKt.SharedBackpackKt"
       }
     ],
     "modmenu": [
       {
         "adapter": "kotlin",
-        "value": "io.github.yky.sharedBackpackKt.ModMenu"
+        "value": "io.github.ykysnk.sharedBackpackKt.ModMenu"
       }
     ]
   },
@@ -33,7 +33,10 @@
     "fabricloader": ">=${loader_version}",
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}",
+    "minecraft": "${minecraft_version}"
+  },
+  "suggests": {
+    "modmenu": ">=${modmenu_version}",
     "yet_another_config_lib_v3": ">=${yacl_version}"
   }
 }
