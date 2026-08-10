@@ -53,7 +53,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smelting-furnace.failure.disabled",
-                            "Private Smelting Furnace is disabled in config."
+                            "Private Smelting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -65,7 +65,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-blasting-furnace.failure.disabled",
-                            "Private Blasting Furnace is disabled in config."
+                            "Private Blasting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -77,7 +77,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smoking-furnace.failure.disabled",
-                            "Private Smoking Furnace is disabled in config."
+                            "Private Smoking Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -105,13 +105,13 @@ object FurnacePlayerOnlyCommand {
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-blasting-furnace.title",
-                        "Private Blasting Furnace: %s",
+                        "Private Blast Furnace: %s",
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-smoking-furnace.title",
-                        "Private Smoking Furnace: %s",
+                        "Private Smoker Furnace: %s",
                         name
                     )
                 }
