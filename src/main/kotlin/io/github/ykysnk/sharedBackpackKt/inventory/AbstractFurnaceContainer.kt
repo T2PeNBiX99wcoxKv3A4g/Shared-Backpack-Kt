@@ -1,4 +1,4 @@
-package io.github.yky.sharedBackpackKt.inventory
+package io.github.ykysnk.sharedBackpackKt.inventory
 
 import com.google.common.collect.Lists
 import com.mojang.serialization.Codec

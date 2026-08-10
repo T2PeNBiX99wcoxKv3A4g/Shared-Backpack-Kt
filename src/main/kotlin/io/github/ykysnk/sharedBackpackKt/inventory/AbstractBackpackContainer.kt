@@ -1,9 +1,8 @@
-package io.github.yky.sharedBackpackKt.inventory
+package io.github.ykysnk.sharedBackpackKt.inventory
 
-import io.github.yky.sharedBackpackKt.Utils.Logger
-import io.github.yky.sharedBackpackKt.Utils.MOD_ID
-import io.github.yky.sharedBackpackKt.Utils.Server
-import net.fabricmc.loader.api.FabricLoader
+import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.Utils.Logger
+import io.github.ykysnk.sharedBackpackKt.Utils.Server
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
@@ -25,7 +24,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     val items: NonNullList<ItemStack> = NonNullList.withSize(size, ItemStack.EMPTY)
 
     @Suppress("MemberVisibilityCanBePrivate")
-    protected val dataPath: Path get() = FabricLoader.getInstance().configDir.resolve(MOD_ID).resolve("${fileName}.dat")
+    protected val dataPath: Path get() = Utils.ConfigDir.resolve("${fileName}.dat")
     private val listeners: MutableList<ContainerListener> = mutableListOf()
 
     init {

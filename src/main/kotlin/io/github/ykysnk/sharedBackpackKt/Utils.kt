@@ -1,15 +1,20 @@
-package io.github.yky.sharedBackpackKt
+package io.github.ykysnk.sharedBackpackKt
 
-import io.github.yky.sharedBackpackKt.inventory.*
+import io.github.ykysnk.sharedBackpackKt.inventory.*
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.server.MinecraftServer
 import net.minecraft.world.entity.player.Player
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.nio.file.Path
 
 object Utils {
     const val MOD_ID = "shared-backpack-kt"
-    val Logger: Logger = LoggerFactory.getLogger(MOD_ID)
+    const val MOD_NAME = "Shared Backpack Kotlin"
+    const val COMMAND_FAILED_PLAYER_ONLY = "This command can only be used by players."
+    val Logger: Logger = LoggerFactory.getLogger(MOD_NAME)
     var Server: MinecraftServer? = null
+    val ConfigDir: Path = FabricLoader.getInstance().configDir.resolve(MOD_ID)
 
     private val BackpackContainerCache: MutableMap<String, BackpackContainer> = mutableMapOf()
     private val BackpackPlayerOnlyContainerCache: MutableMap<String, BackpackPlayerOnlyContainer> = mutableMapOf()
