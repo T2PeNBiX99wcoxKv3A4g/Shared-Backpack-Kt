@@ -46,7 +46,7 @@ class ConfigFallbackScreen(
         mouseY: Int,
         partialTick: Float
     ) {
-        renderBackground(guiGraphics)
+        renderBackground(guiGraphics, mouseX, mouseY, partialTick)
 
         guiGraphics.drawCenteredString(
             font,
