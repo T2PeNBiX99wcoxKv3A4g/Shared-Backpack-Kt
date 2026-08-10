@@ -1,4 +1,5 @@
 {
+  "modmenu.descriptionTranslation.shared-backpack-kt": "为所有玩家提供一个共享背包。",
   "command.shared-backpack-kt.failure.only-player": "此命令只能由玩家使用。",
   "command.shared-backpack-kt.shared-backpack.failure.disabled": "共享背包已在配置中禁用。",
   "command.shared-backpack-kt.shared-backpack.title": "共享背包：%s",

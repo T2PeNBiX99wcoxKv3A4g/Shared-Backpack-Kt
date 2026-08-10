@@ -1,4 +1,5 @@
 {
+  "modmenu.descriptionTranslation.shared-backpack-kt": "Provides a Shared Backpack for all players.",
   "command.shared-backpack-kt.failure.only-player": "This command can only be used by players.",
   "command.shared-backpack-kt.shared-backpack.failure.disabled": "Shared Backpack is disabled in config.",
   "command.shared-backpack-kt.shared-backpack.title": "Shared Backpack: %s",

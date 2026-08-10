@@ -1,4 +1,5 @@
 {
+  "modmenu.descriptionTranslation.shared-backpack-kt": "すべてのプレイヤーが使える共有バックパックを追加します。",
   "command.shared-backpack-kt.failure.only-player": "このコマンドはプレイヤーのみ使用できます。",
   "command.shared-backpack-kt.shared-backpack.failure.disabled": "共有バックパックは設定で無効になっています。",
   "command.shared-backpack-kt.shared-backpack.title": "共有バックパック: %s",
