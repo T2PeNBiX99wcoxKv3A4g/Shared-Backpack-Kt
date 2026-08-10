@@ -43,7 +43,7 @@ object BackpackPlayerOnlyCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.private-backpack.failure.disabled",
-                    "Private Backpack is disabled in config."
+                    "Private Backpack is disabled in the config."
                 )
             )
             return 0

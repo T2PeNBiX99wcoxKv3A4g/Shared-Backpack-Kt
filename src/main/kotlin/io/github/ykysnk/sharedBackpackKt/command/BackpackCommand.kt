@@ -43,7 +43,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.failure.disabled",
-                    "Shared Backpack is disabled in config."
+                    "Shared Backpack is disabled in the config."
                 )
             )
             return 0

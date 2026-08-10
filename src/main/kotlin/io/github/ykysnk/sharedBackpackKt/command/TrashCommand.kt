@@ -42,7 +42,7 @@ object TrashCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.trash.failure.disabled",
-                    "Trash Can is disabled in config."
+                    "Trash Can is disabled in the config."
                 )
             )
             return 0

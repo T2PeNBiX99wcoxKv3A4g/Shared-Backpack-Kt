@@ -53,7 +53,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smelting-furnace.failure.disabled",
-                            "Shared Smelting Furnace is disabled in config."
+                            "Shared Smelting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -65,7 +65,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-blasting-furnace.failure.disabled",
-                            "Shared Blasting Furnace is disabled in config."
+                            "Shared Blasting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -77,7 +77,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smoking-furnace.failure.disabled",
-                            "Shared Smoking Furnace is disabled in config."
+                            "Shared Smoking Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -105,13 +105,13 @@ object FurnaceCommand {
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-blasting-furnace.title",
-                        "Shared Blasting Furnace: %s",
+                        "Shared Blast Furnace: %s",
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smoking-furnace.title",
-                        "Shared Smoking Furnace: %s",
+                        "Shared Smoker Furnace: %s",
                         name
                     )
                 }
