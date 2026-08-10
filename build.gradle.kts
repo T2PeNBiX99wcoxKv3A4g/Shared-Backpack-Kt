@@ -11,7 +11,7 @@ version = providers.gradleProperty("mod_version").get()
 group = providers.gradleProperty("maven_group").get()
 
 base {
-    archivesName.set("${project.property("archives_base_name")}-${project.property("minecraft_version")}")
+    archivesName.set("${property("archives_base_name")}-${property("minecraft_version")}")
 }
 
 val targetJavaVersion = 23
@@ -38,31 +38,47 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     mavenCentral()
+    maven("https://maven.isxander.dev/releases") {
+        name = "Xander Maven"
+    }
+    maven("https://maven.terraformersmc.com/") {
+        name = "Terraformers"
+    }
 }
 
 dependencies {
     // To change the versions, see the gradle.properties file
-    minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    mappings(loom.officialMojangMappings())
-//    mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
-    modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
+    minecraft("com.mojang:minecraft:${property("minecraft_version")}")
+    mappings(
+        loom.layered {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-${property("minecraft_version")}:${property("parchment_mappings")}@zip")
+        }
+    )
+//    mappings("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
+    modImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
+    modImplementation("net.fabricmc:fabric-language-kotlin:${property("kotlin_loader_version")}")
 
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
+
+    modImplementation("dev.isxander:yet-another-config-lib:${property("yacl_version")}")
+    modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
 }
 
 tasks.processResources {
-    inputs.property("version", project.version)
+    inputs.property("version", version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
     inputs.property("loader_version", project.property("loader_version"))
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand(
-            "version" to project.version,
+            "version" to version,
             "minecraft_version" to project.property("minecraft_version").toString(),
             "loader_version" to project.property("loader_version").toString(),
-            "kotlin_loader_version" to project.property("kotlin_loader_version").toString()
+            "kotlin_loader_version" to project.property("kotlin_loader_version").toString(),
+            "yacl_version" to project.property("yacl_version").toString(),
+            "modmenu_version" to project.property("modmenu_version").toString()
         )
     }
 }
@@ -82,7 +98,7 @@ tasks.withType<KotlinCompile>().configureEach {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "${it}_${project.base.archivesName}" }
+        rename { "${it}_${base.archivesName}" }
     }
 }
 
@@ -90,7 +106,7 @@ tasks.jar {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifactId = "${project.property("archives_base_name")}-${project.property("minecraft_version")}"
+            artifactId = "${property("archives_base_name")}-${property("minecraft_version")}"
             from(components["java"])
         }
     }
