@@ -95,7 +95,7 @@ object FurnaceCommand {
                         Smoking -> Utils.getOrCreateSmokerFurnaceContainer(player2, name)
                     }
 
-                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smelting-furnace.title",
