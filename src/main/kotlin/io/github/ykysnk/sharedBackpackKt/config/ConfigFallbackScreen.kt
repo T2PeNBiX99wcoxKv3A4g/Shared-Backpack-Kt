@@ -48,6 +48,8 @@ class ConfigFallbackScreen(
     ) {
         renderBackground(guiGraphics, mouseX, mouseY, partialTick)
 
+        super.render(guiGraphics, mouseX, mouseY, partialTick)
+
         guiGraphics.drawCenteredString(
             font,
             title,
@@ -89,8 +91,6 @@ class ConfigFallbackScreen(
                 0xAAAAAA
             )
         }
-
-        super.render(guiGraphics, mouseX, mouseY, partialTick)
     }
 
     override fun onClose() {
