@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.5.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.4..v0.5.0) - 2026-08-10
+
+### ⛰️  Features
+
+- *(config)* Add configuration system with YACL support and fallback screen - ([0acabfe](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0acabfeb91b7ad72eabc058fdf442009e7c3f8bc))
+- *(gradle)* Add ParchmentMC Maven repository - ([6c82746](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6c8274683cf0198aad81ab5227863c7cdd976f16))
+- *(gradle)* Add YACL and ModMenu dependencies, update Gradle build script with new repositories - ([a20a8e3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a20a8e3da776627e0eb5ca413bf7bfe2b84b9d7b))
+- *(gradle)* Add `yamlkt` dependency and serialization plugin, update group ID in `gradle.properties` - ([48063c9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/48063c9d5172c33a4e86b928b83ae55e2479281a))
+- *(gradle)* Add YACL and ModMenu dependencies, update Gradle build script with new repositories - ([4db273a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4db273ae7099b90055ffa7721751f9e2a0a4109b))
+- *(localization)* Add LOLCAT, Upside Down English, and Shakespearean English translations - ([a2358db](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a2358dba85539d0ad7f7cc206502e8c20ae69268))
+- *(localization)* Add mod description translations and improve description grammar - ([33fa6d9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/33fa6d93cd73216c8cc5ee5caf9fc204d1ce644e))
+- *(localization)* Add Pirate English localization and improve Trash Can naming consistency - ([569d5d0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/569d5d0d079bd9c7d4264ed2fab5385f7234d2e6))
+- *(localization)* Add Traditional and Simplified Chinese translations for shared backpack mod - ([89877b4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/89877b49eb296a4837fd7f386cddc8a458664e14))
+- *(localization)* Add Japanese localization for shared backpack mod - ([97a6a78](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/97a6a782b86eef99e8e5d99043c513e39baa3b1c))
+- *(utils)* Add lazy initialization and directory creation for ConfigDir - ([60a2f3e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/60a2f3e45e2953fadd8bef9cde098773fddf8f7c))
+- Add `modmenu` entrypoint and update dependencies in `gradle.properties` - ([bd852b9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bd852b9cc1519112a84da8d7806a1bcec06f3f13))
+
+### 🐛 Bug Fixes
+
+- *(CI)* Exclude dependabot branches from triggering workflows - ([d5e4e73](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d5e4e7384646f8e9002e26c59483f21b3c6b9e3b))
+- *(command)* Update `FurnaceMenu` to use `propertyDelegate` instead of `dataAccess` for consistency - ([0bc6253](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0bc62533a717c69f9608aa768e8ffdb705672a09))
+- *(config)* Remove redundant `renderBackground` call in `ConfigFallbackScreen` - ([52d3d0b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/52d3d0b575bc3abd2a98af901cad69e167fa6066))
+- *(config)* Adjust `render` method call order for proper background rendering - ([cede87a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/cede87aa9a5bfc72c79c9ac335e3e709b158f22b))
+- *(config)* Update `renderBackground` to accept additional parameters - ([6197567](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6197567ec8c61b9ac5f86ad41521e03589a1666c))
+- *(config)* Enhance error message clarity by including exception class name - ([3ba37ba](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3ba37ba8397ba2957210d9b5c0286f0eeffdc5a8))
+- *(localization)* Standardize grammar and simplify Pirate English translations - ([80d79d3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/80d79d3a1746313d16c40965efe5078c5b42298d))
+- *(localization)* Improve grammar and consistency in LOLCAT translations - ([6ad6804](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6ad68043c62e55e1fedc40bb277aac13ae8b00ad))
+- *(localization)* Correct grammar and improve furnace names in config messages - ([68e1d83](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/68e1d83d1097b88492575f57c50abb4e02de0eac))
+
+### 🚜 Refactor
+
+- Update package structure and improve localization handling - ([876e939](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/876e939f60248f9989f7d339bc94a4b547f7bc3f))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(gradle)* Update Gradle wrapper to 9.7.0 - ([c663aae](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c663aae254309a146b9bbdfb2e6e52c4450b3226))
+
+### Action
+
+- Update version in `gradle.properties` - ([a372fbd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a372fbd11f87ef46a945f21b7c3130ce4e648266))
+
+
 ## [0.3.4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.3..v0.3.4) - 2026-08-05
 
 ### 🐛 Bug Fixes
