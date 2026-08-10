@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
+import kotlin.io.path.createDirectories
 
 object Utils {
     const val MOD_ID = "shared-backpack-kt"
@@ -14,7 +15,11 @@ object Utils {
     const val COMMAND_FAILED_PLAYER_ONLY = "This command can only be used by players."
     val Logger: Logger = LoggerFactory.getLogger(MOD_NAME)
     var Server: MinecraftServer? = null
-    val ConfigDir: Path = FabricLoader.getInstance().configDir.resolve(MOD_ID)
+    val ConfigDir: Path by lazy {
+        val dir = FabricLoader.getInstance().configDir.resolve(MOD_ID)
+        dir.createDirectories()
+        dir
+    }
 
     private val BackpackContainerCache: MutableMap<String, BackpackContainer> = mutableMapOf()
     private val BackpackPlayerOnlyContainerCache: MutableMap<String, BackpackPlayerOnlyContainer> = mutableMapOf()
