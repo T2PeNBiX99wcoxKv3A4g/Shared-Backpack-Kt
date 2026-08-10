@@ -34,6 +34,6 @@
   "yacl3.config.shared-backpack-kt.category.general.group.furnace.option.private-blasting-furnace-enabled": "Enable Private Blasting Furnace",
   "yacl3.config.shared-backpack-kt.category.general.group.furnace.option.shared-smoking-furnace-enabled": "Enable Shared Smoking Furnace",
   "yacl3.config.shared-backpack-kt.category.general.group.furnace.option.private-smoking-furnace-enabled": "Enable Private Smoking Furnace",
-  "yacl3.config.shared-backpack-kt.category.general.group.trash": "Trash",
-  "yacl3.config.shared-backpack-kt.category.general.group.trash.option.trash-enabled": "Enable Trash"
+  "yacl3.config.shared-backpack-kt.category.general.group.trash": "Trash Can",
+  "yacl3.config.shared-backpack-kt.category.general.group.trash.option.trash-enabled": "Enable Trash Can"
 }
