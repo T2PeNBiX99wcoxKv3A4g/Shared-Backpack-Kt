@@ -1,4 +1,4 @@
-package io.github.yky.sharedBackpackKt.inventory
+package io.github.ykysnk.sharedBackpackKt.inventory
 
 import net.minecraft.nbt.ListTag
 import net.minecraft.world.SimpleContainer

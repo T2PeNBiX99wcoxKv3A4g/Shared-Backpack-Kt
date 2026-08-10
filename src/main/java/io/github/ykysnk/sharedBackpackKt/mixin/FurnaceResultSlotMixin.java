@@ -1,8 +1,8 @@
-package io.github.yky.sharedBackpackKt.mixin;
+package io.github.ykysnk.sharedBackpackKt.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.github.yky.sharedBackpackKt.inventory.AbstractFurnaceContainer;
+import io.github.ykysnk.sharedBackpackKt.inventory.AbstractFurnaceContainer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;

@@ -1,8 +1,9 @@
-package io.github.yky.sharedBackpackKt.command
+package io.github.ykysnk.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import io.github.yky.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.Component
@@ -29,7 +30,22 @@ object BackpackPlayerOnlyCommand {
         val player = source.player
         // Send an error message if the command was called by a non-player
         if (player == null) {
-            source.sendFailure(Component.literal("Only players can use this command"))
+            source.sendFailure(
+                Component.translatableWithFallback(
+                    "command.shared-backpack-kt.failure.only-player",
+                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                )
+            )
+            return 0
+        }
+
+        if (!ConfigManager.config.general.privateBackpackEnabled) {
+            source.sendFailure(
+                Component.translatableWithFallback(
+                    "command.shared-backpack-kt.private-backpack.failure.disabled",
+                    "Private Backpack is disabled in config."
+                )
+            )
             return 0
         }
 
@@ -40,7 +56,11 @@ object BackpackPlayerOnlyCommand {
                     ChestMenu.sixRows(
                         syncId, inventory, Utils.getOrCreateBackpackPlayerOnlyContainer(player2, name)
                     )
-                }, Component.literal("Private Backpack: $name")
+                }, Component.translatableWithFallback(
+                    "command.shared-backpack-kt.private-backpack.title",
+                    "Private Backpack: %s",
+                    name
+                )
             )
         )
         return 1

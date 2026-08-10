@@ -1,14 +1,17 @@
-package io.github.yky.sharedBackpackKt
+package io.github.ykysnk.sharedBackpackKt
 
-import io.github.yky.sharedBackpackKt.Utils.Logger
-import io.github.yky.sharedBackpackKt.command.*
+import io.github.ykysnk.sharedBackpackKt.Utils.Logger
+import io.github.ykysnk.sharedBackpackKt.command.*
+import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.server.MinecraftServer
 
-class SharedBackpackKt : ModInitializer {
+object SharedBackpackKt : ModInitializer {
     override fun onInitialize() {
+        ConfigManager.load()
+
         CommandRegistrationCallback.EVENT.register { commandDispatcher, _, _ ->
             BackpackCommand.register(commandDispatcher)
             TrashCommand.register(commandDispatcher)
