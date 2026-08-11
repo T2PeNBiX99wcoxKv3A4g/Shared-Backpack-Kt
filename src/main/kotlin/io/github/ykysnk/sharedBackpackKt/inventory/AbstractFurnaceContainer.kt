@@ -1,11 +1,13 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
 import com.google.common.collect.Lists
+import io.github.ykysnk.sharedBackpackKt.Utils
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.Mth
@@ -22,15 +24,13 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeManager
 import net.minecraft.world.item.crafting.RecipeType
-import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.phys.Vec3
 import java.util.function.Consumer
 
-abstract class AbstractFurnaceContainer(
-    private val player: Player, fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>
-) : AbstractBackpackContainer(fileName, 3), RecipeHolder {
+abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>) :
+    AbstractBackpackContainer(fileName, 3), RecipeHolder {
     companion object {
         private fun canBurn(
             registryAccess: RegistryAccess,
@@ -90,12 +90,12 @@ abstract class AbstractFurnaceContainer(
         }
     }
 
+    var player: Player? = null
+        internal set
+
     @Suppress("MemberVisibilityCanBePrivate")
     protected val level: ServerLevel?
-        get() {
-            if (player.level() is ServerLevel) return player.level() as ServerLevel
-            return null
-        }
+        get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
     private var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
     private var openDelay: Int? = null
@@ -141,21 +141,22 @@ abstract class AbstractFurnaceContainer(
 
     private fun isLit() = litTime > 0
 
-    fun tick(serverLevel: ServerLevel) {
+    fun tick(server: MinecraftServer) {
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTime--
-        if (openDelay != null && openDelay!! > 0)
-            openDelay = openDelay!! - 1
+        if (openDelay?.let { it > 0 } == true)
+            openDelay = openDelay?.minus(1)
 
         val itemStack = items[1]
         val itemStack2 = items[0]
         val bl3 = !itemStack2.isEmpty
         val bl4 = !itemStack.isEmpty
         if (isLit() || bl4 && bl3) {
-            val recipe: Recipe<*>? = if (bl3) quickCheck.getRecipeFor(this, level as Level).orElse(null) else null
+            val recipe: Recipe<*>? =
+                if (bl3) quickCheck.getRecipeFor(this, level ?: server.overworld()).orElse(null) else null
             val i = maxStackSize
-            if (!isLit() && canBurn(serverLevel.registryAccess(), recipe, items, i)) {
+            if (!isLit() && canBurn(server.registryAccess(), recipe, items, i)) {
                 litTime = getBurnDuration(itemStack)
                 litDuration = litTime
                 if (isLit()) {
@@ -171,12 +172,12 @@ abstract class AbstractFurnaceContainer(
                 }
             }
 
-            if (isLit() && canBurn(serverLevel.registryAccess(), recipe, items, i)) {
+            if (isLit() && canBurn(server.registryAccess(), recipe, items, i)) {
                 cookingProgress++
                 if (cookingProgress == cookingTotalTime) {
                     cookingProgress = 0
-                    cookingTotalTime = getTotalCookTime(serverLevel)
-                    if (burn(serverLevel.registryAccess(), recipe, items, i)) {
+                    cookingTotalTime = getTotalCookTime(level ?: server.overworld())
+                    if (burn(server.registryAccess(), recipe, items, i)) {
                         recipeUsed = recipe
                     }
 
@@ -191,11 +192,11 @@ abstract class AbstractFurnaceContainer(
 
         if (isBurning != isLit()) isChanged = true
         if (isChanged) setChanged()
-        if (openDelay != null && openDelay!! <= 0 && !isLit() && cookingProgress <= 0 && viewerCount <= 0) {
+        if (openDelay?.let { it <= 0 } == true && !isLit() && cookingProgress <= 0 && viewerCount <= 0) {
             saveNbt()
             viewerCount = 0
             FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen(player)
+            onNoPlayersOpen()
         }
     }
 
@@ -324,7 +325,7 @@ abstract class AbstractFurnaceContainer(
         if (!isLit() && cookingProgress <= 0 && viewerCount <= 0) {
             viewerCount = 0
             FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen(player)
+            onNoPlayersOpen()
         }
     }
 }
