@@ -32,7 +32,8 @@ import java.util.function.Consumer
 abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>) :
     AbstractBackpackContainer(fileName, 3), RecipeHolder {
     companion object {
-        private fun canBurn(
+        @JvmStatic
+        protected fun canBurn(
             registryAccess: RegistryAccess,
             recipe: Recipe<*>?,
             nonNullList: NonNullList<ItemStack>,
@@ -54,7 +55,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             }
         }
 
-        private fun burn(
+        @JvmStatic
+        protected fun burn(
             registryAccess: RegistryAccess,
             recipe: Recipe<*>?,
             nonNullList: NonNullList<ItemStack>,
@@ -81,7 +83,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             }
         }
 
-        private fun createExperience(world: ServerLevel, pos: Vec3, multiplier: Int, experience: Float) {
+        protected fun createExperience(world: ServerLevel, pos: Vec3, multiplier: Int, experience: Float) {
             var i = Mth.floor(multiplier * experience)
             val f = Mth.frac(multiplier * experience)
             if (f != 0.0f && Math.random() < f) i++
@@ -97,15 +99,15 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected val level: ServerLevel?
         get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
-    private var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
-    private var openDelay: Int? = null
+    protected var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
+    protected var openDelay: Int? = null
 
     var litTime: Int = 0
     var litDuration: Int = 0
     var cookingProgress: Int = 0
     var cookingTotalTime: Int = 0
 
-    val dataAccess: ContainerData = object : ContainerData {
+    open val dataAccess: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
             return when (index) {
                 0 -> litTime
@@ -128,7 +130,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         override fun getCount() = 4
     }
 
-    private val quickCheck: RecipeManager.CachedCheck<Container, out AbstractCookingRecipe> =
+    protected val quickCheck: RecipeManager.CachedCheck<Container, out AbstractCookingRecipe> =
         RecipeManager.createCheck(recipeType)
 
     init {
@@ -139,9 +141,9 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         recipesUsed = Object2IntOpenHashMap()
     }
 
-    private fun isLit() = litTime > 0
+    protected open fun isLit() = litTime > 0
 
-    fun tick(server: MinecraftServer) {
+    open fun tick(server: MinecraftServer) {
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTime--
@@ -200,7 +202,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         }
     }
 
-    private fun getTotalCookTime(serverLevel: ServerLevel): Int =
+    protected open fun getTotalCookTime(serverLevel: ServerLevel): Int =
         quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }.orElse(200)!!
 
     protected open fun getBurnDuration(stack: ItemStack): Int {
@@ -253,7 +255,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     override fun awardUsedRecipes(player: Player, ingredients: List<ItemStack>) {
     }
 
-    fun awardUsedRecipesAndPopExperience(player: ServerPlayer) {
+    open fun awardUsedRecipesAndPopExperience(player: ServerPlayer) {
         val list = getRecipesToAwardAndPopExperience(player.serverLevel(), player.position())
         player.awardRecipes(list)
 
@@ -265,7 +267,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
-    fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<Recipe<*>> {
+    open fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<Recipe<*>> {
         val list: MutableList<Recipe<*>> = Lists.newArrayList()
 
         for (entry in recipesUsed?.object2IntEntrySet()!!) {
