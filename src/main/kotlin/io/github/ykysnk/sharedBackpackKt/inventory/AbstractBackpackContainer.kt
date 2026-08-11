@@ -129,7 +129,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         saveNbt()
         if (viewerCount <= 0) {
             viewerCount = 0
-            onNoPlayersOpen(player)
+            onNoPlayersOpen()
         }
     }
 
@@ -153,5 +153,5 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
 
     open fun onSave(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) = Unit
 
-    abstract val onNoPlayersOpen: (Player) -> Unit
+    abstract val onNoPlayersOpen: () -> Unit
 }
