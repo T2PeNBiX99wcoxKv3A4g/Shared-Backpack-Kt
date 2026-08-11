@@ -24,6 +24,15 @@ object ContainerManager {
         mutableMapOf()
     private val SmokerContainerCache: MutableMap<String, SmokerContainer> = mutableMapOf()
     private val SmokerPlayerOnlyContainerCache: MutableMap<String, SmokerPlayerOnlyContainer> = mutableMapOf()
+    private val UnlimitedFurnaceContainerCache: MutableMap<String, UnlimitedFurnaceContainer> = mutableMapOf()
+    private val UnlimitedFurnacePlayerOnlyContainerCache: MutableMap<String, UnlimitedFurnacePlayerOnlyContainer> =
+        mutableMapOf()
+    private val UnlimitedBlastFurnaceContainerCache: MutableMap<String, UnlimitedBlastFurnaceContainer> = mutableMapOf()
+    private val UnlimitedBlastFurnacePlayerOnlyContainerCache: MutableMap<String, UnlimitedBlastFurnacePlayerOnlyContainer> =
+        mutableMapOf()
+    private val UnlimitedSmokerContainerCache: MutableMap<String, UnlimitedSmokerContainer> = mutableMapOf()
+    private val UnlimitedSmokerPlayerOnlyContainerCache: MutableMap<String, UnlimitedSmokerPlayerOnlyContainer> =
+        mutableMapOf()
 
     fun getOrCreateBackpackContainer(name: String) = BackpackContainerCache.getOrPut(name) {
         BackpackContainer(name) {
@@ -97,6 +106,69 @@ object ContainerManager {
                 player,
                 name
             ) { SmokerPlayerOnlyContainerCache.remove(id) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedNormalFurnaceContainer(player: Player, name: String): UnlimitedFurnaceContainer {
+        val container = UnlimitedFurnaceContainerCache.getOrPut(name) {
+            UnlimitedFurnaceContainer(name) { UnlimitedFurnaceContainerCache.remove(name) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedNormalFurnacePlayerOnlyContainer(
+        player: Player,
+        name: String
+    ): UnlimitedFurnacePlayerOnlyContainer {
+        val id = "${player.stringUUID}-${name}"
+        val container = UnlimitedFurnacePlayerOnlyContainerCache.getOrPut(id) {
+            UnlimitedFurnacePlayerOnlyContainer(player, name) { UnlimitedFurnacePlayerOnlyContainerCache.remove(id) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedBlastFurnaceContainer(player: Player, name: String): UnlimitedBlastFurnaceContainer {
+        val container = UnlimitedBlastFurnaceContainerCache.getOrPut(name) {
+            UnlimitedBlastFurnaceContainer(name) { UnlimitedBlastFurnaceContainerCache.remove(name) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedBlastFurnacePlayerOnlyContainer(
+        player: Player,
+        name: String
+    ): UnlimitedBlastFurnacePlayerOnlyContainer {
+        val id = "${player.stringUUID}-${name}"
+        val container = UnlimitedBlastFurnacePlayerOnlyContainerCache.getOrPut(id) {
+            UnlimitedBlastFurnacePlayerOnlyContainer(
+                player,
+                name
+            ) { UnlimitedBlastFurnacePlayerOnlyContainerCache.remove(id) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedSmokerFurnaceContainer(player: Player, name: String): UnlimitedSmokerContainer {
+        val container = UnlimitedSmokerContainerCache.getOrPut(name) {
+            UnlimitedSmokerContainer(name) { UnlimitedSmokerContainerCache.remove(name) }
+        }
+        container.player = player
+        return container
+    }
+
+    fun getOrCreateUnlimitedSmokerFurnacePlayerOnlyContainer(
+        player: Player,
+        name: String
+    ): UnlimitedSmokerPlayerOnlyContainer {
+        val id = "${player.stringUUID}-${name}"
+        val container = UnlimitedSmokerPlayerOnlyContainerCache.getOrPut(id) {
+            UnlimitedSmokerPlayerOnlyContainer(player, name) { UnlimitedSmokerPlayerOnlyContainerCache.remove(id) }
         }
         container.player = player
         return container

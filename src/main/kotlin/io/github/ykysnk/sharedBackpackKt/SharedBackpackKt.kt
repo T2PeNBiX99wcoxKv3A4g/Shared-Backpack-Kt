@@ -22,6 +22,8 @@ object SharedBackpackKt : ModInitializer {
             BackpackPlayerOnlyCommand.register(commandDispatcher)
             FurnaceCommand.register(commandDispatcher)
             FurnacePlayerOnlyCommand.register(commandDispatcher)
+            UnlimitedFurnaceCommand.register(commandDispatcher)
+            UnlimitedFurnacePlayerOnlyContainer.register(commandDispatcher)
         }
 
         Logger.debug("Initialized: {} {} {}", utils, containerManager, furnaceTickHandler)
