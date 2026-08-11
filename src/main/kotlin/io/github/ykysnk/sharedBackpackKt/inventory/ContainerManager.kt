@@ -47,37 +47,59 @@ object ContainerManager {
         TrashContainerCache.remove(player.stringUUID)
     }
 
-    fun getOrCreateNormalFurnaceContainer(player: Player, name: String) = FurnaceContainerCache.getOrPut(name) {
-        FurnaceContainer(player, name) { FurnaceContainerCache.remove(name) }
+    fun getOrCreateNormalFurnaceContainer(player: Player, name: String): FurnaceContainer {
+        val container =
+            FurnaceContainerCache.getOrPut(name) { FurnaceContainer(name) { FurnaceContainerCache.remove(name) } }
+        container.player = player
+        return container
     }
 
     fun getOrCreateNormalFurnacePlayerOnlyContainer(player: Player, name: String): FurnacePlayerOnlyContainer {
         val id = "${player.stringUUID}-${name}"
-        return FurnacePlayerOnlyContainerCache.getOrPut(id) {
-            FurnacePlayerOnlyContainer(player, name) { FurnacePlayerOnlyContainerCache.remove(id) }
+        val container = FurnacePlayerOnlyContainerCache.getOrPut(id) {
+            FurnacePlayerOnlyContainer(
+                player,
+                name
+            ) { FurnacePlayerOnlyContainerCache.remove(id) }
         }
+        container.player = player
+        return container
     }
 
-    fun getOrCreateBlastFurnaceContainer(player: Player, name: String) = BlastFurnaceContainerCache.getOrPut(name) {
-        BlastFurnaceContainer(player, name) { BlastFurnaceContainerCache.remove(name) }
+    fun getOrCreateBlastFurnaceContainer(player: Player, name: String): BlastFurnaceContainer {
+        val container = BlastFurnaceContainerCache.getOrPut(name) {
+            BlastFurnaceContainer(name) { BlastFurnaceContainerCache.remove(name) }
+        }
+        container.player = player
+        return container
     }
 
     fun getOrCreateBlastFurnacePlayerOnlyContainer(player: Player, name: String): BlastFurnacePlayerOnlyContainer {
         val id = "${player.stringUUID}-${name}"
-        return BlastFurnacePlayerOnlyContainerCache.getOrPut(id) {
+        val container = BlastFurnacePlayerOnlyContainerCache.getOrPut(id) {
             BlastFurnacePlayerOnlyContainer(player, name) { BlastFurnacePlayerOnlyContainerCache.remove(id) }
         }
+        container.player = player
+        return container
     }
 
-    fun getOrCreateSmokerFurnaceContainer(player: Player, name: String) = SmokerContainerCache.getOrPut(name) {
-        SmokerContainer(player, name) { SmokerContainerCache.remove(name) }
+    fun getOrCreateSmokerFurnaceContainer(player: Player, name: String): SmokerContainer {
+        val container =
+            SmokerContainerCache.getOrPut(name) { SmokerContainer(name) { SmokerContainerCache.remove(name) } }
+        container.player = player
+        return container
     }
 
     fun getOrCreateSmokerFurnacePlayerOnlyContainer(player: Player, name: String): SmokerPlayerOnlyContainer {
         val id = "${player.stringUUID}-${name}"
-        return SmokerPlayerOnlyContainerCache.getOrPut(id) {
-            SmokerPlayerOnlyContainer(player, name) { SmokerPlayerOnlyContainerCache.remove(id) }
+        val container = SmokerPlayerOnlyContainerCache.getOrPut(id) {
+            SmokerPlayerOnlyContainer(
+                player,
+                name
+            ) { SmokerPlayerOnlyContainerCache.remove(id) }
         }
+        container.player = player
+        return container
     }
 
     fun clear() {
