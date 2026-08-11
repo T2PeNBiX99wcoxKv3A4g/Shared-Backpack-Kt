@@ -19,8 +19,8 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
     override val dataAccess: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
             return when (index) {
-                0 -> 20000
-                1 -> 20000
+                0 -> cookingTotalTime - cookingProgress
+                1 -> cookingTotalTime
                 2 -> cookingProgress
                 3 -> cookingTotalTime
                 else -> 0
