@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import io.github.ykysnk.sharedBackpackKt.Utils
 import io.github.ykysnk.sharedBackpackKt.argument.TrashType
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.Component
@@ -55,7 +56,7 @@ object TrashCommand {
                         { syncId, inventory, player2 ->
                             if (player2 == null) return@SimpleMenuProvider null
                             ChestMenu.sixRows(
-                                syncId, inventory, Utils.getOrCreateTrashContainer(player2)
+                                syncId, inventory, ContainerManager.getOrCreateTrashContainer(player2)
                             )
                         }, Component.translatableWithFallback(
                             "command.shared-backpack-kt.trash.title",
@@ -67,7 +68,7 @@ object TrashCommand {
             }
 
             TrashType.Clear -> {
-                Utils.getOrCreateTrashContainer(player).clearContent()
+                ContainerManager.getOrCreateTrashContainer(player).clearContent()
                 source.sendSuccess({
                     Component.translatableWithFallback(
                         "command.shared-backpack-kt.trash.success",

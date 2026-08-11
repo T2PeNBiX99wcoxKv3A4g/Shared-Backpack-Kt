@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.Utils
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.Component
@@ -54,7 +55,7 @@ object BackpackPlayerOnlyCommand {
                 { syncId, inventory, player2 ->
                     if (player2 == null) return@SimpleMenuProvider null
                     ChestMenu.sixRows(
-                        syncId, inventory, Utils.getOrCreateBackpackPlayerOnlyContainer(player2, name)
+                        syncId, inventory, ContainerManager.getOrCreateBackpackPlayerOnlyContainer(player2, name)
                     )
                 }, Component.translatableWithFallback(
                     "command.shared-backpack-kt.private-backpack.title",
