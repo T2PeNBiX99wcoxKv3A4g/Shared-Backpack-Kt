@@ -25,6 +25,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
 
     @Suppress("MemberVisibilityCanBePrivate")
     protected val dataPath: Path get() = Utils.ConfigDir.resolve("${fileName}.dat")
+    protected var viewerCount = 0
     private val listeners: MutableList<ContainerListener> = mutableListOf()
 
     init {
@@ -117,8 +118,17 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         ContainerHelper.saveAllItems(compoundTag, items, registries)
     }
 
+    override fun startOpen(player: Player) {
+        viewerCount++
+    }
+
     override fun stopOpen(player: Player) {
+        viewerCount--
         saveNbt()
+        if (viewerCount <= 0) {
+            viewerCount = 0
+            onNoPlayersOpen(player)
+        }
     }
 
     open fun onChanged() {
@@ -141,16 +151,5 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
 
     open fun onSave(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) = Unit
 
-    open fun backupBackpackData() {
-        runCatching {
-            if (dataPath.toFile().exists()) {
-                val backupPath = dataPath.parent.resolve("${fileName}.dat_old")
-                Files.deleteIfExists(backupPath)
-                Files.copy(dataPath, backupPath)
-                Logger.info("Backed up backpack data to {}", backupPath)
-            }
-        }.getOrElse {
-            Logger.error("Failed to back up backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
-        }
-    }
+    abstract val onNoPlayersOpen: (Player) -> Unit
 }

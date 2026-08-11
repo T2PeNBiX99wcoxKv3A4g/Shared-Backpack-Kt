@@ -3,7 +3,6 @@ package io.github.ykysnk.sharedBackpackKt.inventory
 import com.google.common.collect.Lists
 import com.mojang.serialization.Codec
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
@@ -105,6 +104,7 @@ abstract class AbstractFurnaceContainer(
         }
 
     private var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>? = null
+    private var openDelay: Int? = null
 
     var litTimeRemaining: Int = 0
     var litTotalTime: Int = 0
@@ -138,7 +138,7 @@ abstract class AbstractFurnaceContainer(
         RecipeManager.createCheck(recipeType)
 
     init {
-        ServerTickEvents.END_WORLD_TICK.register(::tick)
+        FurnaceTickHandler.register(this)
     }
 
     override fun onPreInit() {
@@ -151,6 +151,8 @@ abstract class AbstractFurnaceContainer(
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTimeRemaining--
+        if (openDelay != null && openDelay!! > 0)
+            openDelay = openDelay!! - 1
 
         val itemStack = items[1]
         val itemStack2 = items[0]
@@ -198,6 +200,12 @@ abstract class AbstractFurnaceContainer(
 
         if (isBurning != isLit()) isChanged = true
         if (isChanged) setChanged()
+        if (openDelay != null && openDelay!! <= 0 && !isLit() && cookingTimer <= 0 && viewerCount <= 0) {
+            saveNbt()
+            viewerCount = 0
+            FurnaceTickHandler.unregister(this)
+            onNoPlayersOpen(player)
+        }
     }
 
     private fun getTotalCookTime(serverLevel: ServerLevel): Int {
@@ -303,5 +311,20 @@ abstract class AbstractFurnaceContainer(
         ContainerHelper.saveAllItems(compoundTag, items, registries)
         if (recipesUsed == null) return
         compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
+    }
+
+    override fun startOpen(player: Player) {
+        super.startOpen(player)
+        openDelay = 100
+    }
+
+    override fun stopOpen(player: Player) {
+        viewerCount--
+        saveNbt()
+        if (!isLit() && cookingTimer <= 0 && viewerCount <= 0) {
+            viewerCount = 0
+            FurnaceTickHandler.unregister(this)
+            onNoPlayersOpen(player)
+        }
     }
 }
