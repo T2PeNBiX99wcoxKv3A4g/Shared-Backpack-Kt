@@ -75,7 +75,7 @@ class ConfigFallbackScreen(
         if (error != null) {
             guiGraphics.drawCenteredString(
                 font,
-                Component.literal("${error::class.java.name}: ${error.message ?: "Unknown error"}"),
+                Component.literal("${error::class.java.name}: ${error.localizedMessage ?: "Unknown error"}"),
                 width / 2,
                 height / 2 + 10,
                 0xFF0000
