@@ -1,3 +1,6 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
-class BackpackContainer(name: String) : AbstractBackpackContainer("shared-backpack-${name}")
+import net.minecraft.world.entity.player.Player
+
+class BackpackContainer(name: String, override val onNoPlayersOpen: (Player) -> Unit) :
+    AbstractBackpackContainer("shared-backpack-${name}")
