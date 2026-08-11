@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.7.1..v0.9.0) - 2026-08-11
+
+### 🚜 Refactor
+
+- *(inventory)* Remove `Player` dependency from containers and update `onNoPlayersOpen` signature - ([fe3c2b7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fe3c2b7863b5b63c8f338da3c1d803366e8c14a8))
+- *(inventory)* Simplify `AbstractFurnaceContainer` lifecycle handling and remove `Player` dependency - ([7b6a160](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7b6a1605c212573dacceb90fcef60b6a8716ba48))
+- *(inventory)* Update `onNoPlayersOpen` signature to remove `Player` parameter for consistency - ([17dce70](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/17dce709259f8627c7cafe9fcdc9a52d7898224e))
+
+### Action
+
+- Update version in `gradle.properties` - ([80e004e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/80e004ed1d1979a398bc8b4660a3314ebb142749))
+
+
 ## [0.7.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.7.0..v0.7.1) - 2026-08-11
 
 ### ⚙️ Miscellaneous Tasks
