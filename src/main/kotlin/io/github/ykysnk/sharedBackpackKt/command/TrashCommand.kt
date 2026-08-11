@@ -68,7 +68,7 @@ object TrashCommand {
             }
 
             TrashType.Clear -> {
-                ContainerManager.getOrCreateTrashContainer(player).clearContent()
+                ContainerManager.clearContentOfTrashContainer(player)
                 source.sendSuccess({
                     Component.translatableWithFallback(
                         "command.shared-backpack-kt.trash.success",
