@@ -18,6 +18,7 @@ class TrashContainer(val onStopOpen: (Player) -> Unit) : SimpleContainer(54) {
     }
 
     override fun stopOpen(player: Player) {
+        if (!isEmpty) return
         onStopOpen(player)
     }
 }
