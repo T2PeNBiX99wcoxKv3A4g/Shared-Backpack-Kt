@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.Utils
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType.*
 import net.minecraft.commands.CommandSourceStack
@@ -90,9 +91,9 @@ object FurnacePlayerOnlyCommand {
                 { syncId, inventory, player2 ->
                     if (player2 == null) return@SimpleMenuProvider null
                     val furnaceInventory = when (type) {
-                        Smelting -> Utils.getOrCreateNormalFurnacePlayerOnlyContainer(player2, name)
-                        Blasting -> Utils.getOrCreateBlastFurnacePlayerOnlyContainer(player2, name)
-                        Smoking -> Utils.getOrCreateSmokerFurnacePlayerOnlyContainer(player2, name)
+                        Smelting -> ContainerManager.getOrCreateNormalFurnacePlayerOnlyContainer(player2, name)
+                        Blasting -> ContainerManager.getOrCreateBlastFurnacePlayerOnlyContainer(player2, name)
+                        Smoking -> ContainerManager.getOrCreateSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
                     FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)

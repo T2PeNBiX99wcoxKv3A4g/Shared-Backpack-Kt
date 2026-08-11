@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.Utils
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.Component
@@ -52,7 +53,7 @@ object BackpackCommand {
         player.openMenu(
             SimpleMenuProvider(
                 { syncId, inventory, _ ->
-                    ChestMenu.sixRows(syncId, inventory, Utils.getOrCreateBackpackContainer(name))
+                    ChestMenu.sixRows(syncId, inventory, ContainerManager.getOrCreateBackpackContainer(name))
                 },
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.title",
