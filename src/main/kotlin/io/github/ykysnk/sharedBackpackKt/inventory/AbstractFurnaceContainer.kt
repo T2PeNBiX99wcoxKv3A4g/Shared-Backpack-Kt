@@ -2,7 +2,6 @@ package io.github.ykysnk.sharedBackpackKt.inventory
 
 import com.google.common.collect.Lists
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
@@ -99,6 +98,7 @@ abstract class AbstractFurnaceContainer(
         }
 
     private var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
+    private var openDelay: Int? = null
 
     var litTime: Int = 0
     var litDuration: Int = 0
@@ -132,7 +132,7 @@ abstract class AbstractFurnaceContainer(
         RecipeManager.createCheck(recipeType)
 
     init {
-        ServerTickEvents.END_WORLD_TICK.register(::tick)
+        FurnaceTickHandler.register(this)
     }
 
     override fun onPreInit() {
@@ -145,6 +145,8 @@ abstract class AbstractFurnaceContainer(
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTime--
+        if (openDelay != null && openDelay!! > 0)
+            openDelay = openDelay!! - 1
 
         val itemStack = items[1]
         val itemStack2 = items[0]
@@ -189,6 +191,12 @@ abstract class AbstractFurnaceContainer(
 
         if (isBurning != isLit()) isChanged = true
         if (isChanged) setChanged()
+        if (openDelay != null && openDelay!! <= 0 && !isLit() && cookingProgress <= 0 && viewerCount <= 0) {
+            saveNbt()
+            viewerCount = 0
+            FurnaceTickHandler.unregister(this)
+            onNoPlayersOpen(player)
+        }
     }
 
     private fun getTotalCookTime(serverLevel: ServerLevel): Int =
@@ -303,5 +311,20 @@ abstract class AbstractFurnaceContainer(
             )
         }
         compoundTag.put("RecipesUsed", compoundTag2)
+    }
+
+    override fun startOpen(player: Player) {
+        super.startOpen(player)
+        openDelay = 100
+    }
+
+    override fun stopOpen(player: Player) {
+        viewerCount--
+        saveNbt()
+        if (!isLit() && cookingProgress <= 0 && viewerCount <= 0) {
+            viewerCount = 0
+            FurnaceTickHandler.unregister(this)
+            onNoPlayersOpen(player)
+        }
     }
 }
