@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.7.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.7.0..v0.7.1) - 2026-08-11
+
+### ⚙️ Miscellaneous Tasks
+
+- *(gradle)* Bump `mod_version` to 0.4.0 for test - ([baff7ad](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/baff7adca9951f60bf185b04e0efcb38653bbb91))
+
+### Action
+
+- Update version in `gradle.properties` - ([5d3b48c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5d3b48cebffc936b53a3627b8b7d70a8b5d0ea22))
+
+
 ## [0.7.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.5.0..v0.7.0) - 2026-08-11
 
 ### ⛰️  Features
