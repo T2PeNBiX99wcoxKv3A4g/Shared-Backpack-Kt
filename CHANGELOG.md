@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.6.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.4.0..v0.6.0) - 2026-08-11
+
+### ⛰️  Features
+
+- *(inventory)* Add `clearContentOfTrashContainer` to handle trash container cleanup - ([91c1232](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/91c1232c19ce0143587860e0b8201d163708298d))
+- *(inventory)* Add `onNoPlayersOpen` and `onStopOpen` callbacks to containers for improved lifecycle handling - ([74fae81](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/74fae812b4491441c06d72fdc33197dd8a57a50a))
+- *(inventory)* Add `viewerCount` and `onNoPlayersOpen` to support player-specific lifecycle handling - ([fc51b00](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fc51b009c0bd173e75141f17f75cda2a6ad696bc))
+- *(inventory)* Add `FurnaceTickHandler` to manage furnace lifecycle and ticking events - ([82c96f4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82c96f4d384e8aed0b9cf22acb344d3dc5590589))
+
+### 🐛 Bug Fixes
+
+- *(config)* Use `localizedMessage` for improved error message consistency - ([b615242](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b615242f0ba67fae13616c104f5f8d31f221524f))
+- *(inventory)* Prevent `stopOpen` from closing non-empty trash containers and refactor `clearContent` handling - ([b9e1dcc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b9e1dcca73ccd6d593c07177e5dc8389abeee7d0))
+- *(workflow)* Enable GitHub auto-merge in Dependabot action - ([3c219de](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3c219de123340d9c3df9df6897cbb0d87d01ff57))
+
+### 🚜 Refactor
+
+- *(commands)* Replace `Utils` container methods with `ContainerManager` methods for consistency and modularity - ([73d67d6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/73d67d62eb0c022313486f26db942e66971c5d38))
+- *(core)* Simplify initialization by removing `onServerStarted` handler and integrating lifecycle components - ([0633501](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0633501f5dd43620c694fc8bfba0b826f8bdb312))
+- *(inventory)* Rename `onStopOpen` to `onEmpty` in `TrashContainer` for clarity - ([b0693dc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b0693dcc95de081471742ce96126347d582160fe))
+- *(utils)* Extract container caching logic into `ContainerManager` for better modularity and clarity - ([f8bf85d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f8bf85db9fa2259561d17fc0387d35b64e973f21))
+
+### Action
+
+- Update version in `gradle.properties` - ([a67d99a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a67d99a44b51b46c69c8b783db5909ce50bb7cc7))
+
+
 ## [0.4.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.6..v0.4.0) - 2026-08-10
 
 ### ⛰️  Features
