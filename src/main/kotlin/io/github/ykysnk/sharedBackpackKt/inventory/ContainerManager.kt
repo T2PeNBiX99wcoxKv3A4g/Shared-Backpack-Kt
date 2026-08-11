@@ -41,6 +41,12 @@ object ContainerManager {
     fun getOrCreateTrashContainer(player: Player) =
         TrashContainerCache.getOrPut(player.stringUUID) { TrashContainer { TrashContainerCache.remove(player.stringUUID) } }
 
+    fun clearContentOfTrashContainer(player: Player) {
+        val container = TrashContainerCache[player.stringUUID]
+        container?.clearContent()
+        TrashContainerCache.remove(player.stringUUID)
+    }
+
     fun getOrCreateNormalFurnaceContainer(player: Player, name: String) = FurnaceContainerCache.getOrPut(name) {
         FurnaceContainer(player, name) { FurnaceContainerCache.remove(name) }
     }
