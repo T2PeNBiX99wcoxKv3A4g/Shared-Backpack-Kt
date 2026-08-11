@@ -19,7 +19,8 @@ object UnlimitedFurnaceCommand {
     fun register(
         dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
-        @Suppress("SpellCheckingInspection") val builder = Commands.literal("sharedunlimitedfurnace")
+        @Suppress("SpellCheckingInspection") val builder =
+            Commands.literal("sharedunlimitedfurnace").requires { it.hasPermission(2) }
 
         entries.forEach { type ->
             builder.then(

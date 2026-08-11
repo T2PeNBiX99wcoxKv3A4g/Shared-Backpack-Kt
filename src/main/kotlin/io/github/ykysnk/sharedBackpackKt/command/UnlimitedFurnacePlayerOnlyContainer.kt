@@ -19,7 +19,8 @@ object UnlimitedFurnacePlayerOnlyContainer {
     fun register(
         dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
-        @Suppress("SpellCheckingInspection") val builder = Commands.literal("privateunlimitedfurnace")
+        @Suppress("SpellCheckingInspection") val builder =
+            Commands.literal("privateunlimitedfurnace").requires { it.hasPermission(2) }
 
         entries.forEach { type ->
             builder.then(
