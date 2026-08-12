@@ -141,6 +141,193 @@ val generateFallbackTranslations = tasks.register("generateFallbackTranslations"
     }
 }
 
+val generateUpsideDownTranslation = tasks.register("generateUpsideDownTranslation") {
+    description = "Generate the en_ud (Upside-Down English) translation from en_us."
+
+    val inputFile =
+        file("src/main/resources/assets/shared-backpack-kt/lang/en_us.json")
+
+    val outputDir =
+        layout.buildDirectory.dir("generated/resources/upsideDownTranslations")
+
+    inputs.file(inputFile)
+    outputs.dir(outputDir)
+
+    doLast {
+        val outputDirectory = outputDir.get().asFile
+        outputDirectory.mkdirs()
+
+        val translations =
+            JsonSlurper().parse(inputFile) as Map<*, *>
+
+        /*
+         * Minecraft format placeholders.
+         *
+         * Examples:
+         * %s
+         * %d
+         * %1$s
+         * %2$d
+         * %1.2f
+         */
+        val placeholderRegex =
+            Regex("%(?:\\d+\\$)?(?:\\d+)?(?:\\.\\d+)?[a-zA-Z]")
+
+        val upsideDownMap = mapOf(
+            // Lowercase
+            'a' to 'ɐ',
+            'b' to 'q',
+            'c' to 'ɔ',
+            'd' to 'p',
+            'e' to 'ǝ',
+            'f' to 'ɟ',
+            'g' to 'ƃ',
+            'h' to 'ɥ',
+            'i' to 'ᴉ',
+            'j' to 'ɾ',
+            'k' to 'ʞ',
+            'l' to 'ן',
+            'm' to 'ɯ',
+            'n' to 'u',
+            'o' to 'o',
+            'p' to 'd',
+            'q' to 'b',
+            'r' to 'ɹ',
+            's' to 's',
+            't' to 'ʇ',
+            'u' to 'n',
+            'v' to 'ʌ',
+            'w' to 'ʍ',
+            'x' to 'x',
+            'y' to 'ʎ',
+            'z' to 'z',
+
+            // Uppercase
+            'A' to '∀',
+            'B' to 'B',
+            'C' to 'Ɔ',
+            'D' to '◖',
+            'E' to 'Ǝ',
+            'F' to 'Ⅎ',
+            'G' to 'פ',
+            'H' to 'H',
+            'I' to 'I',
+            'J' to 'ſ',
+            'K' to 'ʞ',
+            'L' to '˥',
+            'M' to 'M',
+            'N' to 'N',
+            'O' to 'O',
+            'P' to 'Ԁ',
+            'Q' to 'Ό',
+            'R' to 'ᴚ',
+            'S' to 'S',
+            'T' to '┴',
+            'U' to '∩',
+            'V' to 'Λ',
+            'W' to 'M',
+            'X' to 'X',
+            'Y' to '⅄',
+            'Z' to 'Z',
+
+            // Punctuation
+            '.' to '˙',
+            ',' to '\'',
+            '\'' to ',',
+            '?' to '¿',
+            '!' to '¡',
+            '[' to ']',
+            ']' to '[',
+            '(' to ')',
+            ')' to '(',
+            '<' to '>',
+            '>' to '<'
+        )
+
+        fun transformText(text: String): String {
+            val matches = placeholderRegex.findAll(text).toList()
+
+            // No placeholders.
+            if (matches.isEmpty()) {
+                return text
+                    .reversed()
+                    .map { upsideDownMap[it] ?: it }
+                    .joinToString("")
+            }
+
+            val result = StringBuilder()
+
+            /*
+             * We process the text from right to left.
+             *
+             * Placeholders themselves are kept unchanged.
+             */
+            var end = text.length
+
+            for (match in matches.asReversed()) {
+                // Text after the placeholder.
+                result.append(
+                    text.substring(match.range.last + 1, end)
+                        .reversed()
+                        .map { upsideDownMap[it] ?: it }
+                        .joinToString("")
+                )
+
+                // Placeholder itself.
+                result.append(match.value)
+
+                end = match.range.first
+            }
+
+            // Text before the first placeholder.
+            result.append(
+                text.substring(0, end)
+                    .reversed()
+                    .map { upsideDownMap[it] ?: it }
+                    .joinToString("")
+            )
+
+            return result.toString()
+        }
+
+        val output = buildString {
+            appendLine("{")
+
+            translations.entries.forEachIndexed { index, (key, value) ->
+                val translated =
+                    transformText(value.toString())
+                        .replace("\\", "\\\\")
+                        .replace("\"", "\\\"")
+                        .replace("\n", "\\n")
+                        .replace("\r", "\\r")
+                        .replace("\t", "\\t")
+
+                append("  ")
+                append("\"")
+                append(key)
+                append("\": \"")
+                append(translated)
+                append("\"")
+
+                if (index != translations.size - 1) {
+                    append(",")
+                }
+
+                appendLine()
+            }
+
+            appendLine("}")
+        }
+
+        outputDirectory
+            .resolve("assets/shared-backpack-kt/lang/en_ud.json")
+            .apply {
+                parentFile.mkdirs()
+                writeText(output)
+            }
+    }
+}
+
 tasks.processResources {
     inputs.property("version", version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
@@ -157,6 +344,13 @@ tasks.processResources {
             "modmenu_version" to project.property("modmenu_version").toString()
         )
     }
+
+    dependsOn(generateUpsideDownTranslation)
+    from(
+        layout.buildDirectory.dir(
+            "generated/resources/upsideDownTranslations"
+        )
+    )
 }
 
 kotlin {
