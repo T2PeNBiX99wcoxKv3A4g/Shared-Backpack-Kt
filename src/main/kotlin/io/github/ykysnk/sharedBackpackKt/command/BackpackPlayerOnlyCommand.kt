@@ -2,7 +2,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
@@ -34,7 +34,7 @@ object BackpackPlayerOnlyCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_FAILURE_ONLY_PLAYER
                 )
             )
             return 0
@@ -44,7 +44,7 @@ object BackpackPlayerOnlyCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.private-backpack.failure.disabled",
-                    Utils.FALLBACK_PRIVATE_BACKPACK_FAILURE_DISABLED
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BACKPACK_FAILURE_DISABLED
                 )
             )
             return 0
@@ -59,7 +59,7 @@ object BackpackPlayerOnlyCommand {
                     )
                 }, Component.translatableWithFallback(
                     "command.shared-backpack-kt.private-backpack.title",
-                    Utils.FALLBACK_PRIVATE_BACKPACK_TITLE,
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BACKPACK_TITLE,
                     name
                 )
             )

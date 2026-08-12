@@ -2,7 +2,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.CustomFurnaceMenu
@@ -42,7 +42,7 @@ object FurnaceCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_FAILURE_ONLY_PLAYER
                 )
             )
             return 0
@@ -54,7 +54,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smelting-furnace.failure.disabled",
-                            Utils.FALLBACK_SHARED_SMELTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -66,7 +66,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-blasting-furnace.failure.disabled",
-                            Utils.FALLBACK_SHARED_BLASTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -78,7 +78,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smoking-furnace.failure.disabled",
-                            Utils.FALLBACK_SHARED_SMOKING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -100,19 +100,19 @@ object FurnaceCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smelting-furnace.title",
-                        Utils.FALLBACK_SHARED_SMELTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-blasting-furnace.title",
-                        Utils.FALLBACK_SHARED_BLASTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smoking-furnace.title",
-                        Utils.FALLBACK_SHARED_SMOKING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
