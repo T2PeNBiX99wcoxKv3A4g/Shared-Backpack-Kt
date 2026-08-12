@@ -28,7 +28,8 @@ import java.util.function.Consumer
 abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>) :
     AbstractBackpackContainer(fileName, 3), RecipeCraftingHolder {
     companion object {
-        private val CODEC: Codec<Map<ResourceKey<Recipe<*>>, Int>> = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT)
+        @JvmStatic
+        protected val CODEC: Codec<Map<ResourceKey<Recipe<*>>, Int>> = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT)
 
         @JvmStatic
         protected fun canBurn(
