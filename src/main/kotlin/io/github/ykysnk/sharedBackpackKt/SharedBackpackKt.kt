@@ -23,7 +23,6 @@ object SharedBackpackKt : ModInitializer {
             ConfigCommand.register(commandDispatcher)
         }
 
-
         Logger.info("Shared Backpack Kotlin version loaded")
     }
 }
