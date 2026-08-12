@@ -31,7 +31,8 @@
 - *(inventory)* Add `clearContentOfTrashContainer` to handle trash container cleanup - ([91c1232](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/91c1232c19ce0143587860e0b8201d163708298d))
 - *(inventory)* Add `onNoPlayersOpen` and `onStopOpen` callbacks to containers for improved lifecycle handling - ([74fae81](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/74fae812b4491441c06d72fdc33197dd8a57a50a))
 - *(inventory)* Add `viewerCount` and `onNoPlayersOpen` to support player-specific lifecycle handling - ([fc51b00](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fc51b009c0bd173e75141f17f75cda2a6ad696bc))
-- *(inventory)* Add `FurnaceTickHandler` to manage furnace lifecycle and ticking events - ([82c96f4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82c96f4d384e8aed0b9cf22acb344d3dc5590589))
+- *(inventory)* Add `TickHandler` to manage furnace lifecycle and ticking events -
+  ([82c96f4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82c96f4d384e8aed0b9cf22acb344d3dc5590589))
 
 ### 🐛 Bug Fixes
 
