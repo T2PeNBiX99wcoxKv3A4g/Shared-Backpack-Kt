@@ -54,6 +54,7 @@
   "yacl3.config.shared-backpack-kt.category.general.group.unlimited-furnace.option.private-unlimited-blasting-furnace-enabled": "Enable Private Unlimited Blasting Furnace",
   "yacl3.config.shared-backpack-kt.category.general.group.unlimited-furnace.option.shared-unlimited-smoking-furnace-enabled": "Enable Shared Unlimited Smoker Furnace",
   "yacl3.config.shared-backpack-kt.category.general.group.unlimited-furnace.option.private-unlimited-smoking-furnace-enabled": "Enable Private Unlimited Smoker Furnace",
+  "yacl3.config.shared-backpack-kt.category.general.group.unlimited-furnace.option.unlimited-furnace-multiplier": "Unlimited Furnace Cook Speed Multiplier",
   "yacl3.config.shared-backpack-kt.category.general.group.trash": "Trash Can",
   "yacl3.config.shared-backpack-kt.category.general.group.trash.option.trash-enabled": "Enable Trash Can"
 }
