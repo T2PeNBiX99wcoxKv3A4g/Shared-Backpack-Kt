@@ -63,7 +63,7 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
 
     override fun getTotalCookTime(serverLevel: ServerLevel): Int =
         (quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }
-            .orElse(200)!! / ConfigManager.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)
+            .orElse(200)!! / (ConfigManager.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
 
     @Suppress("MemberVisibilityCanBePrivate")
     override fun loadAllItems(compoundTag: CompoundTag) {
