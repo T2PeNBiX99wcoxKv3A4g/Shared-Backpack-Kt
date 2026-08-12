@@ -107,12 +107,12 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
     protected var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>? = null
-    protected var openDelay: Int? = null
 
     var litTimeRemaining: Int = 0
     var litTotalTime: Int = 0
     var cookingTimer: Int = 0
     var cookingTotalTime: Int = 0
+    var canBurn: Boolean = false
 
     open val propertyDelegate: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
@@ -140,22 +140,16 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected val quickCheck: RecipeManager.CachedCheck<SingleRecipeInput, out AbstractCookingRecipe> =
         RecipeManager.createCheck(recipeType)
 
-    init {
-        FurnaceTickHandler.register(this)
-    }
-
     override fun onPreInit() {
         recipesUsed = Reference2IntOpenHashMap()
     }
 
     protected open fun isLit() = litTimeRemaining > 0
 
-    open fun tick(server: MinecraftServer) {
+    override fun tick(server: MinecraftServer) {
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTimeRemaining--
-        if (openDelay?.let { it > 0 } == true)
-            openDelay = openDelay?.minus(1)
 
         val itemStack = items[1]
         val itemStack2 = items[0]
@@ -168,7 +162,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             } else null
 
             val i = maxStackSize
-            if (!isLit() && canBurn(server.registryAccess(), recipeHolder, singleRecipeInput, items, i)) {
+            canBurn = canBurn(server.registryAccess(), recipeHolder, singleRecipeInput, items, i)
+            if (!isLit() && canBurn) {
                 litTimeRemaining = getBurnDuration(server.fuelValues(), itemStack)
                 litTotalTime = litTimeRemaining
                 if (isLit()) {
@@ -183,7 +178,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
                 }
             }
 
-            if (isLit() && canBurn(server.registryAccess(), recipeHolder, singleRecipeInput, items, i)) {
+            if (isLit() && canBurn) {
                 cookingTimer++
                 if (cookingTimer == cookingTotalTime) {
                     cookingTimer = 0
@@ -203,12 +198,6 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
 
         if (isBurning != isLit()) isChanged = true
         if (isChanged) setChanged()
-        if (openDelay?.let { it <= 0 } == true && !isLit() && cookingTimer <= 0 && viewerCount <= 0) {
-            saveNbt()
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
     }
 
     protected open fun getTotalCookTime(serverLevel: ServerLevel): Int {
@@ -316,18 +305,5 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
     }
 
-    override fun startOpen(player: Player) {
-        super.startOpen(player)
-        openDelay = 100
-    }
-
-    override fun stopOpen(player: Player) {
-        viewerCount--
-        saveNbt()
-        if (!isLit() && cookingTimer <= 0 && viewerCount <= 0) {
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
-    }
+    override fun isNoPlayersOpen() = !isLit() && !canBurn && cookingTimer <= 0 && viewerCount <= 0
 }

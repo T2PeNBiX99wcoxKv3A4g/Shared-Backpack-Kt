@@ -127,13 +127,20 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     override fun stopOpen(player: Player) {
         viewerCount--
         saveNbt()
-        if (viewerCount <= 0) {
-            onNoPlayersOpen()
-        }
+        setNoPlayersOpen()
+    }
+
+    open fun isNoPlayersOpen() = viewerCount <= 0
+
+    open fun setNoPlayersOpen() {
+        if (!isNoPlayersOpen()) return
+        TickHandler.unregister(this)
+        onNoPlayersOpen()
     }
 
     open fun onChanged() {
         saveNbt()
+        setNoPlayersOpen()
     }
 
     open fun saveNbt() {
