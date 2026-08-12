@@ -7,6 +7,7 @@ import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtIo
+import net.minecraft.server.MinecraftServer
 import net.minecraft.world.Container
 import net.minecraft.world.ContainerHelper
 import net.minecraft.world.ContainerListener
@@ -31,6 +32,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     init {
         onPreInit()
         onInit()
+        TickHandler.register(this)
     }
 
     open fun onPreInit() = Unit
@@ -128,7 +130,6 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         viewerCount--
         saveNbt()
         if (viewerCount <= 0) {
-            viewerCount = 0
             onNoPlayersOpen()
         }
     }
@@ -152,6 +153,8 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     }
 
     open fun onSave(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) = Unit
+
+    open fun tick(server: MinecraftServer) {}
 
     abstract val onNoPlayersOpen: () -> Unit
 }

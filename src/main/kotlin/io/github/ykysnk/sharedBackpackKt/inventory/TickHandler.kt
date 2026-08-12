@@ -4,29 +4,29 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.server.MinecraftServer
 
-object FurnaceTickHandler {
+object TickHandler {
     init {
         ServerLifecycleEvents.SERVER_STOPPING.register { clear() }
         ServerTickEvents.END_SERVER_TICK.register(::tick)
     }
 
-    private val furnaces = mutableSetOf<AbstractFurnaceContainer>()
+    private val containers = mutableSetOf<AbstractBackpackContainer>()
 
     @Suppress("unused")
-    fun register(furnace: AbstractFurnaceContainer) {
-        furnaces += furnace
+    fun register(container: AbstractBackpackContainer) {
+        containers += container
     }
 
     @Suppress("unused")
-    fun unregister(furnace: AbstractFurnaceContainer) {
-        furnaces -= furnace
+    fun unregister(container: AbstractBackpackContainer) {
+        containers -= container
     }
 
     fun clear() {
-        furnaces.clear()
+        containers.clear()
     }
 
     fun tick(server: MinecraftServer) {
-        furnaces.forEach { it.tick(server) }
+        containers.forEach { it.tick(server) }
     }
 }
