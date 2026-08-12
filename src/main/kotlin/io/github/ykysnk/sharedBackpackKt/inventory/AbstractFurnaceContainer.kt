@@ -102,8 +102,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
 
     var player: Player? = null
         internal set
-
-    @Suppress("MemberVisibilityCanBePrivate")
+    
     protected val level: ServerLevel?
         get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
@@ -263,7 +262,6 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         recipesUsed?.clear()
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     open fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<RecipeHolder<*>> {
         val list: MutableList<RecipeHolder<*>> = Lists.newArrayList()
 
@@ -282,7 +280,6 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         return list
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     override fun loadAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {
         ContainerHelper.loadAllItems(compoundTag, items, registries)
         cookingTimer = compoundTag.getShortOr("cooking_time_spent", 0.toShort()).toInt()
@@ -295,7 +292,6 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         )
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     override fun saveAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {
         compoundTag.putShort("cooking_time_spent", cookingTimer.toShort())
         compoundTag.putShort("cooking_total_time", cookingTotalTime.toShort())
