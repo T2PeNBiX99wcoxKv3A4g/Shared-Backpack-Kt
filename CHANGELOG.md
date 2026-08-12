@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.10.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.10.0..v0.10.1) - 2026-08-12
+
+### 🐛 Bug Fixes
+
+- *(build)* Make `sourcesJar` task depend on `generateFallbackTranslations`, fix jar renaming - ([7d6c9cc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7d6c9cc3dcb2f947530d2f0c2fb0c6eac5366b82))
+
+### Action
+
+- Update version in `gradle.properties` - ([1d1b8dc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1d1b8dc34e77c6040cc4682e43a4877ad9179009))
+
+
 ## [0.10.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.8.1..v0.10.0) - 2026-08-12
 
 ### ⛰️  Features
