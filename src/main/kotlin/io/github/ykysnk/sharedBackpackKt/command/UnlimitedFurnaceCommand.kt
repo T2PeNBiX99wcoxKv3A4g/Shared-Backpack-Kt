@@ -51,11 +51,11 @@ object UnlimitedFurnaceCommand {
 
         when (type) {
             Smelting -> {
-                if (!ConfigManager.config.general.sharedSmeltingFurnaceEnabled) {
+                if (!ConfigManager.config.general.sharedUnlimitedSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
-                            "command.shared-backpack-kt.shared-smelting-furnace.failure.disabled",
-                            "Shared Smelting Furnace is disabled in the config."
+                            "command.shared-backpack-kt.shared-unlimited-smelting-furnace.failure.disabled",
+                            "Shared Unlimited Smelting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -63,11 +63,11 @@ object UnlimitedFurnaceCommand {
             }
 
             Blasting -> {
-                if (!ConfigManager.config.general.sharedBlastingFurnaceEnabled) {
+                if (!ConfigManager.config.general.sharedUnlimitedBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
-                            "command.shared-backpack-kt.shared-blasting-furnace.failure.disabled",
-                            "Shared Blasting Furnace is disabled in the config."
+                            "command.shared-backpack-kt.shared-unlimited-blasting-furnace.failure.disabled",
+                            "Shared Unlimited Blasting Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -75,11 +75,11 @@ object UnlimitedFurnaceCommand {
             }
 
             Smoking -> {
-                if (!ConfigManager.config.general.sharedSmokingFurnaceEnabled) {
+                if (!ConfigManager.config.general.sharedUnlimitedSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
-                            "command.shared-backpack-kt.shared-smoking-furnace.failure.disabled",
-                            "Shared Smoking Furnace is disabled in the config."
+                            "command.shared-backpack-kt.shared-unlimited-smoking-furnace.failure.disabled",
+                            "Shared Unlimited Smoking Furnace is disabled in the config."
                         )
                     )
                     return 0
@@ -100,20 +100,20 @@ object UnlimitedFurnaceCommand {
                     CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
-                        "command.shared-backpack-kt.shared-smelting-furnace.title",
-                        "Shared Furnace: %s",
+                        "command.shared-backpack-kt.shared-unlimited-smelting-furnace.title",
+                        "Shared Unlimited Furnace: %s",
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
-                        "command.shared-backpack-kt.shared-blasting-furnace.title",
-                        "Shared Blast Furnace: %s",
+                        "command.shared-backpack-kt.shared-unlimited-blasting-furnace.title",
+                        "Shared Unlimited Blast Furnace: %s",
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
-                        "command.shared-backpack-kt.shared-smoking-furnace.title",
-                        "Shared Smoker Furnace: %s",
+                        "command.shared-backpack-kt.shared-unlimited-smoking-furnace.title",
+                        "Shared Unlimited Smoker Furnace: %s",
                         name
                     )
                 }

@@ -91,6 +91,68 @@ object ConfigMenu {
                 }
             }
 
+            groups.register("unlimited-furnace") {
+                options.register("shared-unlimited-smelting-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.sharedSmeltingFurnaceEnabled },
+                        { ConfigManager.config.general.sharedSmeltingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("private-unlimited-smelting-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.privateSmeltingFurnaceEnabled },
+                        { ConfigManager.config.general.privateSmeltingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("shared-unlimited-blasting-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.sharedBlastingFurnaceEnabled },
+                        { ConfigManager.config.general.sharedBlastingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("private-unlimited-blasting-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.privateBlastingFurnaceEnabled },
+                        { ConfigManager.config.general.privateBlastingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("shared-unlimited-smoking-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.sharedSmokingFurnaceEnabled },
+                        { ConfigManager.config.general.sharedSmokingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("private-unlimited-smoking-furnace-enabled") {
+                    binding(
+                        true,
+                        { ConfigManager.config.general.privateSmokingFurnaceEnabled },
+                        { ConfigManager.config.general.privateSmokingFurnaceEnabled = it }
+                    )
+
+                    controller(BooleanControllerBuilder::create)
+                }
+            }
+
             groups.register("trash") {
                 options.register("trash-enabled") {
                     binding(
