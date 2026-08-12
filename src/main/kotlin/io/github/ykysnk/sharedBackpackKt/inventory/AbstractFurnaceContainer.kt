@@ -102,7 +102,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
 
     var player: Player? = null
         internal set
-    
+
     protected val level: ServerLevel?
         get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
