@@ -24,7 +24,6 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     StackedContentsCompatible {
     val items: NonNullList<ItemStack> = NonNullList.withSize(size, ItemStack.EMPTY)
 
-    @Suppress("MemberVisibilityCanBePrivate")
     protected val dataPath: Path get() = Utils.ConfigDir.resolve("${fileName}.dat")
     protected var viewerCount = 0
     private val listeners: MutableList<ContainerListener> = mutableListOf()
@@ -112,12 +111,10 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
 
     override fun stillValid(player: Player) = true
 
-    @Suppress("MemberVisibilityCanBePrivate")
     protected open fun loadAllItems(compoundTag: CompoundTag) {
         ContainerHelper.loadAllItems(compoundTag, items)
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     protected open fun saveAllItems(compoundTag: CompoundTag) {
         ContainerHelper.saveAllItems(compoundTag, items)
     }

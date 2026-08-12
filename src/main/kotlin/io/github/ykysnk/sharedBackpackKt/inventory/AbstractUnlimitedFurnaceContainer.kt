@@ -65,7 +65,6 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         (quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }
             .orElse(200)!! / (ConfigManager.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
 
-    @Suppress("MemberVisibilityCanBePrivate")
     override fun loadAllItems(compoundTag: CompoundTag) {
         ContainerHelper.loadAllItems(compoundTag, items)
         cookingProgress = compoundTag.getShort("CookTime").toInt()
@@ -77,7 +76,6 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         }
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
     override fun saveAllItems(compoundTag: CompoundTag) {
         compoundTag.putShort("CookTime", cookingProgress.toShort())
         compoundTag.putShort("CookTimeTotal", cookingTotalTime.toShort())
