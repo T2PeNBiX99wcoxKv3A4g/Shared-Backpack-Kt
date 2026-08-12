@@ -8,9 +8,6 @@ import kotlin.io.path.readText
 import kotlin.io.path.writeText
 
 object ConfigManager {
-    init {
-        load()
-    }
     private val dataPath = Utils.ConfigDir.resolve("config.yaml")
 
     var config: Config = Config()
@@ -27,5 +24,9 @@ object ConfigManager {
     fun save() {
         val data = Yaml.encodeToString(config)
         dataPath.writeText(data)
+    }
+
+    init {
+        load()
     }
 }
