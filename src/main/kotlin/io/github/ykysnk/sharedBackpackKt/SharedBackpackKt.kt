@@ -4,7 +4,7 @@ import io.github.ykysnk.sharedBackpackKt.Utils.Logger
 import io.github.ykysnk.sharedBackpackKt.command.*
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
-import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceTickHandler
+import io.github.ykysnk.sharedBackpackKt.inventory.TickHandler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 
@@ -12,9 +12,7 @@ object SharedBackpackKt : ModInitializer {
     override fun onInitialize() {
         ConfigManager.load()
 
-        val utils = Utils
-        val containerManager = ContainerManager
-        val furnaceTickHandler = FurnaceTickHandler
+        Logger.debug("Initialized: {} {} {}", Utils, ContainerManager, TickHandler)
 
         CommandRegistrationCallback.EVENT.register { commandDispatcher, _, _ ->
             BackpackCommand.register(commandDispatcher)
@@ -26,7 +24,7 @@ object SharedBackpackKt : ModInitializer {
             UnlimitedFurnacePlayerOnlyContainer.register(commandDispatcher)
         }
 
-        Logger.debug("Initialized: {} {} {}", utils, containerManager, furnaceTickHandler)
+
         Logger.info("Shared Backpack Kotlin version loaded")
     }
 }
