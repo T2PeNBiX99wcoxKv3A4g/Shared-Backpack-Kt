@@ -1,6 +1,7 @@
 package io.github.ykysnk.sharedBackpackKt.config
 
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder
+import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder
 import dev.isxander.yacl3.dsl.YetAnotherConfigLib
 import io.github.ykysnk.sharedBackpackKt.Utils
 
@@ -150,6 +151,16 @@ object ConfigMenu {
                     )
 
                     controller(BooleanControllerBuilder::create)
+                }
+
+                options.register("unlimited-furnace-multiplier") {
+                    binding(
+                        1,
+                        { ConfigManager.config.general.unlimitedFurnaceMultiplier },
+                        { ConfigManager.config.general.unlimitedFurnaceMultiplier = it }
+                    )
+
+                    controller { IntegerFieldControllerBuilder.create(it).min(1) }
                 }
             }
 
