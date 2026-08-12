@@ -97,7 +97,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
                         Smoking -> ContainerManager.getOrCreateUnlimitedSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
-                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-unlimited-smelting-furnace.title",
