@@ -1,7 +1,7 @@
 package io.github.ykysnk.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
-import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
 import io.github.ykysnk.sharedBackpackKt.argument.TrashType
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
@@ -33,7 +33,7 @@ object TrashCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_FAILURE_ONLY_PLAYER
                 )
             )
             return 0
@@ -43,7 +43,7 @@ object TrashCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.trash.failure.disabled",
-                    Utils.FALLBACK_TRASH_FAILURE_DISABLED
+                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_FAILURE_DISABLED
                 )
             )
             return 0
@@ -60,7 +60,7 @@ object TrashCommand {
                             )
                         }, Component.translatableWithFallback(
                             "command.shared-backpack-kt.trash.title",
-                            Utils.FALLBACK_TRASH_TITLE
+                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_TITLE
                         )
                     )
                 )
@@ -72,7 +72,7 @@ object TrashCommand {
                 source.sendSuccess({
                     Component.translatableWithFallback(
                         "command.shared-backpack-kt.trash.success.emptied",
-                        Utils.FALLBACK_TRASH_SUCCESS_EMPTIED
+                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_SUCCESS_EMPTIED
                     )
                 }, false)
                 return 1
