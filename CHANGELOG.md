@@ -1,5 +1,62 @@
 # Changelog
 
+## [0.10.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.8.1..v0.10.0) - 2026-08-12
+
+### ⛰️  Features
+
+- *(command)* Restrict `UnlimitedFurnace` commands to users with permission level 2 - ([0f44bda](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0f44bdab8afcbd163c97ce09126aeb1ddbd4d01d))
+- *(command)* Add `UnlimitedFurnace` commands with player-only and shared modes - ([5317ab7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5317ab714f2277984140c3fb1b9ac10f50fb8848))
+- *(commands)* Add `ConfigCommand` for managing configuration options dynamically via commands - ([a23d5eb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a23d5eb31d1746e31389848ec09a07a05b263c07))
+- *(config)* Add translation for `unlimitedFurnaceMultiplier` option - ([dd4fc15](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dd4fc15e2196b2b299f717df5c53b615ca5747f3))
+- *(config)* Add support for unlimited furnace configurations including smelting, blasting, and smoking - ([e40bbaf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e40bbafa09bd2f94dcd5c4d218ebaabf43f6788e))
+- *(config, inventory)* Enforce minimum cook time and add config option for `unlimitedFurnaceMultiplier` constraints - ([df182eb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/df182eb4f081a41b1704f64c72ddeff2fc592533))
+- *(config, inventory)* Add `unlimitedFurnaceMultiplier` and adjust cook time calculation - ([efd5a50](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/efd5a505d9c6bd8fbcfac8639f96f20a84951c6e))
+- *(inventory)* Add `CustomFurnaceMenu` and enable access widener for `AbstractFurnaceMenu` customization - ([e972021](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e972021ef4d774ee80820682531385d976b0259f))
+- *(inventory)* Add `UnlimitedFurnace` and `UnlimitedSmoker` container variants with player-only and shared modes - ([5b100be](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5b100be404741635840fc69062a669558482329f))
+- *(inventory)* Add `AbstractUnlimitedFurnaceContainer` and update `AbstractFurnaceContainer` for extended customization - ([90c448c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/90c448c7cbf7e6de323654588b75df9fabfb66ae))
+- *(lang)* Remove `en_ud` upside-down translations for cleanup and reduced clutter - ([4fb3e88](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4fb3e8837825c20ca4c9df72a188b87911991447))
+- *(lang)* Fix typos, add unlimited furnace translations, and enhance consistency across languages - ([9fe0a5d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9fe0a5dd976e916491790d20f227747a292052f7))
+- *(lang)* Add and update translations for unlimited furnace options and improve consistency across languages - ([cd4fd62](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/cd4fd626f57f32c0eb85e6853e88d554cae5bc3a))
+- *(lang)* Generate fallback translations from `en_us.json` and replace static constants - ([19e69ca](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/19e69cae369a94ba6b1df9e2f5b3c10e319b89a0))
+- *(tasks)* Add `generateUpsideDownTranslation` task to create `en_ud` translations from `en_us` - ([0e554a4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0e554a423777f53017dc3d98d5bc7f7e98c86b41))
+
+### 🐛 Bug Fixes
+
+- *(command)* Correct registration typo for `UnlimitedFurnacePlayerOnlyCommand` - ([6989f0d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6989f0df296e6d4ec889642047b507a0c59ba820))
+- *(inventory)* Handle pending container removals to prevent concurrent modification exceptions in `TickHandler` - ([9553dc5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9553dc50002d5ea32220bff7114791484af86459))
+- *(inventory)* Prevent duplicate registrations and invalid unregistrations in `TickHandler` - ([5d44092](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5d44092658401117bab17df0683b53d952373de7))
+- *(inventory)* Correct `get` logic in `AbstractUnlimitedFurnaceContainer` to compute cooking time accurately - ([d860332](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d86033240403fed23fb699be47a67bcba1750ef9))
+
+### 🚜 Refactor
+
+- *(command)* Replace `FurnaceMenu` with `CustomFurnaceMenu` in all furnace commands - ([1dee929](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1dee9294f511b8f5812ed33e59bf4ee0afa6958a))
+- *(commands)* Suppress spell-check warning in `ConfigCommand` definition - ([241e55a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/241e55a10c50a251dd74610799e9b5beb76cbff9))
+- *(commands)* Add `unused` suppression in `ConfigCommand` for improved lint compliance - ([756d02e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/756d02e5be296a21068f8d694ee915921feed41d))
+- *(commands)* Simplify `ConfigCommand` property handling with generic `handle` function - ([3c26bae](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3c26bae2e5f992e7ff01a7675baaa523f817df72))
+- *(commands)* Replace `Utils` constants with `FallbackTranslations` for improved maintainability - ([df89fef](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/df89fef241ba0baba55ec3eafef99e3ed1d5c0b2))
+- *(commands)* Replace inline fallback messages with constants from `Utils` - ([52d5154](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/52d515462a5c2d625c52c78e14fc0a16cdd4c065))
+- *(config)* Reorder `load` call and update logger parameter order - ([ae58ecf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ae58ecf9fd286724e78e77df11efa62b5e4da7c5))
+- *(config)* Move `load` call to initializer and update logger usage in `SharedBackpackKt` - ([b899d5a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b899d5ae9406efc1b8147d1f3a208b9213e260e2))
+- *(config)* Group unlimited furnace options under a new category - ([1a39f82](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1a39f82d4c3197069d34abe8c20a1598a7544c3b))
+- *(containers)* Remove redundant `@Suppress("MemberVisibilityCanBePrivate")` annotations - ([2a1ce0f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2a1ce0fc3da8717cf20a876b6fd2f47004012658))
+- *(core)* Remove redundant newline in `SharedBackpackKt` for cleaner code - ([7ef689f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7ef689f2037e3d3e88c48f5a6346c0ec94febfee))
+- *(core)* Simplify initialization logic and unify tick handler logging - ([0a85b71](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0a85b712f5ed89d44c92b4950a9bc730cd05c750))
+- *(furnace)* Adjust `unlimitedFurnaceMultiplier` calculation for improved safety and readability - ([92fc857](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/92fc857f3b2849e2721c3ef67d42c252fbb2db16))
+- *(inventory)* Simplify player tracking logic and unify `isNoPlayersOpen` behavior across containers - ([e1bc71e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e1bc71ec6d1e2afc5a0117cf8f91f37a7c855293))
+- *(inventory)* Replace `mutableSetOf` with `hashSetOf` for `containers` in `TickHandler` - ([673f202](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/673f202866fc06ed8a9754e65e15b76a887315fc))
+- *(inventory)* Generalize `FurnaceTickHandler` to `TickHandler` and update containers for broader usage - ([c143402](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c1434023f5dccdd5f731310af0381a092c94111b))
+- *(inventory)* Remove redundant `getBurnDuration` overrides from furnace containers - ([8fe31ca](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/8fe31ca51badff9ec529d595db877340cc47ec07))
+- *(lang)* Simplify furnace-related translations and improve consistency - ([0908c55](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0908c558357f645acd4e82bfe5bc9ed1a1cd1c0d))
+
+### 📚 Documentation
+
+- *(changelog)* Update entry to rename `FurnaceTickHandler` to `TickHandler` - ([aa8b569](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/aa8b569f2c5d40dc47b08b4c61ddba89def4f16c))
+
+### Action
+
+- Update version in `gradle.properties` - ([ee2887a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ee2887a8ce1f5a7e4f439e941e1b2f73ee339a13))
+
+
 ## [0.8.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.8.0..v0.8.1) - 2026-08-11
 
 ### 🚜 Refactor
@@ -31,8 +88,7 @@
 - *(inventory)* Add `clearContentOfTrashContainer` to handle trash container cleanup - ([91c1232](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/91c1232c19ce0143587860e0b8201d163708298d))
 - *(inventory)* Add `onNoPlayersOpen` and `onStopOpen` callbacks to containers for improved lifecycle handling - ([74fae81](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/74fae812b4491441c06d72fdc33197dd8a57a50a))
 - *(inventory)* Add `viewerCount` and `onNoPlayersOpen` to support player-specific lifecycle handling - ([fc51b00](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fc51b009c0bd173e75141f17f75cda2a6ad696bc))
-- *(inventory)* Add `TickHandler` to manage furnace lifecycle and ticking events -
-  ([82c96f4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82c96f4d384e8aed0b9cf22acb344d3dc5590589))
+- *(inventory)* Add `FurnaceTickHandler` to manage furnace lifecycle and ticking events - ([82c96f4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82c96f4d384e8aed0b9cf22acb344d3dc5590589))
 
 ### 🐛 Bug Fixes
 
