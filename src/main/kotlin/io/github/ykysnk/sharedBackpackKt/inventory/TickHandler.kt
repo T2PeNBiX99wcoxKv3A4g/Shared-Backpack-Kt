@@ -11,24 +11,27 @@ object TickHandler {
     }
 
     private val containers = hashSetOf<AbstractBackpackContainer>()
+    private val pendingRemove = hashSetOf<AbstractBackpackContainer>()
 
     @Suppress("unused")
     fun register(container: AbstractBackpackContainer) {
-        if (containers.contains(container)) return
+        pendingRemove -= container
         containers += container
     }
 
     @Suppress("unused")
     fun unregister(container: AbstractBackpackContainer) {
-        if (!containers.contains(container)) return
-        containers -= container
+        pendingRemove += container
     }
 
     fun clear() {
         containers.clear()
+        pendingRemove.clear()
     }
 
     fun tick(server: MinecraftServer) {
         containers.forEach { it.tick(server) }
+        containers.removeAll(pendingRemove)
+        pendingRemove.clear()
     }
 }
