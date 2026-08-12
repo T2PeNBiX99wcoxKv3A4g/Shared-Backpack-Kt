@@ -34,7 +34,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
                 )
             )
             return 0
@@ -44,7 +44,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.failure.disabled",
-                    "Shared Backpack is disabled in the config."
+                    Utils.FALLBACK_SHARED_BACKPACK_FAILURE_DISABLED
                 )
             )
             return 0
@@ -57,7 +57,7 @@ object BackpackCommand {
                 },
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.title",
-                    "Shared Backpack: %s",
+                    Utils.FALLBACK_SHARED_BACKPACK_TITLE,
                     name
                 )
             )

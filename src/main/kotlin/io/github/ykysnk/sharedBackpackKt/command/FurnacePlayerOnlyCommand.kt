@@ -42,7 +42,7 @@ object FurnacePlayerOnlyCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
                 )
             )
             return 0
@@ -54,7 +54,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smelting-furnace.failure.disabled",
-                            "Private Smelting Furnace is disabled in the config."
+                            Utils.FALLBACK_PRIVATE_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -66,7 +66,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-blasting-furnace.failure.disabled",
-                            "Private Blasting Furnace is disabled in the config."
+                            Utils.FALLBACK_PRIVATE_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -78,7 +78,7 @@ object FurnacePlayerOnlyCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smoking-furnace.failure.disabled",
-                            "Private Smoking Furnace is disabled in the config."
+                            Utils.FALLBACK_PRIVATE_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -100,19 +100,19 @@ object FurnacePlayerOnlyCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-smelting-furnace.title",
-                        "Private Furnace: %s",
+                        Utils.FALLBACK_PRIVATE_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-blasting-furnace.title",
-                        "Private Blast Furnace: %s",
+                        Utils.FALLBACK_PRIVATE_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-smoking-furnace.title",
-                        "Private Smoker Furnace: %s",
+                        Utils.FALLBACK_PRIVATE_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }

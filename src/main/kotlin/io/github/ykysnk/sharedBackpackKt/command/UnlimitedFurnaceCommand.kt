@@ -43,7 +43,7 @@ object UnlimitedFurnaceCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
                 )
             )
             return 0
@@ -55,7 +55,7 @@ object UnlimitedFurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-smelting-furnace.failure.disabled",
-                            "Shared Unlimited Smelting Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_UNLIMITED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -67,7 +67,7 @@ object UnlimitedFurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-blasting-furnace.failure.disabled",
-                            "Shared Unlimited Blasting Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_UNLIMITED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -79,7 +79,7 @@ object UnlimitedFurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-smoking-furnace.failure.disabled",
-                            "Shared Unlimited Smoking Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_UNLIMITED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -101,19 +101,19 @@ object UnlimitedFurnaceCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-unlimited-smelting-furnace.title",
-                        "Shared Unlimited Furnace: %s",
+                        Utils.FALLBACK_SHARED_UNLIMITED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-unlimited-blasting-furnace.title",
-                        "Shared Unlimited Blast Furnace: %s",
+                        Utils.FALLBACK_SHARED_UNLIMITED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-unlimited-smoking-furnace.title",
-                        "Shared Unlimited Smoker Furnace: %s",
+                        Utils.FALLBACK_SHARED_UNLIMITED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
