@@ -33,7 +33,7 @@ object TrashCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
                 )
             )
             return 0
@@ -43,7 +43,7 @@ object TrashCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.trash.failure.disabled",
-                    "Trash Can is disabled in the config."
+                    Utils.FALLBACK_TRASH_FAILURE_DISABLED
                 )
             )
             return 0
@@ -60,7 +60,7 @@ object TrashCommand {
                             )
                         }, Component.translatableWithFallback(
                             "command.shared-backpack-kt.trash.title",
-                            "Trash Can"
+                            Utils.FALLBACK_TRASH_TITLE
                         )
                     )
                 )
@@ -71,8 +71,8 @@ object TrashCommand {
                 ContainerManager.clearContentOfTrashContainer(player)
                 source.sendSuccess({
                     Component.translatableWithFallback(
-                        "command.shared-backpack-kt.trash.success",
-                        "Trash Can cleared."
+                        "command.shared-backpack-kt.trash.success.emptied",
+                        Utils.FALLBACK_TRASH_SUCCESS_EMPTIED
                     )
                 }, false)
                 return 1

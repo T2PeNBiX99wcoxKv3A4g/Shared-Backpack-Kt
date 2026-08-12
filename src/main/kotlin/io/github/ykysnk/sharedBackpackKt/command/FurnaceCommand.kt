@@ -42,7 +42,7 @@ object FurnaceCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.failure.only-player",
-                    Utils.COMMAND_FAILED_PLAYER_ONLY
+                    Utils.FALLBACK_COMMAND_FAILED_PLAYER_ONLY
                 )
             )
             return 0
@@ -54,7 +54,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smelting-furnace.failure.disabled",
-                            "Shared Smelting Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -66,7 +66,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-blasting-furnace.failure.disabled",
-                            "Shared Blasting Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -78,7 +78,7 @@ object FurnaceCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-smoking-furnace.failure.disabled",
-                            "Shared Smoking Furnace is disabled in the config."
+                            Utils.FALLBACK_SHARED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -100,19 +100,19 @@ object FurnaceCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smelting-furnace.title",
-                        "Shared Furnace: %s",
+                        Utils.FALLBACK_SHARED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-blasting-furnace.title",
-                        "Shared Blast Furnace: %s",
+                        Utils.FALLBACK_SHARED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.shared-smoking-furnace.title",
-                        "Shared Smoker Furnace: %s",
+                        Utils.FALLBACK_SHARED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
