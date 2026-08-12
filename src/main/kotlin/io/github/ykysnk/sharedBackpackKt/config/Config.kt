@@ -22,6 +22,7 @@ data class Config(
         var privateUnlimitedBlastingFurnaceEnabled: Boolean = true,
         var sharedUnlimitedSmokingFurnaceEnabled: Boolean = true,
         var privateUnlimitedSmokingFurnaceEnabled: Boolean = true,
+        var unlimitedFurnaceMultiplier: Int = 1,
         var trashEnabled: Boolean = true
     )
 
