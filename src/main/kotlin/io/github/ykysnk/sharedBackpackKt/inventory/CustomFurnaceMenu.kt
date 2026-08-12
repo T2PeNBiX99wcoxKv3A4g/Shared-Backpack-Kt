@@ -7,6 +7,7 @@ import net.minecraft.world.inventory.AbstractFurnaceMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.inventory.RecipeBookType
+import net.minecraft.world.item.crafting.RecipePropertySet
 import net.minecraft.world.item.crafting.RecipeType
 
 @Suppress("unused")
@@ -14,6 +15,7 @@ class CustomFurnaceMenu : AbstractFurnaceMenu {
     constructor(containerId: Int, playerInventory: Inventory) : super(
         MenuType.FURNACE,
         RecipeType.SMELTING,
+        RecipePropertySet.FURNACE_INPUT,
         RecipeBookType.FURNACE,
         containerId,
         playerInventory
@@ -27,6 +29,7 @@ class CustomFurnaceMenu : AbstractFurnaceMenu {
     ) : super(
         MenuType.FURNACE,
         RecipeType.SMELTING,
+        RecipePropertySet.FURNACE_INPUT,
         RecipeBookType.FURNACE,
         containerId,
         playerInventory,
