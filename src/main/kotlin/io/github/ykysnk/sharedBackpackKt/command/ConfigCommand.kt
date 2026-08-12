@@ -19,7 +19,8 @@ object ConfigCommand {
     fun register(
         dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
-        val root = Commands.literal("sharedbackpackconfig").requires { it.hasPermission(2) }
+        @Suppress("SpellCheckingInspection") val root =
+            Commands.literal("sharedbackpackconfig").requires { it.hasPermission(2) }
 
         for (property in ConfigManager.config.general::class.memberProperties) {
             val name = property.name
