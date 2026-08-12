@@ -1,8 +1,9 @@
 package io.github.ykysnk.sharedBackpackKt.command
 
 import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.arguments.BoolArgumentType
-import com.mojang.brigadier.arguments.IntegerArgumentType
+import com.mojang.brigadier.arguments.*
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import io.github.ykysnk.sharedBackpackKt.config.Config
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import net.minecraft.commands.CommandSourceStack
@@ -13,6 +14,8 @@ import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.full.memberProperties
 
 object ConfigCommand {
+    const val VALUE = "value"
+
     fun register(
         dispatcher: CommandDispatcher<CommandSourceStack>
     ) {
@@ -22,65 +25,97 @@ object ConfigCommand {
             val name = property.name
 
             @Suppress("UNCHECKED_CAST")
-            val mutableProperty = property as? KMutableProperty1<Config.General, Any?> ?: continue
+            val fuckCast = property as? KMutableProperty1<Config.General, Any?> ?: continue
 
+            @Suppress("UNCHECKED_CAST")
             when (property.returnType.classifier) {
-                Boolean::class -> {
-                    root.then(Commands.literal(name).executes { context ->
-                        val value = mutableProperty.get(ConfigManager.config.general)
+                Boolean::class -> handle(
+                    root,
+                    name,
+                    property,
+                    BoolArgumentType.bool() as ArgumentType<Any?>
+                ) { BoolArgumentType.getBool(it, VALUE) }
 
-                        context.source.sendSuccess(
-                            { Component.literal("$name = $value") },
-                            false
-                        )
+                Int::class -> handle(
+                    root,
+                    name,
+                    property,
+                    IntegerArgumentType.integer() as ArgumentType<Any?>
+                ) { IntegerArgumentType.getInteger(it, VALUE) }
 
-                        1
-                    }.then(argument("value", BoolArgumentType.bool()).executes { context ->
-                        val value = BoolArgumentType.getBool(context, "value")
+                Long::class -> handle(
+                    root,
+                    name,
+                    property,
+                    LongArgumentType.longArg() as ArgumentType<Any?>
+                ) { LongArgumentType.getLong(it, VALUE) }
 
-                        mutableProperty.set(
-                            ConfigManager.config.general,
-                            value
-                        )
+                Float::class -> handle(
+                    root,
+                    name,
+                    property,
+                    FloatArgumentType.floatArg() as ArgumentType<Any?>
+                ) { FloatArgumentType.getFloat(it, VALUE) }
 
-                        ConfigManager.save()
-                        context.source.sendSuccess({ Component.literal("$name = $value") }, false)
-                        1
-                    }
-                    )
-                    )
-                }
+                Double::class -> handle(
+                    root,
+                    name,
+                    property,
+                    DoubleArgumentType.doubleArg() as ArgumentType<Any?>
+                ) { DoubleArgumentType.getDouble(it, VALUE) }
 
-                Int::class -> {
-                    root.then(
-                        Commands.literal(name).executes { context ->
-                            val value = mutableProperty.get(ConfigManager.config.general)
-
-                            context.source.sendSuccess({ Component.literal("$name = $value") }, false)
-
-                            1
-                        }.then(argument("value", IntegerArgumentType.integer()).executes { context ->
-                            val value = IntegerArgumentType.getInteger(
-                                context,
-                                "value"
-                            )
-
-                            mutableProperty.set(
-                                ConfigManager.config.general,
-                                value
-                            )
-
-                            ConfigManager.save()
-                            context.source.sendSuccess({ Component.literal("$name = $value") }, false)
-                            1
-                        }
-                        )
-                    )
-                }
+                String::class -> handle(
+                    root,
+                    name,
+                    property,
+                    StringArgumentType.string() as ArgumentType<Any?>
+                ) { StringArgumentType.getString(it, VALUE) }
             }
         }
 
         val node = dispatcher.register(root)
         dispatcher.register(Commands.literal("sbpc").redirect(node))
+    }
+
+    inline fun <reified T> handle(
+        root: LiteralArgumentBuilder<CommandSourceStack>,
+        name: String,
+        property: KMutableProperty1<Config.General, T>,
+        argumentType: ArgumentType<T>,
+        crossinline getter: (CommandContext<CommandSourceStack>) -> T
+    ) {
+        root.then(
+            Commands.literal(name)
+                .executes { context ->
+                    val value = property.get(ConfigManager.config.general)
+
+                    context.source.sendSuccess(
+                        { Component.literal("$name = $value") },
+                        false
+                    )
+
+                    1
+                }
+                .then(
+                    argument("value", argumentType)
+                        .executes { context ->
+                            val value = getter(context)
+
+                            property.set(
+                                ConfigManager.config.general,
+                                value
+                            )
+
+                            ConfigManager.save()
+
+                            context.source.sendSuccess(
+                                { Component.literal("$name = $value") },
+                                false
+                            )
+
+                            1
+                        }
+                )
+        )
     }
 }
