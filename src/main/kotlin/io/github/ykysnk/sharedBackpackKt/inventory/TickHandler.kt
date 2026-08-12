@@ -10,7 +10,7 @@ object TickHandler {
         ServerTickEvents.END_SERVER_TICK.register(::tick)
     }
 
-    private val containers = mutableSetOf<AbstractBackpackContainer>()
+    private val containers = hashSetOf<AbstractBackpackContainer>()
 
     @Suppress("unused")
     fun register(container: AbstractBackpackContainer) {
