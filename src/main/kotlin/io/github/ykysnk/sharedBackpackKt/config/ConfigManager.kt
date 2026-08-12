@@ -8,6 +8,9 @@ import kotlin.io.path.readText
 import kotlin.io.path.writeText
 
 object ConfigManager {
+    init {
+        load()
+    }
     private val dataPath = Utils.ConfigDir.resolve("config.yaml")
 
     var config: Config = Config()
