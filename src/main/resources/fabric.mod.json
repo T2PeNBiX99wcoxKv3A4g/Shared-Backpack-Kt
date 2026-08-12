@@ -38,5 +38,6 @@
   "suggests": {
     "modmenu": ">=${modmenu_version}",
     "yet_another_config_lib_v3": ">=${yacl_version}"
-  }
+  },
+  "accessWidener": "shared-backpack-kt.accesswidener"
 }

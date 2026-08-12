@@ -30,6 +30,7 @@ loom {
             sourceSet("main")
         }
     }
+    accessWidenerPath = file("src/main/resources/shared-backpack-kt.accesswidener")
 }
 
 repositories {
