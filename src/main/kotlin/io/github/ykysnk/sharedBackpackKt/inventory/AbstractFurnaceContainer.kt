@@ -100,12 +100,12 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
 
     protected var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
-    protected var openDelay: Int? = null
 
     var litTime: Int = 0
     var litDuration: Int = 0
     var cookingProgress: Int = 0
     var cookingTotalTime: Int = 0
+    var canBurn: Boolean = false
 
     open val dataAccess: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
@@ -133,22 +133,16 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected val quickCheck: RecipeManager.CachedCheck<Container, out AbstractCookingRecipe> =
         RecipeManager.createCheck(recipeType)
 
-    init {
-        FurnaceTickHandler.register(this)
-    }
-
     override fun onPreInit() {
         recipesUsed = Object2IntOpenHashMap()
     }
 
     protected open fun isLit() = litTime > 0
 
-    open fun tick(server: MinecraftServer) {
+    override fun tick(server: MinecraftServer) {
         val isBurning = isLit()
         var isChanged = false
         if (isLit()) litTime--
-        if (openDelay?.let { it > 0 } == true)
-            openDelay = openDelay?.minus(1)
 
         val itemStack = items[1]
         val itemStack2 = items[0]
@@ -158,7 +152,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             val recipe: Recipe<*>? =
                 if (bl3) quickCheck.getRecipeFor(this, level ?: server.overworld()).orElse(null) else null
             val i = maxStackSize
-            if (!isLit() && canBurn(server.registryAccess(), recipe, items, i)) {
+            canBurn = canBurn(server.registryAccess(), recipe, items, i)
+            if (!isLit() && canBurn) {
                 litTime = getBurnDuration(itemStack)
                 litDuration = litTime
                 if (isLit()) {
@@ -174,7 +169,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
                 }
             }
 
-            if (isLit() && canBurn(server.registryAccess(), recipe, items, i)) {
+            if (isLit() && canBurn) {
                 cookingProgress++
                 if (cookingProgress == cookingTotalTime) {
                     cookingProgress = 0
@@ -194,12 +189,6 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
 
         if (isBurning != isLit()) isChanged = true
         if (isChanged) setChanged()
-        if (openDelay?.let { it <= 0 } == true && !isLit() && cookingProgress <= 0 && viewerCount <= 0) {
-            saveNbt()
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
     }
 
     protected open fun getTotalCookTime(serverLevel: ServerLevel): Int =
@@ -218,8 +207,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         val itemStack = items[slot]
         val bl = !stack.isEmpty && ItemStack.isSameItemSameTags(itemStack, stack)
         items[slot] = stack
-        if (itemStack.count > this.maxStackSize) {
-            itemStack.count = this.maxStackSize
+        if (itemStack.count > maxStackSize) {
+            itemStack.count = maxStackSize
         }
         if (slot == 0 && !bl) {
             cookingTotalTime = getTotalCookTime(level!!)
@@ -234,7 +223,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         } else if (slot != 1) {
             return true
         } else {
-            val stack2 = this.items[1]
+            val stack2 = items[1]
             return AbstractFurnaceBlockEntity.isFuel(stack) || stack.`is`(Items.BUCKET) && !stack2.`is`(
                 Items.BUCKET
             )
@@ -316,18 +305,5 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         compoundTag.put("RecipesUsed", compoundTag2)
     }
 
-    override fun startOpen(player: Player) {
-        super.startOpen(player)
-        openDelay = 100
-    }
-
-    override fun stopOpen(player: Player) {
-        viewerCount--
-        saveNbt()
-        if (!isLit() && cookingProgress <= 0 && viewerCount <= 0) {
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
-    }
+    override fun isNoPlayersOpen() = !isLit() && !canBurn && cookingProgress <= 0 && viewerCount <= 0
 }

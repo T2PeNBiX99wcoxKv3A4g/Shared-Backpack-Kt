@@ -4,7 +4,6 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.MinecraftServer
 import net.minecraft.world.ContainerHelper
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.crafting.AbstractCookingRecipe
 import net.minecraft.world.item.crafting.Recipe
@@ -12,10 +11,6 @@ import net.minecraft.world.item.crafting.RecipeType
 
 abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>) :
     AbstractFurnaceContainer(fileName, recipeType) {
-    override fun getMaxStackSize(): Int {
-        return Int.MAX_VALUE
-    }
-
     override val dataAccess: ContainerData = object : ContainerData {
         override fun get(index: Int): Int {
             return when (index) {
@@ -39,16 +34,14 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
 
     override fun tick(server: MinecraftServer) {
         var isChanged = false
-        if (openDelay?.let { it > 0 } == true)
-            openDelay = openDelay?.minus(1)
-
         val itemStack = items[0]
         val bl3 = !itemStack.isEmpty
         val recipe: Recipe<*>? =
             if (bl3) quickCheck.getRecipeFor(this, level ?: server.overworld()).orElse(null) else null
         val i = maxStackSize
+        canBurn = canBurn(server.registryAccess(), recipe, items, i)
 
-        if (canBurn(server.registryAccess(), recipe, items, i)) {
+        if (canBurn) {
             cookingProgress++
             if (cookingProgress == cookingTotalTime) {
                 cookingProgress = 0
@@ -64,12 +57,6 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         }
 
         if (isChanged) setChanged()
-        if (openDelay?.let { it <= 0 } == true && cookingProgress <= 0 && viewerCount <= 0) {
-            saveNbt()
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
@@ -100,13 +87,5 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         compoundTag.put("RecipesUsed", compoundTag2)
     }
 
-    override fun stopOpen(player: Player) {
-        viewerCount--
-        saveNbt()
-        if (cookingProgress <= 0 && viewerCount <= 0) {
-            viewerCount = 0
-            FurnaceTickHandler.unregister(this)
-            onNoPlayersOpen()
-        }
-    }
+    override fun isNoPlayersOpen() = !canBurn && cookingProgress <= 0 && viewerCount <= 0
 }
