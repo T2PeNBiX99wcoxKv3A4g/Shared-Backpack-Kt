@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -71,6 +72,75 @@ dependencies {
     include(implementation("net.mamoe.yamlkt:yamlkt:${property("yamlkt_version")}")!!)
 }
 
+val generateFallbackTranslations = tasks.register("generateFallbackTranslations") {
+    description = "Generate fallback translations from en_us.json"
+
+    val inputFile = file(
+        "src/main/resources/assets/shared-backpack-kt/lang/en_us.json"
+    )
+
+    val outputDir = layout.buildDirectory.dir(
+        "generated/sources/fallbackTranslations"
+    )
+
+    inputs.file(inputFile)
+    outputs.dir(outputDir)
+
+    doLast {
+        val outputDirectory = outputDir.get().asFile
+
+        val translations = JsonSlurper()
+            .parse(inputFile) as Map<*, *>
+
+        fun toConstantName(key: String): String =
+            key
+                .replace(Regex("[^A-Za-z0-9]+"), "_")
+                .uppercase()
+                .trim('_')
+
+        fun escapeKotlinString(value: String): String =
+            value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\r", "\\r")
+                .replace("\n", "\\n")
+                .replace("\t", "\\t")
+
+        val output = buildString {
+            appendLine("// Generated file. DO NOT EDIT.")
+            appendLine("// Generated from assets/shared-backpack-kt/lang/en_us.json")
+            appendLine()
+            appendLine("package io.github.ykysnk.sharedBackpackKt")
+            appendLine()
+            appendLine("object FallbackTranslations {")
+
+            translations.forEach { (key, value) ->
+                require(key is String) {
+                    "Translation key must be a string: $key"
+                }
+
+                require(value is String) {
+                    "Translation value must be a string: $key"
+                }
+
+                val constantName = toConstantName(key)
+                val text = escapeKotlinString(value)
+
+                appendLine("    const val $constantName = \"$text\"")
+            }
+
+            appendLine("}")
+        }
+
+        val outputFile = outputDirectory.resolve(
+            "io/github/ykysnk/sharedBackpackKt/FallbackTranslations.kt"
+        )
+
+        outputFile.parentFile.mkdirs()
+        outputFile.writeText(output)
+    }
+}
+
 tasks.processResources {
     inputs.property("version", version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
@@ -87,6 +157,22 @@ tasks.processResources {
             "modmenu_version" to project.property("modmenu_version").toString()
         )
     }
+}
+
+kotlin {
+    sourceSets {
+        main {
+            kotlin.srcDir(
+                layout.buildDirectory.dir(
+                    "generated/sources/fallbackTranslations"
+                )
+            )
+        }
+    }
+}
+
+tasks.named<KotlinCompile>("compileKotlin") {
+    dependsOn(generateFallbackTranslations)
 }
 
 tasks.withType<JavaCompile>().configureEach {
