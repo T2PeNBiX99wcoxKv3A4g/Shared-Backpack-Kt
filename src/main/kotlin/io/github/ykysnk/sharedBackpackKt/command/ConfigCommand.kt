@@ -24,7 +24,7 @@ object ConfigCommand {
         for (property in ConfigManager.config.general::class.memberProperties) {
             val name = property.name
 
-            @Suppress("UNCHECKED_CAST")
+            @Suppress("UNCHECKED_CAST", "unused")
             val fuckCast = property as? KMutableProperty1<Config.General, Any?> ?: continue
 
             @Suppress("UNCHECKED_CAST")
