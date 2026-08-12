@@ -369,6 +369,10 @@ tasks.named<KotlinCompile>("compileKotlin") {
     dependsOn(generateFallbackTranslations)
 }
 
+tasks.named<Jar>("sourcesJar") {
+    dependsOn(generateFallbackTranslations)
+}
+
 tasks.withType<JavaCompile>().configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -384,7 +388,7 @@ tasks.withType<KotlinCompile>().configureEach {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "${it}_${base.archivesName}" }
+        rename { "${it}_${base.archivesName.get()}" }
     }
 }
 
