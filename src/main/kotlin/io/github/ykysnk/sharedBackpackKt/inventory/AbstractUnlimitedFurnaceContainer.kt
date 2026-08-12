@@ -1,8 +1,10 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
+import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.ContainerHelper
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.crafting.AbstractCookingRecipe
@@ -58,6 +60,10 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
 
         if (isChanged) setChanged()
     }
+
+    override fun getTotalCookTime(serverLevel: ServerLevel): Int =
+        quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }
+            .orElse(200)!! / ConfigManager.config.general.unlimitedFurnaceMultiplier
 
     @Suppress("MemberVisibilityCanBePrivate")
     override fun loadAllItems(compoundTag: CompoundTag) {
