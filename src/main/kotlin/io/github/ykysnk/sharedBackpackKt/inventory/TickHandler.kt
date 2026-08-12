@@ -14,11 +14,13 @@ object TickHandler {
 
     @Suppress("unused")
     fun register(container: AbstractBackpackContainer) {
+        if (containers.contains(container)) return
         containers += container
     }
 
     @Suppress("unused")
     fun unregister(container: AbstractBackpackContainer) {
+        if (!containers.contains(container)) return
         containers -= container
     }
 
