@@ -5,15 +5,15 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.Utils
 import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
+import io.github.ykysnk.sharedBackpackKt.inventory.CustomFurnaceMenu
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType.*
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.network.chat.Component
 import net.minecraft.world.SimpleMenuProvider
-import net.minecraft.world.inventory.FurnaceMenu
 
-object UnlimitedFurnacePlayerOnlyContainer {
+object UnlimitedFurnacePlayerOnlyCommand {
     private const val ARGUMENT_NAME = "name"
 
     fun register(
@@ -97,7 +97,7 @@ object UnlimitedFurnacePlayerOnlyContainer {
                         Smoking -> ContainerManager.getOrCreateUnlimitedSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
-                    FurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.shared-backpack-kt.private-smelting-furnace.title",
