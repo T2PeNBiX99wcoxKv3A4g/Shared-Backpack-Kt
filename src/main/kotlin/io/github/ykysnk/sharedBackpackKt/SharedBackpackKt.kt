@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 
 object SharedBackpackKt : ModInitializer {
     override fun onInitialize() {
-        Logger.debug("Initialized: {} {} {} {}", Utils, ConfigManager, ContainerManager, TickHandler)
+        Logger.debug("Initialized: {} {} {} {}", ConfigManager, Utils, ContainerManager, TickHandler)
 
         CommandRegistrationCallback.EVENT.register { commandDispatcher, _, _ ->
             BackpackCommand.register(commandDispatcher)
