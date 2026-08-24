@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.10.1..v0.12.0) - 2026-08-24
+
+### Action
+
+- Update version in `gradle.properties` - ([93b7c69](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/93b7c69f95824a7691dbded797c413989f51ba0e))
+
+
 ## [0.10.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.10.0..v0.10.1) - 2026-08-12
 
 ### 🐛 Bug Fixes
