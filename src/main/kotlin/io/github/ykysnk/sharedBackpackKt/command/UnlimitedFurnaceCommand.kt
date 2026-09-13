@@ -3,7 +3,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.CustomFurnaceMenu
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType
@@ -51,7 +51,7 @@ object UnlimitedFurnaceCommand {
 
         when (type) {
             Smelting -> {
-                if (!ConfigManager.config.general.sharedUnlimitedSmeltingFurnaceEnabled) {
+                if (!Configs.config.general.sharedUnlimitedSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-smelting-furnace.failure.disabled",
@@ -63,7 +63,7 @@ object UnlimitedFurnaceCommand {
             }
 
             Blasting -> {
-                if (!ConfigManager.config.general.sharedUnlimitedBlastingFurnaceEnabled) {
+                if (!Configs.config.general.sharedUnlimitedBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-blasting-furnace.failure.disabled",
@@ -75,7 +75,7 @@ object UnlimitedFurnaceCommand {
             }
 
             Smoking -> {
-                if (!ConfigManager.config.general.sharedUnlimitedSmokingFurnaceEnabled) {
+                if (!Configs.config.general.sharedUnlimitedSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.shared-unlimited-smoking-furnace.failure.disabled",

@@ -18,12 +18,6 @@
         "adapter": "kotlin",
         "value": "io.github.ykysnk.sharedBackpackKt.SharedBackpackKt"
       }
-    ],
-    "modmenu": [
-      {
-        "adapter": "kotlin",
-        "value": "io.github.ykysnk.sharedBackpackKt.ModMenu"
-      }
     ]
   },
   "mixins": [

@@ -3,7 +3,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
@@ -40,7 +40,7 @@ object BackpackCommand {
             return 0
         }
 
-        if (!ConfigManager.config.general.sharedBackpackEnabled) {
+        if (!Configs.mainConfig.sharedBackpackEnabled) {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.failure.disabled",

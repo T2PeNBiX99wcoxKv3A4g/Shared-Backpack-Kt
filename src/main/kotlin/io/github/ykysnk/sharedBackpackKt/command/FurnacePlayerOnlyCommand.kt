@@ -3,7 +3,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.CustomFurnaceMenu
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType
@@ -50,7 +50,7 @@ object FurnacePlayerOnlyCommand {
 
         when (type) {
             Smelting -> {
-                if (!ConfigManager.config.general.privateSmeltingFurnaceEnabled) {
+                if (!Configs.config.general.privateSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smelting-furnace.failure.disabled",
@@ -62,7 +62,7 @@ object FurnacePlayerOnlyCommand {
             }
 
             Blasting -> {
-                if (!ConfigManager.config.general.privateBlastingFurnaceEnabled) {
+                if (!Configs.config.general.privateBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-blasting-furnace.failure.disabled",
@@ -74,7 +74,7 @@ object FurnacePlayerOnlyCommand {
             }
 
             Smoking -> {
-                if (!ConfigManager.config.general.privateSmokingFurnaceEnabled) {
+                if (!Configs.config.general.privateSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smoking-furnace.failure.disabled",
