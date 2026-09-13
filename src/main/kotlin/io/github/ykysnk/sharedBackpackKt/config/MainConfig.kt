@@ -7,14 +7,14 @@ import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection
 
 class MainConfig : Config(NameSpaces.MOD("main_config")) {
-    val backpack = BackpackSection()
+    var backpack = BackpackSection()
 
     class BackpackSection : ConfigSection() {
         var sharedBackpackEnabled = true
         var privateBackpackEnabled = true
     }
 
-    val furnace = FurnaceSection()
+    var furnace = FurnaceSection()
 
     class FurnaceSection : ConfigSection() {
         var sharedSmeltingFurnaceEnabled = true
@@ -25,7 +25,7 @@ class MainConfig : Config(NameSpaces.MOD("main_config")) {
         var privateSmokingFurnaceEnabled = true
     }
 
-    val unlimitedFurnace = UnlimitedFurnaceSection()
+    var unlimitedFurnace = UnlimitedFurnaceSection()
 
     class UnlimitedFurnaceSection : ConfigSection() {
         var sharedUnlimitedSmeltingFurnaceEnabled = true
@@ -37,7 +37,7 @@ class MainConfig : Config(NameSpaces.MOD("main_config")) {
         var unlimitedFurnaceMultiplier = 1
     }
 
-    val trash = TrashSection()
+    var trash = TrashSection()
 
     class TrashSection : ConfigSection() {
         var trashEnabled = true
