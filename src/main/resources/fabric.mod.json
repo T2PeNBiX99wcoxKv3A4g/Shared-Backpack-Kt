@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${version}",
   "name": "${mod_name}",
-  "description": "Provides a Shared Backpack for all players.",
+  "description": "Provides a server sided Backpack for all players.",
   "authors": [
     "170",
     "yukiyosanako"
@@ -16,7 +16,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "io.github.ykysnk.sharedBackpackKt.SharedBackpackKt"
+        "value": "io.github.ykysnk.serverBackpack.ServerBackpack"
       }
     ]
   },
