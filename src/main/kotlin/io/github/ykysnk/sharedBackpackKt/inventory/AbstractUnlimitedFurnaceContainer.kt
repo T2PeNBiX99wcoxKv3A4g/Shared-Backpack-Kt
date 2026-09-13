@@ -77,8 +77,8 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         ContainerHelper.loadAllItems(compoundTag, items, registries)
         cookingTimer = compoundTag.getShortOr("cooking_time_spent", 0.toShort()).toInt()
         cookingTotalTime = compoundTag.getShortOr("cooking_total_time", 0.toShort()).toInt()
-        recipesUsed?.clear()
-        recipesUsed?.putAll(
+        recipesUsed.clear()
+        recipesUsed.putAll(
             compoundTag.read("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out ResourceKey<Recipe<*>>, Int>
         )
     }
@@ -87,8 +87,7 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         compoundTag.putShort("cooking_time_spent", cookingTimer.toShort())
         compoundTag.putShort("cooking_total_time", cookingTotalTime.toShort())
         ContainerHelper.saveAllItems(compoundTag, items, registries)
-        if (recipesUsed == null) return
-        compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
+        compoundTag.store("RecipesUsed", CODEC, recipesUsed)
     }
 
     override fun isNoPlayersOpen() = !canBurn && cookingTimer <= 0 && viewerCount <= 0

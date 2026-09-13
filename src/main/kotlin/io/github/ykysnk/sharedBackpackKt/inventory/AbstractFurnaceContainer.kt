@@ -106,7 +106,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected val level: ServerLevel?
         get() = player?.level() as? ServerLevel ?: Constants.Server.overworld()
 
-    protected var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>? = null
+    protected lateinit var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>
 
     var litTimeRemaining: Int = 0
     var litTotalTime: Int = 0
@@ -240,7 +240,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     override fun setRecipeUsed(recipeHolder: RecipeHolder<*>?) {
         if (recipeHolder != null) {
             val resourceKey = recipeHolder.id()
-            recipesUsed?.addTo(resourceKey, 1)
+            recipesUsed.addTo(resourceKey, 1)
         }
     }
 
@@ -259,13 +259,13 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             player.triggerRecipeCrafted(recipeEntry, items)
         }
 
-        recipesUsed?.clear()
+        recipesUsed.clear()
     }
 
     open fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<RecipeHolder<*>> {
         val list: MutableList<RecipeHolder<*>> = Lists.newArrayList()
 
-        for (entry in recipesUsed?.reference2IntEntrySet()!!) {
+        for (entry in recipesUsed.reference2IntEntrySet()!!) {
             serverLevel.recipeAccess().byKey(entry.key).ifPresent(Consumer { recipeHolder ->
                 list.add(recipeHolder)
                 createExperience(
@@ -286,8 +286,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         cookingTotalTime = compoundTag.getShortOr("cooking_total_time", 0.toShort()).toInt()
         litTimeRemaining = compoundTag.getShortOr("lit_time_remaining", 0.toShort()).toInt()
         litTotalTime = compoundTag.getShortOr("lit_total_time", 0.toShort()).toInt()
-        recipesUsed?.clear()
-        recipesUsed?.putAll(
+        recipesUsed.clear()
+        recipesUsed.putAll(
             compoundTag.read("RecipesUsed", CODEC).orElse(java.util.Map.of()) as Map<out ResourceKey<Recipe<*>>, Int>
         )
     }
@@ -298,8 +298,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         compoundTag.putShort("lit_time_remaining", litTimeRemaining.toShort())
         compoundTag.putShort("lit_total_time", litTotalTime.toShort())
         ContainerHelper.saveAllItems(compoundTag, items, registries)
-        if (recipesUsed == null) return
-        compoundTag.store("RecipesUsed", CODEC, recipesUsed!!)
+        compoundTag.store("RecipesUsed", CODEC, recipesUsed)
     }
 
     override fun isNoPlayersOpen() = !isLit() && !canBurn && cookingTimer <= 0 && viewerCount <= 0
