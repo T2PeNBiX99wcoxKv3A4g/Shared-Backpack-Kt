@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.ContainerHelper
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.crafting.AbstractCookingRecipe
-import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeType
 
 abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: RecipeType<out AbstractCookingRecipe>) :
@@ -38,8 +37,7 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         var isChanged = false
         val itemStack = items[0]
         val bl3 = !itemStack.isEmpty
-        val recipe: Recipe<*>? =
-            if (bl3) quickCheck.getRecipeFor(this, level ?: server.overworld()).orElse(null) else null
+        val recipe = if (bl3) quickCheck.getRecipeFor(this, level ?: server.overworld()).orElse(null) else null
         val i = maxStackSize
         canBurn = canBurn(server.registryAccess(), recipe, items, i)
 
@@ -62,19 +60,17 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
     }
 
     override fun getTotalCookTime(serverLevel: ServerLevel): Int =
-        (quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }
-            .orElse(200)!! / (Configs.mainConfig.unlimitedFurnace.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(
-            1
-        )
+        (quickCheck.getRecipeFor(this, serverLevel).map { obj -> obj.getCookingTime() }
+            .orElse(200)!! / Configs.mainConfig.unlimitedFurnace.unlimitedFurnaceMultiplier.get()
+            .coerceAtLeast(1)).coerceAtLeast(1)
 
     override fun loadAllItems(compoundTag: CompoundTag) {
         ContainerHelper.loadAllItems(compoundTag, items)
         cookingProgress = compoundTag.getShort("CookTime").toInt()
         cookingTotalTime = compoundTag.getShort("CookTimeTotal").toInt()
-        if (recipesUsed == null) return
         val compoundTag2 = compoundTag.getCompound("RecipesUsed")
         for (string in compoundTag2.allKeys) {
-            recipesUsed!!.put(ResourceLocation(string), compoundTag2.getInt(string))
+            recipesUsed.put(ResourceLocation(string), compoundTag2.getInt(string))
         }
     }
 
@@ -82,9 +78,8 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         compoundTag.putShort("CookTime", cookingProgress.toShort())
         compoundTag.putShort("CookTimeTotal", cookingTotalTime.toShort())
         ContainerHelper.saveAllItems(compoundTag, items)
-        if (recipesUsed == null) return
         val compoundTag2 = CompoundTag()
-        recipesUsed!!.forEach { (resourceLocation, integer) ->
+        recipesUsed.forEach { (resourceLocation, integer) ->
             compoundTag2.putInt(
                 resourceLocation.toString(),
                 integer!!

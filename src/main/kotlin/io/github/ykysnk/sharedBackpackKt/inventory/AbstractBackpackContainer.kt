@@ -24,7 +24,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     StackedContentsCompatible {
     val items: NonNullList<ItemStack> = NonNullList.withSize(size, ItemStack.EMPTY)
 
-    protected val dataPath: Path get() = Constants.ConfigDir.resolve("${fileName}.dat")
+    private val dataPath: Path get() = Constants.ConfigDir.resolve("${fileName}.dat")
     protected var viewerCount = 0
     private val listeners: MutableList<ContainerListener> = mutableListOf()
 
@@ -40,7 +40,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         // Initialize the inventory from the saved NBT data
         if (Files.exists(dataPath)) {
             runCatching {
-                val compoundTag: CompoundTag = NbtIo.readCompressed(File(dataPath.toUri()))
+                val compoundTag = NbtIo.readCompressed(File(dataPath.toUri()))
                 onLoad(compoundTag, Server.registryAccess()!!)
                 loadAllItems(compoundTag)
             }.getOrElse {

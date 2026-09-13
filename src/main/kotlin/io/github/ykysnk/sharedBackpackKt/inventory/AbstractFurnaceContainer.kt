@@ -98,7 +98,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected val level: ServerLevel?
         get() = player?.level() as? ServerLevel ?: Constants.Server.overworld()
 
-    protected var recipesUsed: Object2IntOpenHashMap<ResourceLocation>? = null
+    protected lateinit var recipesUsed: Object2IntOpenHashMap<ResourceLocation>
 
     var litTime: Int = 0
     var litDuration: Int = 0
@@ -191,7 +191,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     }
 
     protected open fun getTotalCookTime(serverLevel: ServerLevel): Int =
-        quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }.orElse(200)!!
+        quickCheck.getRecipeFor(this, serverLevel).map { obj -> obj.getCookingTime() }.orElse(200)!!
 
     protected open fun getBurnDuration(stack: ItemStack): Int {
         if (stack.isEmpty) {
@@ -230,10 +230,9 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     }
 
     override fun setRecipeUsed(recipe: Recipe<*>?) {
-        if (recipe != null) {
-            val resourceKey = recipe.id
-            recipesUsed?.addTo(resourceKey, 1)
-        }
+        if (recipe == null) return
+        val resourceKey = recipe.id
+        recipesUsed.addTo(resourceKey, 1)
     }
 
     override fun getRecipeUsed(): Recipe<*>? {
@@ -251,13 +250,13 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
             player.triggerRecipeCrafted(recipeEntry, items)
         }
 
-        recipesUsed?.clear()
+        recipesUsed.clear()
     }
 
     open fun getRecipesToAwardAndPopExperience(serverLevel: ServerLevel, pos: Vec3): List<Recipe<*>> {
         val list: MutableList<Recipe<*>> = Lists.newArrayList()
 
-        for (entry in recipesUsed?.object2IntEntrySet()!!) {
+        for (entry in recipesUsed.object2IntEntrySet()!!) {
             serverLevel.recipeManager.byKey(entry.key).ifPresent(Consumer { recipe ->
                 list.add(recipe)
                 createExperience(
@@ -278,10 +277,9 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         litDuration = getBurnDuration(items[1])
         cookingProgress = compoundTag.getShort("CookTime").toInt()
         cookingTotalTime = compoundTag.getShort("CookTimeTotal").toInt()
-        if (recipesUsed == null) return
         val compoundTag2 = compoundTag.getCompound("RecipesUsed")
         for (string in compoundTag2.allKeys) {
-            recipesUsed!!.put(ResourceLocation(string), compoundTag2.getInt(string))
+            recipesUsed.put(ResourceLocation(string), compoundTag2.getInt(string))
         }
     }
 
@@ -290,9 +288,8 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         compoundTag.putShort("CookTime", cookingProgress.toShort())
         compoundTag.putShort("CookTimeTotal", cookingTotalTime.toShort())
         ContainerHelper.saveAllItems(compoundTag, items)
-        if (recipesUsed == null) return
         val compoundTag2 = CompoundTag()
-        recipesUsed!!.forEach { (resourceLocation, integer) ->
+        recipesUsed.forEach { (resourceLocation, integer) ->
             compoundTag2.putInt(
                 resourceLocation.toString(),
                 integer!!
