@@ -30,7 +30,7 @@ original [Shared Backpack](https://github.com/170yt/Minecraft-Shared-Backpack).
 
 This is a server-side mod and does not need to be installed on clients.
 
-All datas is stored in `/config/shared-backpack-kt`
+All datas is stored in `/config/server-backpack`
 
 ## Credits
 

@@ -5,7 +5,7 @@ package io.github.ykysnk.sharedBackpackKt
 import net.minecraft.resources.ResourceLocation
 
 enum class NameSpaces(val id: String) {
-    MOD("shared-backpack-kt"),
+    MOD("server-backpack"),
     FORGE("c"),
     MINECRAFT("minecraft");
 
