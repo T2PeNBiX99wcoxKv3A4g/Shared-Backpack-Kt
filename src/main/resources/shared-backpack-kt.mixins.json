@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.ykysnk.sharedBackpackKt.mixin",
+  "package": "io.github.ykysnk.serverBackpack.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
     "FurnaceResultSlotMixin"
