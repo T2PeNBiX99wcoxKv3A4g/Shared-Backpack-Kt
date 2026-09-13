@@ -120,7 +120,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.server-backpack.shared-backpack.failure.disabled",
-                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BACKPACK_FAILURE_DISABLED
+                    FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_BACKPACK_FAILURE_DISABLED
                 )
             )
             return 0
@@ -133,7 +133,7 @@ object BackpackCommand {
                 },
                 Component.translatableWithFallback(
                     "command.server-backpack.shared-backpack.title",
-                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BACKPACK_TITLE,
+                    FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_BACKPACK_TITLE,
                     name
                 )
             )
@@ -148,7 +148,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.server-backpack.private-backpack.failure.disabled",
-                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BACKPACK_FAILURE_DISABLED
+                    FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_BACKPACK_FAILURE_DISABLED
                 )
             )
             return 0
@@ -163,7 +163,7 @@ object BackpackCommand {
                     )
                 }, Component.translatableWithFallback(
                     "command.server-backpack.private-backpack.title",
-                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BACKPACK_TITLE,
+                    FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_BACKPACK_TITLE,
                     name
                 )
             )
@@ -180,7 +180,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-smelting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMELTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -192,7 +192,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-blasting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BLASTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -204,7 +204,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-smoking-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMOKING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -226,19 +226,19 @@ object BackpackCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-smelting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMELTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-blasting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_BLASTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.server-backpack.shared-smoking-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_SMOKING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
@@ -256,7 +256,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-smelting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_SMELTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -268,7 +268,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-blasting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BLASTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -280,7 +280,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-smoking-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_SMOKING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -302,19 +302,19 @@ object BackpackCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.private-smelting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_SMELTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.server-backpack.private-blasting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_BLASTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.server-backpack.private-smoking-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_SMOKING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
@@ -332,7 +332,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-unlimited-smelting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_SMELTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -344,7 +344,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-unlimited-blasting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_BLASTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -356,7 +356,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.shared-unlimited-smoking-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_SMOKING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -378,19 +378,19 @@ object BackpackCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-unlimited-smelting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_SMELTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-unlimited-blasting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_BLASTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.server-backpack.shared-unlimited-smoking-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_SHARED_UNLIMITED_SMOKING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_SHARED_UNLIMITED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
@@ -408,7 +408,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-unlimited-smelting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_SMELTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_SMELTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -420,7 +420,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-unlimited-blasting-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_BLASTING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_BLASTING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -432,7 +432,7 @@ object BackpackCommand {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.server-backpack.private-unlimited-smoking-furnace.failure.disabled",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_SMOKING_FURNACE_FAILURE_DISABLED
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_SMOKING_FURNACE_FAILURE_DISABLED
                         )
                     )
                     return 0
@@ -454,19 +454,19 @@ object BackpackCommand {
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.private-unlimited-smelting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_SMELTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_SMELTING_FURNACE_TITLE,
                         name
                     )
 
                     Blasting -> Component.translatableWithFallback(
                         "command.server-backpack.private-unlimited-blasting-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_BLASTING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_BLASTING_FURNACE_TITLE,
                         name
                     )
 
                     Smoking -> Component.translatableWithFallback(
                         "command.server-backpack.private-unlimited-smoking-furnace.title",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_PRIVATE_UNLIMITED_SMOKING_FURNACE_TITLE,
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_PRIVATE_UNLIMITED_SMOKING_FURNACE_TITLE,
                         name
                     )
                 }
@@ -482,7 +482,7 @@ object BackpackCommand {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.server-backpack.trash.failure.disabled",
-                    FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_FAILURE_DISABLED
+                    FallbackTranslations.COMMAND_SERVER_BACKPACK_TRASH_FAILURE_DISABLED
                 )
             )
             return 0
@@ -499,7 +499,7 @@ object BackpackCommand {
                             )
                         }, Component.translatableWithFallback(
                             "command.server-backpack.trash.title",
-                            FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_TITLE
+                            FallbackTranslations.COMMAND_SERVER_BACKPACK_TRASH_TITLE
                         )
                     )
                 )
@@ -511,7 +511,7 @@ object BackpackCommand {
                 source.sendSuccess({
                     Component.translatableWithFallback(
                         "command.server-backpack.trash.success.emptied",
-                        FallbackTranslations.COMMAND_SHARED_BACKPACK_KT_TRASH_SUCCESS_EMPTIED
+                        FallbackTranslations.COMMAND_SERVER_BACKPACK_TRASH_SUCCESS_EMPTIED
                     )
                 }, false)
                 return 1
