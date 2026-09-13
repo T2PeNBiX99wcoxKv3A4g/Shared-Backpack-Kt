@@ -1,4 +1,4 @@
-# Shared Backpack Kotlin Version
+# Server Backpack
 
 This mod adds shared and private storage for multiplayer servers, allowing players to easily share or organize items
 without placing physical containers.
@@ -22,8 +22,6 @@ without placing physical containers.
 No permission is required to use any of these commands.
 
 Supported furnace types include the normal furnace, blast furnace, and smoker.
-
-![Shared Backpack Inventory](https://github.com/170yt/Minecraft-Shared-Backpack/blob/main/images/Shared-Backpack-Inventory.png?raw=true)
 
 ## Additional Information
 
