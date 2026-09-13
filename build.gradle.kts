@@ -92,7 +92,10 @@ val generateFallbackTranslations = tasks.register("generateFallbackTranslations"
         val translations = JsonSlurper()
             .parse(inputFile) as Map<*, *>
 
-        fun toConstantName(key: String): String = key.replace(Regex("[^A-Za-z0-9]+"), "_").uppercase().trim('_')
+        fun toConstantName(key: String): String = key.replace(Regex("(?<!^)([A-Z])")) { "_${it.value.lowercase()}" }
+            .uppercase()
+            .replace(Regex("[^A-Za-z0-9]+"), "_")
+            .trim('_')
 
         fun escapeKotlinString(value: String): String = value
             .replace("\\", "\\\\")
