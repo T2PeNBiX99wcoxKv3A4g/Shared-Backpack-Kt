@@ -15,4 +15,4 @@ pluginManagement {
 }
 
 // Should match your modid
-rootProject.name = "shared-backpack-kt"
+rootProject.name = "server-backpack"

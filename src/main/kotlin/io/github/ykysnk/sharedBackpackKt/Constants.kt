@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
 package io.github.ykysnk.sharedBackpackKt
 
@@ -20,8 +20,8 @@ object Constants {
         ServerLifecycleEvents.SERVER_STOPPED.register { getServer = null }
     }
 
-    const val MOD_ID = "shared-backpack-kt"
-    const val MOD_NAME = "Shared Backpack Kotlin"
+    const val MOD_ID = "server-backpack"
+    const val MOD_NAME = "Server Backpack"
 
     @JvmField
     val LOGGER: Logger = LoggerFactory.getLogger(MOD_NAME)
