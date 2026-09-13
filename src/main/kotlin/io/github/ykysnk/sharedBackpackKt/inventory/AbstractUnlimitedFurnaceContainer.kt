@@ -70,7 +70,7 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         val integer = quickCheck.getRecipeFor(singleRecipeInput, serverLevel)
             .map<Int?> { recipeHolder -> recipeHolder.value().cookingTime() }
             .orElse(200)!!
-        return (integer / (Configs.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
+        return (integer / (Configs.mainConfig.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
     }
 
     override fun loadAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {
