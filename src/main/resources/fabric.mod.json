@@ -32,7 +32,7 @@
     "fzzy_config": "*"
   },
   "suggests": {
-    "modmenu": ">=${modmenu_version}"
+    "modmenu": "*"
   },
   "accessWidener": "${mod_id}.aw"
 }
