@@ -1,6 +1,6 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceKey
@@ -70,7 +70,7 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
         val integer = quickCheck.getRecipeFor(singleRecipeInput, serverLevel)
             .map<Int?> { recipeHolder -> recipeHolder.value().cookingTime() }
             .orElse(200)!!
-        return (integer / (ConfigManager.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
+        return (integer / (Configs.config.general.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
     }
 
     override fun loadAllItems(compoundTag: CompoundTag, registries: RegistryAccess.Frozen) {

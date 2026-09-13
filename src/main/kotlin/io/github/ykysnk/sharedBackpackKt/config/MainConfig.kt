@@ -1,30 +1,23 @@
 package io.github.ykysnk.sharedBackpackKt.config
 
-import kotlinx.serialization.Serializable
+import io.github.ykysnk.sharedBackpackKt.NameSpaces
+import me.fzzyhmstrs.fzzy_config.config.Config
 
-@Serializable
-data class Config(
-    val general: General = General()
-) {
-    @Serializable
-    data class General(
-        var sharedBackpackEnabled: Boolean = true,
-        var privateBackpackEnabled: Boolean = true,
-        var sharedSmeltingFurnaceEnabled: Boolean = true,
-        var privateSmeltingFurnaceEnabled: Boolean = true,
-        var sharedBlastingFurnaceEnabled: Boolean = true,
-        var privateBlastingFurnaceEnabled: Boolean = true,
-        var sharedSmokingFurnaceEnabled: Boolean = true,
-        var privateSmokingFurnaceEnabled: Boolean = true,
-        var sharedUnlimitedSmeltingFurnaceEnabled: Boolean = true,
-        var privateUnlimitedSmeltingFurnaceEnabled: Boolean = true,
-        var sharedUnlimitedBlastingFurnaceEnabled: Boolean = true,
-        var privateUnlimitedBlastingFurnaceEnabled: Boolean = true,
-        var sharedUnlimitedSmokingFurnaceEnabled: Boolean = true,
-        var privateUnlimitedSmokingFurnaceEnabled: Boolean = true,
-        var unlimitedFurnaceMultiplier: Int = 1,
-        var trashEnabled: Boolean = true
-    )
-
+class MainConfig : Config(NameSpaces.MOD("main_config")) {
     var sharedBackpackEnabled = true
+    var privateBackpackEnabled = true
+    var sharedSmeltingFurnaceEnabled = true
+    var privateSmeltingFurnaceEnabled = true
+    var sharedBlastingFurnaceEnabled = true
+    var privateBlastingFurnaceEnabled = true
+    var sharedSmokingFurnaceEnabled = true
+    var privateSmokingFurnaceEnabled = true
+    var sharedUnlimitedSmeltingFurnaceEnabled = true
+    var privateUnlimitedSmeltingFurnaceEnabled = true
+    var sharedUnlimitedBlastingFurnaceEnabled = true
+    var privateUnlimitedBlastingFurnaceEnabled = true
+    var sharedUnlimitedSmokingFurnaceEnabled = true
+    var privateUnlimitedSmokingFurnaceEnabled = true
+    var unlimitedFurnaceMultiplier = 1
+    var trashEnabled = true
 }

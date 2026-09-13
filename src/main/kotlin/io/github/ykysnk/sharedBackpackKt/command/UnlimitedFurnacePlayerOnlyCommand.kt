@@ -3,7 +3,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.CustomFurnaceMenu
 import io.github.ykysnk.sharedBackpackKt.inventory.FurnaceInventoryType
@@ -51,7 +51,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
 
         when (type) {
             Smelting -> {
-                if (!ConfigManager.config.general.privateUnlimitedSmeltingFurnaceEnabled) {
+                if (!Configs.config.general.privateUnlimitedSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-smelting-furnace.failure.disabled",
@@ -63,7 +63,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
             }
 
             Blasting -> {
-                if (!ConfigManager.config.general.privateUnlimitedBlastingFurnaceEnabled) {
+                if (!Configs.config.general.privateUnlimitedBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-blasting-furnace.failure.disabled",
@@ -75,7 +75,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
             }
 
             Smoking -> {
-                if (!ConfigManager.config.general.privateUnlimitedSmokingFurnaceEnabled) {
+                if (!Configs.config.general.privateUnlimitedSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-smoking-furnace.failure.disabled",

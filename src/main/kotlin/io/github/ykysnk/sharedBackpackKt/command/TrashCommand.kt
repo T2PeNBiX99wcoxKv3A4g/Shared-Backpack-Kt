@@ -3,7 +3,7 @@ package io.github.ykysnk.sharedBackpackKt.command
 import com.mojang.brigadier.CommandDispatcher
 import io.github.ykysnk.sharedBackpackKt.FallbackTranslations
 import io.github.ykysnk.sharedBackpackKt.argument.TrashType
-import io.github.ykysnk.sharedBackpackKt.config.ConfigManager
+import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
@@ -39,7 +39,7 @@ object TrashCommand {
             return 0
         }
 
-        if (!ConfigManager.config.general.trashEnabled) {
+        if (!Configs.config.general.trashEnabled) {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.trash.failure.disabled",

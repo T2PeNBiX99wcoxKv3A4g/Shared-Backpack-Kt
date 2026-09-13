@@ -17,7 +17,6 @@ object SharedBackpackKt : ModInitializer {
             FurnacePlayerOnlyCommand.register(commandDispatcher)
             UnlimitedFurnaceCommand.register(commandDispatcher)
             UnlimitedFurnacePlayerOnlyCommand.register(commandDispatcher)
-            ConfigCommand.register(commandDispatcher)
         }
     }
 }
