@@ -39,7 +39,7 @@ object TrashCommand {
             return 0
         }
 
-        if (!Configs.config.general.trashEnabled) {
+        if (!Configs.mainConfig.trashEnabled) {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.trash.failure.disabled",
