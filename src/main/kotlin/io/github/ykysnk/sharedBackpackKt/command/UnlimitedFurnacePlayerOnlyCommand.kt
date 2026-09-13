@@ -51,7 +51,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
 
         when (type) {
             Smelting -> {
-                if (!Configs.mainConfig.privateUnlimitedSmeltingFurnaceEnabled) {
+                if (!Configs.mainConfig.unlimitedFurnace.privateUnlimitedSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-smelting-furnace.failure.disabled",
@@ -63,7 +63,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
             }
 
             Blasting -> {
-                if (!Configs.mainConfig.privateUnlimitedBlastingFurnaceEnabled) {
+                if (!Configs.mainConfig.unlimitedFurnace.privateUnlimitedBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-blasting-furnace.failure.disabled",
@@ -75,7 +75,7 @@ object UnlimitedFurnacePlayerOnlyCommand {
             }
 
             Smoking -> {
-                if (!Configs.mainConfig.privateUnlimitedSmokingFurnaceEnabled) {
+                if (!Configs.mainConfig.unlimitedFurnace.privateUnlimitedSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-unlimited-smoking-furnace.failure.disabled",

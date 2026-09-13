@@ -40,7 +40,7 @@ object BackpackCommand {
             return 0
         }
 
-        if (!Configs.mainConfig.sharedBackpackEnabled) {
+        if (!Configs.mainConfig.backpack.sharedBackpackEnabled) {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.shared-backpack.failure.disabled",

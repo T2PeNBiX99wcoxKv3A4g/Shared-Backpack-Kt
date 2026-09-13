@@ -40,7 +40,7 @@ object BackpackPlayerOnlyCommand {
             return 0
         }
 
-        if (!Configs.mainConfig.privateBackpackEnabled) {
+        if (!Configs.mainConfig.backpack.privateBackpackEnabled) {
             source.sendFailure(
                 Component.translatableWithFallback(
                     "command.shared-backpack-kt.private-backpack.failure.disabled",
