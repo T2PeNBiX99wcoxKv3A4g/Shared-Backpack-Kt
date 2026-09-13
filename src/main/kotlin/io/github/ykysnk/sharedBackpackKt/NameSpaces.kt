@@ -1,3 +1,5 @@
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+
 package io.github.ykysnk.sharedBackpackKt
 
 import net.minecraft.resources.ResourceLocation
