@@ -5,12 +5,19 @@ without placing physical containers.
 
 ## Commands
 
-* `/sharedbackpack {name}` or `/sbp {name}` - Opens a shared backpack (54 slots, the size of a double chest).
-* `/privatebackpack {name}` or `/pbp {name}` - Opens a private backpack.
-* `/sharedfurnace {furnace_type} {name}` or `/sf {furnace_type} {name}` - Opens a shared furnace.
-* `/privatefurnace {furnace_type} {name}` or `/pf {furnace_type} {name}` - Opens a private furnace.
-* `/trash open` - Opens the trash container.
-* `/trash clear` - Permanently clears all items in the trash container.
+* `/serverbackpack backpack shared {name}` or `/sbp backpack shared {name}` - Opens a shared backpack (54 slots, the
+  size of a double chest).
+* `/serverbackpack backpack private {name}` or `/sbp backpack private {name}` - Opens a private backpack.
+* `/serverbackpack furnace shared {furnace_type} {name}` or `/sbp furnace shared {furnace_type} {name}` - Opens a shared
+  furnace.
+* `/serverbackpack furnace private {furnace_type} {name}` or `/sbp furnace private {furnace_type} {name}` - Opens a
+  private furnace.
+* `/serverbackpack unlimitedfurnace shared {furnace_type} {name}` or
+  `/sbp unlimitedfurnace shared {furnace_type} {name}` - Opens a shared unlimited furnace.
+* `/serverbackpack unlimitedfurnace private {furnace_type} {name}` or
+  `/sbp unlimitedfurnace private {furnace_type} {name}` - Opens a private unlimited furnace.
+* `/serverbackpack trash open` or `/sbp trash open` - Opens the trash container.
+* `/serverbackpack trash clear` or `/sbp trash clear` - Permanently clears all items in the trash container.
 
 No permission is required to use any of these commands.
 
