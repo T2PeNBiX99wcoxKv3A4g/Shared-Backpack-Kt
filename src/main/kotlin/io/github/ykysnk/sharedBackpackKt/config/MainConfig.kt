@@ -5,6 +5,7 @@ package io.github.ykysnk.sharedBackpackKt.config
 import io.github.ykysnk.sharedBackpackKt.NameSpaces
 import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt
 
 class MainConfig : Config(NameSpaces.MOD("main_config")) {
     var backpack = BackpackSection()
@@ -34,7 +35,7 @@ class MainConfig : Config(NameSpaces.MOD("main_config")) {
         var privateUnlimitedBlastingFurnaceEnabled = true
         var sharedUnlimitedSmokingFurnaceEnabled = true
         var privateUnlimitedSmokingFurnaceEnabled = true
-        var unlimitedFurnaceMultiplier = 1
+        var unlimitedFurnaceMultiplier = ValidatedInt(1, Int.MAX_VALUE, 1)
     }
 
     var trash = TrashSection()
