@@ -26,4 +26,5 @@ data class Config(
         var trashEnabled: Boolean = true
     )
 
+    var sharedBackpackEnabled = true
 }
