@@ -68,7 +68,6 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")
     modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("mod_menu_version").get()}")
     modImplementation("me.fzzyhmstrs:fzzy_config:${providers.gradleProperty("fzzy_config_version").get()}")
-    include(implementation("net.mamoe.yamlkt:yamlkt:${providers.gradleProperty("yamlkt_version").get()}")!!)
 }
 
 val generateFallbackTranslations = tasks.register("generateFallbackTranslations") {
