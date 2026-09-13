@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "shared-backpack-kt",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "Shared Backpack Kotlin version",
+  "name": "${mod_name}",
   "description": "Provides a Shared Backpack for all players.",
   "authors": [
     "170",
@@ -10,7 +10,7 @@
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/shared-backpack-kt/icon.png",
+  "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -27,17 +27,18 @@
     ]
   },
   "mixins": [
-    "shared-backpack-kt.mixins.json"
+    "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric-language-kotlin": ">=${kotlin_loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=17",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*",
+    "fzzy_config": "*"
   },
   "suggests": {
-    "modmenu": ">=${modmenu_version}",
-    "yet_another_config_lib_v3": ">=${yacl_version}"
+    "modmenu": ">=${modmenu_version}"
   },
-  "accessWidener": "shared-backpack-kt.accesswidener"
+  "accessWidener": "${mod_id}.aw"
 }
