@@ -1,7 +1,7 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
-import io.github.ykysnk.sharedBackpackKt.Utils
-import io.github.ykysnk.sharedBackpackKt.Utils.Logger
+import io.github.ykysnk.sharedBackpackKt.Constants
+import io.github.ykysnk.sharedBackpackKt.Constants.LOGGER
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.world.entity.player.Player
 import java.nio.file.Files
@@ -195,7 +195,7 @@ object ContainerManager {
     }
 
     private fun backupBackpackData() {
-        Files.list(Utils.ConfigDir).use { files ->
+        Files.list(Constants.ConfigDir).use { files ->
             files
                 .filter { Files.isRegularFile(it) }
                 .filter { it.fileName.toString().endsWith(".dat") }
@@ -204,9 +204,9 @@ object ContainerManager {
                         val backupPath = path.resolveSibling("${path.fileName.toString().removeSuffix(".dat")}.dat_old")
                         Files.deleteIfExists(backupPath)
                         Files.copy(path, backupPath)
-                        Logger.info("Backed up backpack data to {}", backupPath)
+                        LOGGER.info("Backed up backpack data to {}", backupPath)
                     }.getOrElse {
-                        Logger.error(
+                        LOGGER.error(
                             "Failed to back up backpack data: {}\n{}",
                             it.localizedMessage,
                             it.stackTraceToString()
