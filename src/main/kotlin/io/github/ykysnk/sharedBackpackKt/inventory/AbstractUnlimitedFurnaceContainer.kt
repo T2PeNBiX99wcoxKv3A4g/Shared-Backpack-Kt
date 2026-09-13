@@ -63,7 +63,9 @@ abstract class AbstractUnlimitedFurnaceContainer(fileName: String, recipeType: R
 
     override fun getTotalCookTime(serverLevel: ServerLevel): Int =
         (quickCheck.getRecipeFor(this, serverLevel).map<Int?> { obj -> obj.getCookingTime() }
-            .orElse(200)!! / (Configs.mainConfig.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(1)
+            .orElse(200)!! / (Configs.mainConfig.unlimitedFurnace.unlimitedFurnaceMultiplier).coerceAtLeast(1)).coerceAtLeast(
+            1
+        )
 
     override fun loadAllItems(compoundTag: CompoundTag) {
         ContainerHelper.loadAllItems(compoundTag, items)

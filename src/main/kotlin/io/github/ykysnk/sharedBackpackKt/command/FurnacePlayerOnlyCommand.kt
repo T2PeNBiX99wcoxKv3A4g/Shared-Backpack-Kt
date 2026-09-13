@@ -50,7 +50,7 @@ object FurnacePlayerOnlyCommand {
 
         when (type) {
             Smelting -> {
-                if (!Configs.mainConfig.privateSmeltingFurnaceEnabled) {
+                if (!Configs.mainConfig.furnace.privateSmeltingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smelting-furnace.failure.disabled",
@@ -62,7 +62,7 @@ object FurnacePlayerOnlyCommand {
             }
 
             Blasting -> {
-                if (!Configs.mainConfig.privateBlastingFurnaceEnabled) {
+                if (!Configs.mainConfig.furnace.privateBlastingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-blasting-furnace.failure.disabled",
@@ -74,7 +74,7 @@ object FurnacePlayerOnlyCommand {
             }
 
             Smoking -> {
-                if (!Configs.mainConfig.privateSmokingFurnaceEnabled) {
+                if (!Configs.mainConfig.furnace.privateSmokingFurnaceEnabled) {
                     source.sendFailure(
                         Component.translatableWithFallback(
                             "command.shared-backpack-kt.private-smoking-furnace.failure.disabled",
