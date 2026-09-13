@@ -1,8 +1,8 @@
 package io.github.ykysnk.sharedBackpackKt.inventory
 
-import io.github.ykysnk.sharedBackpackKt.Utils
-import io.github.ykysnk.sharedBackpackKt.Utils.Logger
-import io.github.ykysnk.sharedBackpackKt.Utils.Server
+import io.github.ykysnk.sharedBackpackKt.Constants
+import io.github.ykysnk.sharedBackpackKt.Constants.LOGGER
+import io.github.ykysnk.sharedBackpackKt.Constants.Server
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
 import net.minecraft.nbt.CompoundTag
@@ -24,7 +24,7 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     StackedContentsCompatible {
     val items: NonNullList<ItemStack> = NonNullList.withSize(size, ItemStack.EMPTY)
 
-    protected val dataPath: Path get() = Utils.ConfigDir.resolve("${fileName}.dat")
+    protected val dataPath: Path get() = Constants.ConfigDir.resolve("${fileName}.dat")
     protected var viewerCount = 0
     private val listeners: MutableList<ContainerListener> = mutableListOf()
 
@@ -41,10 +41,10 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         if (Files.exists(dataPath)) {
             runCatching {
                 val compoundTag: CompoundTag = NbtIo.readCompressed(dataPath, NbtAccounter.unlimitedHeap())
-                onLoad(compoundTag, Server?.registryAccess()!!)
-                loadAllItems(compoundTag, Server?.registryAccess()!!)
+                onLoad(compoundTag, Server.registryAccess()!!)
+                loadAllItems(compoundTag, Server.registryAccess()!!)
             }.getOrElse {
-                Logger.error("Failed to load backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
+                LOGGER.error("Failed to load backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
             }
         }
     }
@@ -143,14 +143,14 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
     open fun saveNbt() {
         runCatching {
             val nbt = CompoundTag()
-            onSave(nbt, Server?.registryAccess()!!)
-            saveAllItems(nbt, Server?.registryAccess()!!)
+            onSave(nbt, Server.registryAccess()!!)
+            saveAllItems(nbt, Server.registryAccess()!!)
             Files.createDirectories(dataPath.parent)
             Files.deleteIfExists(dataPath)
             val path = Files.createFile(dataPath)
             NbtIo.writeCompressed(nbt, path)
         }.getOrElse {
-            Logger.error("Failed to save backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
+            LOGGER.error("Failed to save backpack data: {}\n{}", it.localizedMessage, it.stackTraceToString())
         }
     }
 

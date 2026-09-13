@@ -2,7 +2,7 @@ package io.github.ykysnk.sharedBackpackKt.inventory
 
 import com.google.common.collect.Lists
 import com.mojang.serialization.Codec
-import io.github.ykysnk.sharedBackpackKt.Utils
+import io.github.ykysnk.sharedBackpackKt.Constants
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap
 import net.minecraft.core.NonNullList
 import net.minecraft.core.RegistryAccess
@@ -104,7 +104,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
         internal set
 
     protected val level: ServerLevel?
-        get() = player?.level() as? ServerLevel ?: Utils.Server?.overworld()
+        get() = player?.level() as? ServerLevel ?: Constants.Server.overworld()
 
     protected var recipesUsed: Reference2IntOpenHashMap<ResourceKey<Recipe<*>>>? = null
 
