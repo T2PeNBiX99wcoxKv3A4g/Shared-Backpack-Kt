@@ -2,6 +2,7 @@
 
 package io.github.ykysnk.sharedBackpackKt
 
+import io.github.ykysnk.sharedBackpackKt.command.BackpackCommand
 import io.github.ykysnk.sharedBackpackKt.config.Configs
 import io.github.ykysnk.sharedBackpackKt.inventory.ContainerManager
 import io.github.ykysnk.sharedBackpackKt.inventory.TickHandler
@@ -32,7 +33,7 @@ object Constants {
         dir
     }
 
-    val ForceInitialize: Unit by lazy { doNothing(Configs, Constants, ContainerManager, TickHandler) }
+    val ForceInitialize: Unit by lazy { doNothing(Configs, Constants, ContainerManager, TickHandler, BackpackCommand) }
 
     private var getServer: MinecraftServer? = null
 
