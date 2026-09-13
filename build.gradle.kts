@@ -3,35 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.4.20"
-    kotlin("plugin.serialization") version "2.4.20"
-    id("fabric-loom") version "1.17-SNAPSHOT"
-    id("maven-publish")
-}
-
-version = providers.gradleProperty("mod_version").get()
-group = providers.gradleProperty("maven_group").get()
-
-base {
-    archivesName.set("${property("archives_base_name")}-${property("minecraft_version")}")
-}
-
-val targetJavaVersion = 23
-java {
-    toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
-    withSourcesJar()
-}
-
-loom {
-    mods {
-        register("shared-backpack-kt") {
-            sourceSet("main")
-        }
-    }
-    accessWidenerPath = file("src/main/resources/shared-backpack-kt.accesswidener")
+    id("net.fabricmc.fabric-loom-remap")
+    `maven-publish`
+    kotlin("jvm")
+    kotlin("plugin.serialization")
 }
 
 repositories {
@@ -40,9 +15,8 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
-    mavenCentral()
-    maven("https://maven.isxander.dev/releases") {
-        name = "Xander Maven"
+    maven("https://maven.fzzyhmstrs.me/") {
+        name = "FzzyMaven"
     }
     maven("https://maven.terraformersmc.com/") {
         name = "Terraformers"
@@ -50,38 +24,65 @@ repositories {
     maven("https://maven.parchmentmc.org") {
         name = "Parchment"
     }
+    exclusiveContent {
+        forRepository {
+            maven("https://api.modrinth.com/maven") {
+                name = "Modrinth"
+            }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
+}
+
+loom {
+    mods {
+        register(providers.gradleProperty("mod_id").get()) {
+            sourceSet(sourceSets.main.get())
+        }
+    }
+
+    val aw = file("src/main/resources/${providers.gradleProperty("mod_id").get()}.aw")
+    if (aw.exists())
+        accessWidenerPath = aw
 }
 
 dependencies {
-    // To change the versions, see the gradle.properties file
-    minecraft("com.mojang:minecraft:${property("minecraft_version")}")
+    // To change the versions see the gradle.properties file
+    minecraft("com.mojang:minecraft:${providers.gradleProperty("minecraft_version").get()}")
     mappings(
         loom.layered {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${property("minecraft_version")}:${property("parchment_mappings")}@zip")
+            parchment(
+                "org.parchmentmc.data:parchment-${
+                    providers.gradleProperty("minecraft_version").get()
+                }:${providers.gradleProperty("parchment_mappings").get()}@zip"
+            )
         }
     )
-//    mappings("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
-    modImplementation("net.fabricmc:fabric-language-kotlin:${property("kotlin_loader_version")}")
+    modImplementation("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
 
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
-
-    modImplementation("dev.isxander:yet-another-config-lib:${property("yacl_version")}")
-    modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
-    include(implementation("net.mamoe.yamlkt:yamlkt:${property("yamlkt_version")}")!!)
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
+    modImplementation("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")
+    modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("mod_menu_version").get()}")
+    modImplementation("me.fzzyhmstrs:fzzy_config:${providers.gradleProperty("fzzy_config_version").get()}")
+    include(implementation("net.mamoe.yamlkt:yamlkt:${providers.gradleProperty("yamlkt_version").get()}")!!)
 }
 
 val generateFallbackTranslations = tasks.register("generateFallbackTranslations") {
     description = "Generate fallback translations from en_us.json"
 
     val inputFile = file(
-        "src/main/resources/assets/shared-backpack-kt/lang/en_us.json"
+        "src/main/resources/assets/${providers.gradleProperty("mod_id").get()}/lang/en_us.json"
     )
 
-    val outputDir = layout.buildDirectory.dir(
-        "generated/sources/fallbackTranslations"
-    )
+    onlyIf {
+        inputFile.exists()
+    }
+
+    val outputDir = layout.buildDirectory.dir("generated/sources/fallbackTranslations")
 
     inputs.file(inputFile)
     outputs.dir(outputDir)
@@ -92,25 +93,20 @@ val generateFallbackTranslations = tasks.register("generateFallbackTranslations"
         val translations = JsonSlurper()
             .parse(inputFile) as Map<*, *>
 
-        fun toConstantName(key: String): String =
-            key
-                .replace(Regex("[^A-Za-z0-9]+"), "_")
-                .uppercase()
-                .trim('_')
+        fun toConstantName(key: String): String = key.replace(Regex("[^A-Za-z0-9]+"), "_").uppercase().trim('_')
 
-        fun escapeKotlinString(value: String): String =
-            value
-                .replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\r", "\\r")
-                .replace("\n", "\\n")
-                .replace("\t", "\\t")
+        fun escapeKotlinString(value: String): String = value
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+            .replace("\r", "\\r")
+            .replace("\n", "\\n")
+            .replace("\t", "\\t")
 
         val output = buildString {
             appendLine("// Generated file. DO NOT EDIT.")
-            appendLine("// Generated from assets/shared-backpack-kt/lang/en_us.json")
+            appendLine("// Generated from assets/${providers.gradleProperty("mod_id").get()}/lang/en_us.json")
             appendLine()
-            appendLine("package io.github.ykysnk.sharedBackpackKt")
+            appendLine("package $group")
             appendLine()
             appendLine("object FallbackTranslations {")
 
@@ -132,9 +128,7 @@ val generateFallbackTranslations = tasks.register("generateFallbackTranslations"
             appendLine("}")
         }
 
-        val outputFile = outputDirectory.resolve(
-            "io/github/ykysnk/sharedBackpackKt/FallbackTranslations.kt"
-        )
+        val outputFile = outputDirectory.resolve("${group?.replace('.', '/')}/FallbackTranslations.kt")
 
         outputFile.parentFile.mkdirs()
         outputFile.writeText(output)
@@ -145,10 +139,13 @@ val generateUpsideDownTranslation = tasks.register("generateUpsideDownTranslatio
     description = "Generate the en_ud (Upside-Down English) translation from en_us."
 
     val inputFile =
-        file("src/main/resources/assets/shared-backpack-kt/lang/en_us.json")
+        file("src/main/resources/assets/${providers.gradleProperty("mod_id").get()}/lang/en_us.json")
 
-    val outputDir =
-        layout.buildDirectory.dir("generated/resources/upsideDownTranslations")
+    onlyIf {
+        inputFile.exists()
+    }
+
+    val outputDir = layout.buildDirectory.dir("generated/resources/upsideDownTranslations")
 
     inputs.file(inputFile)
     outputs.dir(outputDir)
@@ -320,7 +317,7 @@ val generateUpsideDownTranslation = tasks.register("generateUpsideDownTranslatio
         }
 
         outputDirectory
-            .resolve("assets/shared-backpack-kt/lang/en_ud.json")
+            .resolve("assets/${providers.gradleProperty("mod_id").get()}/lang/en_ud.json")
             .apply {
                 parentFile.mkdirs()
                 writeText(output)
@@ -329,19 +326,23 @@ val generateUpsideDownTranslation = tasks.register("generateUpsideDownTranslatio
 }
 
 tasks.processResources {
+    val version = version
     inputs.property("version", version)
-    inputs.property("minecraft_version", project.property("minecraft_version"))
-    inputs.property("loader_version", project.property("loader_version"))
+    inputs.property("minecraft_version", providers.gradleProperty("minecraft_version").get())
+    inputs.property("loader_version", providers.gradleProperty("loader_version").get())
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand(
             "version" to version,
-            "minecraft_version" to project.property("minecraft_version").toString(),
-            "loader_version" to project.property("loader_version").toString(),
-            "kotlin_loader_version" to project.property("kotlin_loader_version").toString(),
-            "yacl_version" to project.property("yacl_version").toString(),
-            "modmenu_version" to project.property("modmenu_version").toString()
+            "mod_id" to providers.gradleProperty("mod_id").get(),
+            "mod_name" to providers.gradleProperty("mod_name").get(),
+            "minecraft_version" to providers.gradleProperty("minecraft_version").get(),
+            "loader_version" to providers.gradleProperty("loader_version").get(),
+            "fabric_kotlin_version" to providers.gradleProperty("fabric_kotlin_version").get(),
+            "fabric_api_version" to providers.gradleProperty("fabric_api_version").get(),
+            "mod_menu_version" to providers.gradleProperty("mod_menu_version").get(),
+            "fzzy_config_version" to providers.gradleProperty("fzzy_config_version").get(),
         )
     }
 
@@ -353,7 +354,15 @@ tasks.processResources {
     )
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    options.release = 17
+}
+
 kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
+
     sourceSets {
         main {
             kotlin.srcDir(
@@ -365,38 +374,29 @@ kotlin {
     }
 }
 
-tasks.named<KotlinCompile>("compileKotlin") {
-    dependsOn(generateFallbackTranslations)
-}
+java {
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
 
-tasks.named<Jar>("sourcesJar") {
-    dependsOn(generateFallbackTranslations)
-}
-
-tasks.withType<JavaCompile>().configureEach {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
-    options.encoding = "UTF-8"
-    options.release.set(targetJavaVersion)
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions.jvmTarget.set(JvmTarget.fromTarget(targetJavaVersion.toString()))
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.jar {
+    val projectName = project.name
+    inputs.property("projectName", projectName)
+
     from("LICENSE") {
-        rename { "${it}_${base.archivesName.get()}" }
+        rename { "${it}_$projectName" }
     }
 }
 
 // configure the maven publication
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
-            artifactId = "${property("archives_base_name")}-${property("minecraft_version")}"
+        register<MavenPublication>("mavenJava") {
             from(components["java"])
         }
     }
@@ -407,5 +407,21 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+    }
+}
+
+tasks.named<KotlinCompile>("compileKotlin") {
+    dependsOn(generateFallbackTranslations)
+}
+
+tasks.named<Jar>("sourcesJar") {
+    dependsOn(generateFallbackTranslations)
+}
+
+loom {
+    runs {
+        configureEach {
+            vmArg("-Dsodium.checks.issue2561=false")
+        }
     }
 }
