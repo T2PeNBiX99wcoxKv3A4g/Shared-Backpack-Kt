@@ -1,5 +1,61 @@
 # Changelog
 
+## [0.14.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.12.0..v0.14.0) - 2026-09-14
+
+### 🚜 Refactor
+
+- *(build)* Improve `toConstantName` function for better camelCase to constant conversion - ([4e94be3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4e94be321556cb8686402f6ac40e378f73a44d46))
+- *(build)* Update `modmenu` version constraint in `fabric.mod.json` for broader compatibility - ([7109193](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/710919302efd827c780cf499ed2443821982141d))
+- *(build)* Use dynamic `group` property in fallback translations generation - ([f9d4248](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f9d4248167de713d87d385fb7ab9763a235febc8))
+- *(build)* Replace hardcoded values in `fabric.mod.json` with placeholders for improved flexibility - ([16cc8b9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/16cc8b9a16d79c41eed54c283aaf41c83eef23c1))
+- *(build)* Update Gradle configuration for improved modularity and dependency management - ([64b3105](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/64b31050cac83833395f1f2c225e423f2f084f17))
+- *(commands)* Remove obsolete commands and registration logic following modularization of functionality - ([16004c1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/16004c1de1c9cf7b8c5528e1ebe28a1973aacfda))
+- *(config)* Validate `unlimitedFurnaceMultiplier` with `ValidatedInt` for improved input safety - ([c431b7f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c431b7f8c60ab9c6e765bb81b03b8dc5063420d3))
+- *(config)* Change `MainConfig` properties to mutable for enhanced flexibility in configuration handling - ([e5f3670](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e5f367076f243dadd8a9e530b70b37b484c0871b))
+- *(config)* Restructure `MainConfig` into sections for improved organization and readability - ([f3a0fc0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f3a0fc09a9a7a057880e8dc5e75615e39268090b))
+- *(config)* Replace `Configs.config.general` with `Configs.mainConfig` across commands for consistency and maintainability - ([d1e0b9b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d1e0b9bd50c548c4113e512f12e500671b7c3820))
+- *(config)* Remove custom config and ModMenu integration in favor of `fzzy_config` - ([00bf3b0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/00bf3b0e9f71288a68b63b12bd278f6b9858280b))
+- *(core)* Replace `Utils` with `Constants` for centralized constants management - ([a183393](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a183393ba2e0962493da652b020f079b38915451))
+- *(core)* Add `Constants` and `NameSpaces` for improved modularity and configuration handling - ([762846a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/762846a18c4190b24944f18f173b8ac4d7be29c3))
+- *(inventory)* Enhance null safety and modernize syntax in container classes - ([509cada](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/509cadaa3d2baca82e390f63cbfe1ac68c8beefa))
+- *(lang)* Update language keys to reflect namespace change from `shared-backpack-kt` to `server-backpack` - ([ad58329](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ad58329885970bd1020c185fe70494322c1fe451))
+- *(lang)* Update language keys to align with new mainConfig structure - ([c0ca1af](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c0ca1af2279a4a09a75896caa55c95677fcc08fe))
+- *(namespace)* Update package structure to rename mod from `shared-backpack-kt` to `server-backpack` - ([04830a1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/04830a162887b80336d3d090776af974105985c9))
+- *(namespace)* Suppress unused and private member visibility warnings in `NameSpaces.kt` - ([77f0e70](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/77f0e703799995386e3df1a67f1a2585eb72f9fa))
+- *(namespace, lang)* Rename mod from `shared-backpack-kt` to `server-backpack` across files - ([3f16498](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/3f16498849c9db92899dbb111fecae3a4d7694c9))
+- *(namespace, lang)* Update namespace and language keys to rename mod from `shared-backpack-kt` to `server-backpack` - ([d08ca07](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d08ca078a73e54be77f1ca2f253332e8deb4b821))
+
+### 📚 Documentation
+
+- *(commands)* Update README to reflect new command structure and additions - ([5d0ec85](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5d0ec85f05d4c8cbc1ba8cdb2df5e64665e604d2))
+- Update README title and remove outdated image link - ([0b100d3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0b100d3c9d122c99191228935e5cff110a6b047d))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(workflow)* Add `workflow_dispatch` trigger to release and pre-release workflows - ([4dc4e69](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4dc4e69f4b960af89dd00bd53ec65ef38aa51ebb))
+- *(workflow)* Remove unnecessary whitespace in `pre-release.yml` - ([7ea273f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7ea273f220e5a5e713c44d8e2aa98c1d77667f03))
+- *(workflow)* Remove unnecessary whitespace in `release.yml` - ([8a52a9a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/8a52a9ae5b4fd3b61ac1e0e6439d6580ab1f9c32))
+- Update `.gitignore` - ([8916f4b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/8916f4be98e14508a26cb2c7628f803986123d82))
+
+### Action
+
+- Update version in `gradle.properties` - ([133ccc6](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/133ccc67bc222fd0d01141b013c5c6f2f7c2ae2c))
+
+### `build
+
+- *(dependencies)* Remove unused dependency on yamlkt` - ([897e384](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/897e384970ab8762776d9a97739c89bc996f4e53))
+
+### Build
+
+- *(config)* Update compatibilityLevel to `JAVA_25` in mixin config - ([fa87913](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fa87913e2e74388f6821e3fea07e0a575b216dee))
+- *(repo)* Add `.gitattributes` to enforce consistent line endings across files - ([e1f7a58](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e1f7a58a41a0dd27b4969227f7649e3fcb73ac4a))
+- *(workflows)* Fix property key in version update step for consistency - ([f0469a1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f0469a1172e54466b39994251f23766ed6598b8e))
+- *(workflows)* Enhance Dependabot auto-merge workflow with improved checks and actions - ([64ba404](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/64ba40413455b595ede0396e486c98142eb1f83a))
+- *(workflows)* Update Java versions to 25 and use Microsoft distribution - ([21c014c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/21c014c2cf01c491e04df66d5d5275ddd58db419))
+- Bump `translation_generator_version` to 0.0.24 - ([00660b1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/00660b1443a83f472e277427377486089b6827e7))
+- Integrate translation generator plugin and update dependency repositories - ([45040c3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/45040c3da7a3e36e00500dcab9750dcd7aa9127d))
+
+
 ## [0.12.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.10.1..v0.12.0) - 2026-08-24
 
 ### Action
@@ -189,7 +245,12 @@
 ### 🐛 Bug Fixes
 
 - *(CI)* Exclude README.md and LICENSE files from triggering workflows - ([0ff53cd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0ff53cdf0bee653d9b43ad070ca97957d03cb513))
+- *(Gradle)* Fix `gradle.properties` in `1.21.5` - ([4bc5ef7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4bc5ef7ee12dea3b7e8e43f9db53716f58457e61))
+- *(TrashType)* Clean code - ([884f014](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/884f014b4c32fe81c5ae8e62f5e0764b83a73821))
+- *(Utils)* Clean code - ([82abffa](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82abffafe5f8b1508309df3892a284935b8d6a35))
 - Fix registry access calls in `AbstractBackpackContainer` for 1.21.5 version - ([193eed2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/193eed2994f8139729d14fab3a02486a1a9e3ec3))
+- Fix issue in `1.21.5` - ([bad9706](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bad970618ec430f5374f3012efea2ee85a5f6ba5))
+- Fix furnace in `1.21.5` - ([5f5a5bb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5f5a5bbf1cfc7c9f4f31774e2b69b094c1e2e5a1))
 
 ### 🚜 Refactor
 
@@ -201,12 +262,19 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(CI)* Remove unused `change_version.yml` configuration - ([2766730](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/276673013fa5c54bdab9ad2ee2a0ded2b195d1d3))
+- *(CI)* Enhance workflows with changelog, artifact handling, and auto-merge setup - ([61c8789](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/61c8789144c328e87c6fcc2f35070513b7536995))
 - *(dependencies)* Update loader, Kotlin loader, and Fabric versions in `gradle.properties` - ([10e1510](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/10e15101678d86213a5fb41b6eaf89cc72f14cf5))
 - Parameterize Minecraft version in `fabric.mod.json` - ([2d2448f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2d2448f0d693a343b948865e25af10fe126d9b67))
 
 ### Action
 
 - Update version in `gradle.properties` - ([867775d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/867775d52afba6c9ef174dbcfcb32fee520014aa))
+- Update version in `gradle.properties` - ([1cdb032](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1cdb032aa120d05512c64ffc2396b4ff5d1fc5ab))
+- Update version in `gradle.properties` - ([0657cfd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0657cfdd5a467523089a15714d07678ba729dc98))
+- Update version in `gradle.properties` - ([c98bef1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c98bef12dcacd8ae0229b84ad271a9fb48e0b32b))
+- Update version in `gradle.properties` - ([bd4f6f5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bd4f6f55b2f335028c6a7993652cfcbb22fadd6d))
+- Update version in `gradle.properties` - ([09020f1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/09020f104c1ae3f206b243690982e263882637b6))
 
 
 ## [0.3.3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.3.2..v0.3.3) - 2026-08-05
@@ -435,15 +503,9 @@
 
 ## [0.2.10](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.9..v0.2.10) - 2025-10-23
 
-### ⚙️ Miscellaneous Tasks
-
-- *(CI)* Remove unused `change_version.yml` configuration - ([2766730](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/276673013fa5c54bdab9ad2ee2a0ded2b195d1d3))
-
 ### Action
 
 - Update version in `gradle.properties` - ([7fd31e2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7fd31e251f46981ee16c8e5b8c62ede7ccadf254))
-- Update version in `gradle.properties` - ([1cdb032](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1cdb032aa120d05512c64ffc2396b4ff5d1fc5ab))
-- Update version in `gradle.properties` - ([0657cfd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0657cfdd5a467523089a15714d07678ba729dc98))
 
 
 ## [0.2.9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.8..v0.2.9) - 2025-10-23
@@ -508,28 +570,10 @@
 
 ### 🐛 Bug Fixes
 
-- *(Gradle)* Fix `gradle.properties` in `1.21.5` - ([4bc5ef7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/4bc5ef7ee12dea3b7e8e43f9db53716f58457e61))
 - *(TrashType)* Clean code - ([11bb1cc](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/11bb1cc15550391c11be826004a10071f9e523e1))
-- *(TrashType)* Clean code - ([884f014](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/884f014b4c32fe81c5ae8e62f5e0764b83a73821))
-- *(Utils)* Clean code - ([82abffa](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82abffafe5f8b1508309df3892a284935b8d6a35))
-- Fix issue in `1.21.5` - ([bad9706](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bad970618ec430f5374f3012efea2ee85a5f6ba5))
-
-### ⚙️ Miscellaneous Tasks
-
-- *(CI)* Enhance workflows with changelog, artifact handling, and auto-merge setup - ([61c8789](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/61c8789144c328e87c6fcc2f35070513b7536995))
-
-### Action
-
-- Update version in `gradle.properties` - ([c98bef1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c98bef12dcacd8ae0229b84ad271a9fb48e0b32b))
-- Update version in `gradle.properties` - ([bd4f6f5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bd4f6f55b2f335028c6a7993652cfcbb22fadd6d))
-- Update version in `gradle.properties` - ([09020f1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/09020f104c1ae3f206b243690982e263882637b6))
 
 
 ## [0.2.4](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.2.1..v0.2.4) - 2025-06-01
-
-### 🐛 Bug Fixes
-
-- Fix furnace in `1.21.5` - ([5f5a5bb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5f5a5bbf1cfc7c9f4f31774e2b69b094c1e2e5a1))
 
 ### Action
 
