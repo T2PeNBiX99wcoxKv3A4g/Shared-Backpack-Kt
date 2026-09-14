@@ -222,7 +222,7 @@ object BackpackCommand {
                         Smoking -> ContainerManager.getOrCreateSmokerFurnaceContainer(player2, name)
                     }
 
-                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-smelting-furnace.title",
@@ -298,7 +298,7 @@ object BackpackCommand {
                         Smoking -> ContainerManager.getOrCreateSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
-                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.private-smelting-furnace.title",
@@ -374,7 +374,7 @@ object BackpackCommand {
                         Smoking -> ContainerManager.getOrCreateUnlimitedSmokerFurnaceContainer(player2, name)
                     }
 
-                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.shared-unlimited-smelting-furnace.title",
@@ -450,7 +450,7 @@ object BackpackCommand {
                         Smoking -> ContainerManager.getOrCreateUnlimitedSmokerFurnacePlayerOnlyContainer(player2, name)
                     }
 
-                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.dataAccess)
+                    CustomFurnaceMenu(syncId, inventory, furnaceInventory, furnaceInventory.propertyDelegate)
                 }, when (type) {
                     Smelting -> Component.translatableWithFallback(
                         "command.server-backpack.private-unlimited-smelting-furnace.title",
