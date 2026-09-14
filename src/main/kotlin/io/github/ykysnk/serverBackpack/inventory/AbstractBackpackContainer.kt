@@ -68,10 +68,8 @@ abstract class AbstractBackpackContainer(private val fileName: String, size: Int
         }
     }
 
-    override fun toString(): String {
-        return (items.stream().filter { stack: ItemStack -> !stack.isEmpty }
-            .collect(Collectors.toList()) as List<*>).toString()
-    }
+    override fun toString(): String =
+        (items.stream().filter { stack: ItemStack -> !stack.isEmpty }.collect(Collectors.toList())).toString()
 
     override fun getContainerSize() = items.size
 

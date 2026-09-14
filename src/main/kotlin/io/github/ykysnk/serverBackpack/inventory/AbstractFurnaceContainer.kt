@@ -203,8 +203,7 @@ abstract class AbstractFurnaceContainer(fileName: String, recipeType: RecipeType
     protected open fun getTotalCookTime(serverLevel: ServerLevel): Int {
         val singleRecipeInput = SingleRecipeInput(getItem(0))
         val integer = quickCheck.getRecipeFor(singleRecipeInput, serverLevel)
-            .map<Int?> { recipeHolder -> recipeHolder.value().cookingTime() }
-            .orElse(200)!!
+            .map { recipeHolder -> recipeHolder.value().cookingTime() }.orElse(200)!!
         return integer
     }
 
