@@ -1,5 +1,64 @@
 # Changelog
 
+## [0.13.2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.13.1..v0.13.2) - 2026-09-14
+
+### 🚜 Refactor
+
+- *(build)* Improve `toConstantName` function for better camelCase to constant conversion - ([b8c6ed9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b8c6ed96b42b0e7227956d2b8093f28b9909f7d7))
+- *(build)* Update `modmenu` version constraint in `fabric.mod.json` for broader compatibility - ([7765055](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/77650554b386a74566cc758f8ea3bfd831a95b49))
+- *(build)* Use dynamic `group` property in fallback translations generation - ([5de7203](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5de72032c73596e1f6aeb584f71c32fbd802fc2e))
+- *(build)* Replace hardcoded values in `fabric.mod.json` with placeholders for improved flexibility - ([e13b463](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e13b4638c74001966545b8cd4355cd117e3070d3))
+- *(build)* Update Gradle configuration for improved modularity and dependency management - ([5ff54fd](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5ff54fd94374f1e06a93d1afaea8a795c0e0cba4))
+- *(command)* Replace `dataAccess` with `propertyDelegate` in `CustomFurnaceMenu` initialization - ([907975a](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/907975a5a081719bb8af6bb9f4131cd955baf925))
+- *(commands)* Remove obsolete commands and registration logic following modularization of functionality - ([0a42240](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0a42240f236c78131901ebf0c2c3f63d2cb2da4f))
+- *(config)* Validate `unlimitedFurnaceMultiplier` with `ValidatedInt` for improved input safety - ([a1dc106](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a1dc106a984e42d15f4923296d58293791e23e92))
+- *(config)* Change `MainConfig` properties to mutable for enhanced flexibility in configuration handling - ([dfb2595](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/dfb2595c922053d73505c29d9ef51fa949e391f9))
+- *(config)* Restructure `MainConfig` into sections for improved organization and readability - ([76f2ed2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/76f2ed2e4b0520102fa2bf2acd3f6b618e78260a))
+- *(config)* Replace `Configs.config.general` with `Configs.mainConfig` across commands for consistency and maintainability - ([b6536ac](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b6536ac02e8e1743ba9f02ce6549f9f5baf537de))
+- *(config)* Remove custom config and ModMenu integration in favor of `fzzy_config` - ([485fe02](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/485fe0261cb9f091d5ab8e41bd5a60f7b465a227))
+- *(core)* Replace `Utils` with `Constants` for centralized constants management - ([91431c5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/91431c5531ce346ca49aaa003d0bee6f569e5742))
+- *(core)* Add `Constants` and `NameSpaces` for improved modularity and configuration handling - ([36511cb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/36511cb9164f2db603a91e9845c724e3278c6b0f))
+- *(inventory)* Simplify `toString` and `getTotalCookTime` implementations for readability and maintainability - ([756ddc3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/756ddc3218f9e79604b0f8b906fef0a0388fcf69))
+- *(inventory)* Enhance null safety and modernize syntax in container classes - ([9b5558c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/9b5558c0bbd5d33f5b53b1da439f1c5e7f3a95e5))
+- *(lang)* Update language keys to reflect namespace change from `shared-backpack-kt` to `server-backpack` - ([95b507e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/95b507efe9097884e2c4d81639b24aa5f7a0646b))
+- *(lang)* Update language keys to align with new mainConfig structure - ([bc0fd52](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bc0fd52341d0b0d0d43a4b0c5c49fc78e7f83e9a))
+- *(namespace)* Update `path` and `invoke` methods to improve `ResourceLocation` handling - ([a32b953](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a32b953a1d913fbec9fb91d05e7aa7043dac78dd))
+- *(namespace)* Update package structure to rename mod from `shared-backpack-kt` to `server-backpack` - ([37bd5c5](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/37bd5c5382c6218d23f90b5e25da2250f7801404))
+- *(namespace)* Suppress unused and private member visibility warnings in `NameSpaces.kt` - ([0189e95](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0189e95bc496f130487e32c4ef982ee4ece2c278))
+- *(namespace, lang)* Rename mod from `shared-backpack-kt` to `server-backpack` across files - ([ea15fe0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/ea15fe05382352920b5b1696b16d7306ca1a0af9))
+- *(namespace, lang)* Update namespace and language keys to rename mod from `shared-backpack-kt` to `server-backpack` - ([0c84842](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0c84842e7b11c560649c683ca1c6facd6c5cfb1d))
+
+### 📚 Documentation
+
+- *(commands)* Update README to reflect new command structure and additions - ([1d1c916](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1d1c9168f9b0e5c9e99b9d9e89fc67c140be4c1a))
+- Update README title and remove outdated image link - ([7490ef7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7490ef786dcd06d0f782fc50c9466a119afd5524))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(workflow)* Add `workflow_dispatch` trigger to release and pre-release workflows - ([e415f5f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e415f5f1ed1b029969602da22b5d15e5a5215c6c))
+- *(workflow)* Remove unnecessary whitespace in `pre-release.yml` - ([8b373c3](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/8b373c32bad97f56e317c0f850ffebd75b1e00f5))
+- *(workflow)* Remove unnecessary whitespace in `release.yml` - ([6c4605d](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6c4605d26b0f946ef5690de5bdfc31f73043feeb))
+- Update `.gitignore` - ([fc76254](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/fc76254af0fd79b27d7f709a7dce758bd6a3576b))
+
+### Action
+
+- Update version in `gradle.properties` - ([7232239](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/7232239a75e6e4af1b86c48bcf4b29b82739c506))
+
+### `build
+
+- *(dependencies)* Remove unused dependency on yamlkt` - ([6b4f15c](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6b4f15cd13d72aa41341066fff10f85b3932c944))
+
+### Build
+
+- *(config)* Update compatibilityLevel to `JAVA_25` in mixin config - ([f29683f](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f29683f332236d7ef11dce8811891cc74a9398b6))
+- *(repo)* Add `.gitattributes` to enforce consistent line endings across files - ([afa97b1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/afa97b1a0141162e4a1227fb37aef817b5ad457b))
+- *(workflows)* Fix property key in version update step for consistency - ([5a5cb47](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/5a5cb470f117dbc49d2b26a29c236608a1db8195))
+- *(workflows)* Enhance Dependabot auto-merge workflow with improved checks and actions - ([deb4639](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/deb4639f201f163b540f19e6e2fa7c836371baa8))
+- *(workflows)* Update Java versions to 25 and use Microsoft distribution - ([d367c20](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d367c20654c7e288b4b2a6f92608b8eb03248957))
+- Bump `translation_generator_version` to 0.0.24 - ([d9b40c2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d9b40c28c42df954966cff4d2e416bea9e3ae303))
+- Integrate translation generator plugin and update dependency repositories - ([d283407](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d283407998ea7321208178087cfffeb733190d6e))
+
+
 ## [0.13.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.13.0..v0.13.1) - 2026-09-13
 
 ### Action
