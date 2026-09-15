@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.14.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.14.0..v0.14.1) - 2026-09-15
+
+### ⚙️ Miscellaneous Tasks
+
+- Update `.gitignore` - ([36ce543](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/36ce54337195dd8cae669b84b68ed933f38aad2e))
+
+### Action
+
+- Update version in `gradle.properties` - ([a105b7b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/a105b7b9d6dbb8bd9326be8c27088b3ec7a499ba))
+
+### Build
+
+- *(deps)* Migrate version management to version catalog (libs.versions.toml) - ([e355a07](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/e355a078cd94ba0e112d64bc3bc1c3f7a995d981))
+- Downgrade Minecraft version to 1.20.1 and update dependencies - ([b652811](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/b6528113ee3600749399410f5d60bf736335d43f))
+- Fix property assignment in `translationGenerator` block - ([2e9f38b](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/2e9f38bde76760d280edd5168ea527bb5884c187))
+- Configure JVM toolchain and update Kotlin JVM target - ([bcc6795](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/bcc6795b8c56b07e05b646d248aa9bf9ddd495b6))
+
+
 ## [0.14.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.12.0..v0.14.0) - 2026-09-14
 
 ### 🚜 Refactor
