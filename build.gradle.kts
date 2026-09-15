@@ -100,12 +100,13 @@ tasks.processResources {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-    options.release = 17
+    options.release = libs.versions.jvm.target.get().toInt()
 }
 
 kotlin {
+    jvmToolchain(libs.versions.jvm.toolchain.get().toInt())
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
+        jvmTarget = JvmTarget.fromTarget(libs.versions.jvm.target.get())
     }
 
     sourceSets {
@@ -124,9 +125,6 @@ java {
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
-
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.jar {
