@@ -1,0 +1,25 @@
+[versions]
+minecraft = "1.21.5"
+fabric-loader = "0.19.3"
+fabric-loom = "1.17-SNAPSHOT"
+kotlin = "2.4.20"
+fabric-kotlin = "1.14.1+kotlin.2.4.20"
+parchment-mappings = "2025.06.15"
+translation-generator = "0.0.24"
+fabric-api = "0.128.2+1.21.5"
+modmenu = "14.0.2"
+fzzy-config = "0.7.6+1.21.5"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
+fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api" }
+fabric-language-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabric-kotlin" }
+modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
+fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy-config" }
+
+[plugins]
+fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+translation-generator = { id = "io.github.ykysnk.translation-generator", version.ref = "translation-generator" }

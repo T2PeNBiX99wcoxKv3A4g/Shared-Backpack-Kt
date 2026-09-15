@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("net.fabricmc.fabric-loom-remap")
+    alias(libs.plugins.fabric.loom)
     `maven-publish`
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-    id("io.github.ykysnk.translation-generator")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.translation.generator)
 }
 
 repositories {
@@ -49,32 +49,32 @@ loom {
 }
 
 dependencies {
-    // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${providers.gradleProperty("minecraft_version").get()}")
+    // To change the versions see the libs.versions.toml file
+    minecraft(libs.minecraft)
     mappings(
         loom.layered {
             officialMojangMappings()
             parchment(
                 "org.parchmentmc.data:parchment-${
-                    providers.gradleProperty("minecraft_version").get()
-                }:${providers.gradleProperty("parchment_mappings").get()}@zip"
+                    libs.versions.minecraft.get()
+                }:${libs.versions.parchment.mappings.get()}@zip"
             )
         }
     )
-    modImplementation("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
+    modImplementation(libs.fabric.loader)
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
-    modImplementation("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")
-    modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("mod_menu_version").get()}")
-    modImplementation("me.fzzyhmstrs:fzzy_config:${providers.gradleProperty("fzzy_config_version").get()}")
+    modImplementation(libs.fabric.api)
+    modImplementation(libs.fabric.language.kotlin)
+    modImplementation(libs.modmenu)
+    modImplementation(libs.fzzy.config)
 }
 
 tasks.processResources {
     val version = version
     inputs.property("version", version)
-    inputs.property("minecraft_version", providers.gradleProperty("minecraft_version").get())
-    inputs.property("loader_version", providers.gradleProperty("loader_version").get())
+    inputs.property("minecraft_version", libs.versions.minecraft.get())
+    inputs.property("loader_version", libs.versions.fabric.loader.get())
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -82,12 +82,12 @@ tasks.processResources {
             "version" to version,
             "mod_id" to providers.gradleProperty("mod_id").get(),
             "mod_name" to providers.gradleProperty("mod_name").get(),
-            "minecraft_version" to providers.gradleProperty("minecraft_version").get(),
-            "loader_version" to providers.gradleProperty("loader_version").get(),
-            "fabric_kotlin_version" to providers.gradleProperty("fabric_kotlin_version").get(),
-            "fabric_api_version" to providers.gradleProperty("fabric_api_version").get(),
-            "mod_menu_version" to providers.gradleProperty("mod_menu_version").get(),
-            "fzzy_config_version" to providers.gradleProperty("fzzy_config_version").get(),
+            "minecraft_version" to libs.versions.minecraft.get(),
+            "loader_version" to libs.versions.fabric.loader.get(),
+            "fabric_kotlin_version" to libs.versions.fabric.kotlin.get(),
+            "fabric_api_version" to libs.versions.fabric.api.get(),
+            "mod_menu_version" to libs.versions.modmenu.get(),
+            "fzzy_config_version" to libs.versions.fzzy.config.get(),
         )
     }
 
