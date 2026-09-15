@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.15.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.15.0..v0.15.1) - 2026-09-15
+
+### Action
+
+- Update version in `gradle.properties` - ([855f2d2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/855f2d2f53a46060251d2892364c4691bd7d4e7a))
+
+### Build
+
+- Set dynamic project version using Gradle property and Minecraft version - ([d512ce7](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d512ce797db4c26e957fa134046bb9401a27949c))
+
+
 ## [0.15.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.13.2..v0.15.0) - 2026-09-15
 
 ### ⚙️ Miscellaneous Tasks
