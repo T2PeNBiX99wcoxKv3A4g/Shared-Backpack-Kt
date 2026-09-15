@@ -170,6 +170,6 @@ loom {
 }
 
 translationGenerator {
-    modId.set(providers.gradleProperty("mod_id"))
-    packageName.set(providers.gradleProperty("package_group"))
+    modId = providers.gradleProperty("mod_id")
+    packageName = providers.gradleProperty("package_group")
 }
