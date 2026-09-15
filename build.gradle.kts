@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.translation.generator)
 }
 
+version = "${providers.gradleProperty("version").get()}+${libs.versions.minecraft.get()}"
+
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
