@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.15.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.13.2..v0.15.0) - 2026-09-15
+
+### ⚙️ Miscellaneous Tasks
+
+- Update `.gitignore` - ([1624796](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/162479666886741195c2cfaa713be03ddd240def))
+
+### Action
+
+- Update version in `gradle.properties` - ([f8b6ddf](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/f8b6ddf1578e3f90426a5841f1d51c59aee57ad9))
+
+### Build
+
+- *(deps)* Migrate version management to version catalog (libs.versions.toml) - ([82db61e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/82db61e995a41e906a3a3bdfe141e5aeeb6db0c9))
+- Fix property assignment in `translationGenerator` block - ([6b55892](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/6b5589238204eb3849d7094704e49f07902037b9))
+- Configure JVM toolchain and update Kotlin JVM target - ([76ad0eb](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/76ad0ebbafefddd25c762a9cf8f732887709835a))
+
+## New Contributors ❤️
+
+* @junie-agent made their first contribution
+
 ## [0.13.2](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.13.1..v0.13.2) - 2026-09-14
 
 ### 🚜 Refactor
