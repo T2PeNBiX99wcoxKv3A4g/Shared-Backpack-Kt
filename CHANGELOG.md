@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.17.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.15.1..v0.17.0) - 2026-09-16
+
+### ⚙️ Miscellaneous Tasks
+
+- *(workflow)* Simplify release workflows by reusing `jvm_release` template and updating permissions - ([df2ff1e](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/df2ff1e37cd3acc87cdbba9cf658f7413e9aa235))
+- *(workflow)* Update `paths-ignore` to exclude additional files in release workflows - ([0f47cd8](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0f47cd8e12e99736be28037d5c490ec5e75a81f8))
+- *(workflow)* Replace custom Dependabot auto-merge logic with reusable workflow - ([1e82374](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/1e8237408a72acd53d35b22cc74fc3258440f16b))
+- *(workflow)* Add step to request Dependabot PR recreation on merge conflicts - ([0069681](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/0069681c0254a0cadf95fe73fce94fa8512e5fff))
+
+### Action
+
+- Update version in `gradle.properties` - ([d87aca1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/d87aca1a8b39f0de009f55ab3194bb5915c3d38a))
+
+
 ## [0.15.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.15.0..v0.15.1) - 2026-09-15
 
 ### Action
