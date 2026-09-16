@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.18.0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.16.1..v0.18.0) - 2026-09-16
+
+### ⚙️ Miscellaneous Tasks
+
+- *(workflow)* Rename workflow to `Pre Release` for clarity - ([54deae9](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/54deae994409f20321595cdc44e6e3d265501cf7))
+
+### Action
+
+- Update version in `gradle.properties` and update `CHANGELOG.md` - ([c8c15f0](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/commit/c8c15f02ee99173edec7d10e2707a7bb0e836951))
+
+
 ## [0.16.1](https://github.com/T2PeNBiX99wcoxKv3A4g/Shared-Backpack-Kt/compare/v0.16.0..v0.16.1) - 2026-09-16
 
 ### ⚙️ Miscellaneous Tasks
